@@ -1,0 +1,21 @@
+[gd_scene load_steps=3 format=3 uid="uid://bllrhd6jxp6f4"]
+
+[ext_resource type="Script" uid="uid://ckc6mdbh4jyxu" path="res://ui/persistent_ui/persistent_ui.gd" id="1_0ubq8"]
+
+[sub_resource type="SystemFont" id="SystemFont_vq2wv"]
+
+[node name="PersistentUi" type="CanvasLayer"]
+script = ExtResource("1_0ubq8")
+
+[node name="QuitButton" type="Button" parent="."]
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -8.0
+offset_bottom = 8.0
+grow_horizontal = 0
+theme_override_fonts/font = SubResource("SystemFont_vq2wv")
+theme_override_font_sizes/font_size = 42
+text = "   Quit   "
+
+[connection signal="pressed" from="QuitButton" to="." method="_on_quit_button_pressed"]

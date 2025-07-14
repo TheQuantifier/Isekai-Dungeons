@@ -1,0 +1,24 @@
+[gd_resource type="Resource" script_class="Character" load_steps=3 format=3]
+
+[ext_resource type="Script" path="res://core/equipment/equipment.gd" id="1_phn4y"]
+[ext_resource type="Script" path="res://core/character/character.gd" id="2_5vobn"]
+
+[resource]
+script = ExtResource("2_5vobn")
+char_id = "john"
+char_age = 15.0
+current_health = 150
+gold = 1200
+equipped_items = Array[ExtResource("1_phn4y")]([])
+strength_stats = {
+0: 95,
+1: 80,
+2: 100
+}
+defense_stats = {
+0: 200,
+1: 150,
+2: 250,
+3: 100,
+4: 50
+}

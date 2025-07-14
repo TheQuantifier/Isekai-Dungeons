@@ -1,0 +1,64 @@
+[gd_scene load_steps=6 format=3 uid="uid://tvefuc2jd8cc"]
+
+[ext_resource type="PackedScene" uid="uid://bkd5chj1tyrsd" path="res://scenes/game_world/ground.tscn" id="1_254f3"]
+[ext_resource type="Script" uid="uid://dj6ds81qxtn0j" path="res://scenes/game_world/game_world.gd" id="1_mjgxe"]
+[ext_resource type="PackedScene" uid="uid://cgjylwr71uayr" path="res://scenes/game_world/player.tscn" id="2_mjgxe"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_mjgxe"]
+size = Vector3(4, 1, 4)
+
+[sub_resource type="BoxMesh" id="BoxMesh_mjgxe"]
+size = Vector3(4, 1, 4)
+
+[node name="GameWorld" type="Node3D"]
+script = ExtResource("1_mjgxe")
+
+[node name="Ground" parent="." instance=ExtResource("1_254f3")]
+
+[node name="Player" parent="." instance=ExtResource("2_mjgxe")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7, 0, 2)
+
+[node name="Sun" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-0.172429, 0.320698, -0.931354, -0.120874, 0.931482, 0.34312, 0.977578, 0.17174, -0.12185, -27.1239, 18.1802, -7.18763)
+
+[node name="Wall" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.5, 0)
+size = Vector3(10, 5, 1)
+
+[node name="CameraPivot" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7, 1, 2)
+
+[node name="Camera3D" type="Camera3D" parent="CameraPivot"]
+transform = Transform3D(-0.443509, 0, 0.89627, 0, 1, 0, -0.89627, 0, -0.443509, 0, 0, 0)
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer"]
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -40.0
+offset_top = -40.0
+grow_horizontal = 0
+grow_vertical = 0
+alignment = 1
+
+[node name="Main Menu" type="Button" parent="CanvasLayer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 40
+text = "Main Menu"
+
+[node name="Platform" type="StaticBody3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Platform"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0, 4)
+shape = SubResource("BoxShape3D_mjgxe")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Platform"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0, 4)
+mesh = SubResource("BoxMesh_mjgxe")
+skeleton = NodePath("../CollisionShape3D")
+
+[connection signal="pressed" from="CanvasLayer/VBoxContainer/Main Menu" to="." method="_on_main_menu_pressed"]

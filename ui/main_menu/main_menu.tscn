@@ -1,0 +1,74 @@
+[gd_scene load_steps=5 format=3 uid="uid://dm08ug13g54tn"]
+
+[ext_resource type="Script" uid="uid://dec8hadisf4cm" path="res://ui/main_menu/main_menu.gd" id="1_uhj5c"]
+[ext_resource type="Texture2D" uid="uid://den7yq6jk7svu" path="res://assets/images.png" id="2_mu8pm"]
+
+[sub_resource type="SystemFont" id="SystemFont_06t4h"]
+
+[sub_resource type="SystemFont" id="SystemFont_rhts7"]
+
+[node name="MainMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_uhj5c")
+
+[node name="CenterContainer" type="CenterContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 16.0
+offset_top = 8.0
+offset_right = 16.0
+offset_bottom = 8.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="Node" parent="CenterContainer"]
+
+[node name="UsernameField" type="LineEdit" parent="CenterContainer/VBoxContainer"]
+offset_left = 448.0
+offset_top = 400.0
+offset_right = 768.0
+offset_bottom = 450.0
+theme_override_font_sizes/font_size = 30
+placeholder_text = "Enter Username"
+
+[node name="StartGameButton" type="Button" parent="CenterContainer/VBoxContainer"]
+offset_left = 480.0
+offset_top = 464.0
+offset_right = 706.0
+offset_bottom = 527.0
+theme_override_fonts/font = SubResource("SystemFont_06t4h")
+theme_override_font_sizes/font_size = 40
+disabled = true
+text = "Start Game"
+
+[node name="Node" type="Node" parent="CenterContainer"]
+
+[node name="GameNameLabel" type="Label" parent="CenterContainer/Node"]
+offset_left = 368.0
+offset_top = 264.0
+offset_right = 856.0
+offset_bottom = 487.0
+theme_override_fonts/font = SubResource("SystemFont_rhts7")
+theme_override_font_sizes/font_size = 80
+text = "Dungeon101"
+
+[node name="TextureRect" type="TextureRect" parent="CenterContainer/Node"]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -112.0
+offset_top = 48.0
+offset_right = 113.0
+offset_bottom = 273.0
+grow_horizontal = 2
+texture = ExtResource("2_mu8pm")
+
+[connection signal="text_changed" from="CenterContainer/VBoxContainer/UsernameField" to="." method="_on_username_field_text_changed"]
+[connection signal="pressed" from="CenterContainer/VBoxContainer/StartGameButton" to="." method="_on_start_game_button_pressed"]

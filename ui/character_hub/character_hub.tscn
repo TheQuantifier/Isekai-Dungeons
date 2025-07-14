@@ -1,0 +1,59 @@
+[gd_scene load_steps=2 format=3 uid="uid://lt15tsobxh7w"]
+
+[ext_resource type="Script" uid="uid://bdfofyfar61b0" path="res://ui/character_hub/character_hub.gd" id="1_sla82"]
+
+[node name="CharacterHub" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+mouse_filter = 2
+script = ExtResource("1_sla82")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="UI" type="Control" parent="CanvasLayer"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="CenterContainer" type="CenterContainer" parent="CanvasLayer/UI"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/UI/CenterContainer"]
+layout_mode = 2
+mouse_filter = 2
+alignment = 1
+
+[node name="PlayButton" type="Button" parent="CanvasLayer/UI/CenterContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 40
+text = "Play"
+
+[node name="Edit CharacterButton" type="Button" parent="CanvasLayer/UI/CenterContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 40
+text = "Edit Character"
+
+[node name="ViewStatsButton" type="Button" parent="CanvasLayer/UI/CenterContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 40
+text = "View Stats"
+
+[node name="LogOutButton" type="Button" parent="CanvasLayer/UI/CenterContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 40
+text = "Log Out"
+
+[connection signal="pressed" from="CanvasLayer/UI/CenterContainer/VBoxContainer/PlayButton" to="." method="_on_play_pressed"]
+[connection signal="pressed" from="CanvasLayer/UI/CenterContainer/VBoxContainer/Edit CharacterButton" to="." method="_on_edit_character_pressed"]
+[connection signal="pressed" from="CanvasLayer/UI/CenterContainer/VBoxContainer/ViewStatsButton" to="." method="_on_view_stats_pressed"]
+[connection signal="pressed" from="CanvasLayer/UI/CenterContainer/VBoxContainer/LogOutButton" to="." method="_on_log_out_pressed"]
