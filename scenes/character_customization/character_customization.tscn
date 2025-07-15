@@ -36,11 +36,11 @@ text = "Female"
 offset_right = 40.0
 offset_bottom = 40.0
 
-[node name="MainMenu" type="Button" parent="UI/VBoxContainer2"]
+[node name="Main Menu" type="Button" parent="UI/VBoxContainer2"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 30
 text = "Main Menu"
 
 [connection signal="pressed" from="UI/VBoxContainer/MaleButton" to="." method="_on_male_button_pressed"]
 [connection signal="pressed" from="UI/VBoxContainer/FemaleButton" to="." method="_on_female_button_pressed"]
-[connection signal="pressed" from="UI/VBoxContainer2/MainMenu" to="." method="_on_main_menu_pressed"]
+[connection signal="pressed" from="UI/VBoxContainer2/Main Menu" to="." method="_on_main_menu_pressed"]

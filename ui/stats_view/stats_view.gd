@@ -31,4 +31,4 @@ func update_stats(character) -> void:
 
 
 func _on_back_button_pressed() -> void:
-	game_manager.change_scene("res://ui/character_hub/character_hub.tscn")
+	game_manager.go_to_main_menu()

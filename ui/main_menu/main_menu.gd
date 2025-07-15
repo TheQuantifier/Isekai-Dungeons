@@ -1,15 +1,18 @@
 extends Control
+class_name CharacterHub
 
-@onready var username_field = $CenterContainer/VBoxContainer/UsernameField
-@onready var start_button = $CenterContainer/VBoxContainer/StartGameButton
+func _ready():
+	# You can preload character data or UI bindings here if needed
+	pass
 
-func _ready() -> void:
-	start_button.disabled = true  # Start disabled
+func _on_play_pressed():
+	game_manager.go_to_game_world()
 
-func _on_username_field_text_changed(new_text: String) -> void:
-	start_button.disabled = new_text.strip_edges() == ""
+func _on_edit_character_pressed():
+	game_manager.go_to_character_customization()
 
-func _on_start_game_button_pressed() -> void:
-	var username = username_field.text.strip_edges()
-	if username != "":
-		game_manager.start_new_game(username)
+func _on_view_stats_pressed():
+	game_manager.go_to_view_stats()
+
+func _on_log_out_pressed():
+	game_manager.go_to_login_page()

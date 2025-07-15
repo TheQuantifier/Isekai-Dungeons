@@ -19,4 +19,4 @@ func _process(delta: float) -> void:
 
 
 func _on_main_menu_pressed() -> void:
-	game_manager.change_scene("res://ui/character_hub/character_hub.tscn")
+	game_manager.go_to_main_menu()
