@@ -6,9 +6,35 @@ extends CharacterBody3D
 @export var turn_speed: float = 2.0  # Radians per second
 
 @onready var gravity: float = 40
-@onready var anim_player = $Running/AnimationPlayer  # Adjust path as needed
+@onready var character_node: Node3D = $Character
 
+var anim_player: AnimationPlayer
 var is_jumping: bool = false
+
+func _ready() -> void:
+	load_model_from_character_data()
+
+func load_model_from_character_data() -> void:
+	# Clear any existing model
+	for child in character_node.get_children():
+		child.queue_free()
+
+	var model_path: String = game_manager.current_character.model_path
+	if not model_path or model_path == "":
+		push_error("No model path defined in current character.")
+		return
+
+	var model_scene := load(model_path)
+	if model_scene is PackedScene:
+		var model_instance: Node3D = model_scene.instantiate()
+		character_node.add_child(model_instance)
+
+		# Get AnimationPlayer from model
+		anim_player = model_instance.get_node_or_null("AnimationPlayer")
+		if not anim_player:
+			push_warning("No AnimationPlayer found in loaded model.")
+	else:
+		push_error("Failed to load model at path: " + model_path)
 
 func _physics_process(delta: float) -> void:
 	var direction = Vector3.ZERO
@@ -16,13 +42,11 @@ func _physics_process(delta: float) -> void:
 	var is_moving_backward = Input.is_action_pressed("move_back")
 	var is_crouching = Input.is_action_pressed("crouch")
 
-	# Combine inputs
 	if is_moving_forward:
 		direction += transform.basis.z
 	if is_moving_backward:
 		direction -= transform.basis.z
 
-	# Rotation input
 	if Input.is_action_pressed("move_left"):
 		rotate_y(turn_speed * delta)
 	if Input.is_action_pressed("move_right"):
@@ -31,34 +55,29 @@ func _physics_process(delta: float) -> void:
 	direction.y = 0
 	direction = direction.normalized()
 
-	# Determine speed
 	var speed := move_speed
 	if is_crouching and (is_moving_forward or is_moving_backward):
-		speed *= 0.5  # Crouch is slower
+		speed *= 0.5
 	if not is_on_floor():
-		speed *= 0.5  # Air slows movement
+		speed *= 0.5
 
 	velocity.x = direction.x * speed
 	velocity.z = direction.z * speed
 
-	# Gravity
 	if not is_on_floor():
 		velocity.y -= gravity * delta
 
-	# Jumping
 	if Input.is_action_just_pressed("jump") and is_on_floor():
 		velocity.y = jump_velocity
 		is_jumping = true
-		if anim_player.has_animation("jump"):
+		if anim_player and anim_player.has_animation("jump"):
 			anim_player.play("jump", -1.0, 2.75)
 
 	move_and_slide()
 
-	# Animation Logic
-	if is_on_floor():
+	if anim_player and is_on_floor():
 		if is_jumping:
-			is_jumping = false  # Landed
-
+			is_jumping = false
 		if is_crouching and is_moving_forward:
 			anim_player.play("crouch_move_forward")
 		elif is_crouching and is_moving_backward:
@@ -69,6 +88,5 @@ func _physics_process(delta: float) -> void:
 			anim_player.play("run_backward")
 		else:
 			anim_player.play("idle")
-	else:
-		if is_jumping:
-			anim_player.play("jump", -1.0, 2.75)
+	elif anim_player and is_jumping:
+		anim_player.play("jump", -1.0, 2.75)
