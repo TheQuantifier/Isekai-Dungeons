@@ -1,74 +1,59 @@
-[gd_scene load_steps=5 format=3 uid="uid://dm08ug13g54tn"]
+[gd_scene load_steps=2 format=3 uid="uid://lt15tsobxh7w"]
 
-[ext_resource type="Script" uid="uid://dec8hadisf4cm" path="res://ui/main_menu/main_menu.gd" id="1_uhj5c"]
-[ext_resource type="Texture2D" uid="uid://den7yq6jk7svu" path="res://assets/images.png" id="2_mu8pm"]
+[ext_resource type="Script" uid="uid://bdfofyfar61b0" path="res://ui/main_menu/main_menu.gd" id="1_sla82"]
 
-[sub_resource type="SystemFont" id="SystemFont_06t4h"]
+[node name="CharacterHub" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+mouse_filter = 2
+script = ExtResource("1_sla82")
 
-[sub_resource type="SystemFont" id="SystemFont_rhts7"]
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
 
-[node name="MainMenu" type="Control"]
+[node name="UI" type="Control" parent="CanvasLayer"]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("1_uhj5c")
+mouse_filter = 2
 
-[node name="CenterContainer" type="CenterContainer" parent="."]
+[node name="CenterContainer" type="CenterContainer" parent="CanvasLayer/UI"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = 16.0
-offset_top = 8.0
-offset_right = 16.0
-offset_bottom = 8.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 2
 
-[node name="VBoxContainer" type="Node" parent="CenterContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/UI/CenterContainer"]
+layout_mode = 2
+mouse_filter = 2
+alignment = 1
 
-[node name="UsernameField" type="LineEdit" parent="CenterContainer/VBoxContainer"]
-offset_left = 448.0
-offset_top = 400.0
-offset_right = 768.0
-offset_bottom = 450.0
-theme_override_font_sizes/font_size = 30
-placeholder_text = "Enter Username"
-
-[node name="StartGameButton" type="Button" parent="CenterContainer/VBoxContainer"]
-offset_left = 480.0
-offset_top = 464.0
-offset_right = 706.0
-offset_bottom = 527.0
-theme_override_fonts/font = SubResource("SystemFont_06t4h")
+[node name="PlayButton" type="Button" parent="CanvasLayer/UI/CenterContainer/VBoxContainer"]
+layout_mode = 2
 theme_override_font_sizes/font_size = 40
-disabled = true
-text = "Start Game"
+text = "Play"
 
-[node name="Node" type="Node" parent="CenterContainer"]
+[node name="Edit CharacterButton" type="Button" parent="CanvasLayer/UI/CenterContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 40
+text = "Edit Character"
 
-[node name="GameNameLabel" type="Label" parent="CenterContainer/Node"]
-offset_left = 368.0
-offset_top = 264.0
-offset_right = 856.0
-offset_bottom = 487.0
-theme_override_fonts/font = SubResource("SystemFont_rhts7")
-theme_override_font_sizes/font_size = 80
-text = "Dungeon101"
+[node name="ViewStatsButton" type="Button" parent="CanvasLayer/UI/CenterContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 40
+text = "View Stats"
 
-[node name="TextureRect" type="TextureRect" parent="CenterContainer/Node"]
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = -112.0
-offset_top = 48.0
-offset_right = 113.0
-offset_bottom = 273.0
-grow_horizontal = 2
-texture = ExtResource("2_mu8pm")
+[node name="LogOutButton" type="Button" parent="CanvasLayer/UI/CenterContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 40
+text = "Log Out"
 
-[connection signal="text_changed" from="CenterContainer/VBoxContainer/UsernameField" to="." method="_on_username_field_text_changed"]
-[connection signal="pressed" from="CenterContainer/VBoxContainer/StartGameButton" to="." method="_on_start_game_button_pressed"]
+[connection signal="pressed" from="CanvasLayer/UI/CenterContainer/VBoxContainer/PlayButton" to="." method="_on_play_pressed"]
+[connection signal="pressed" from="CanvasLayer/UI/CenterContainer/VBoxContainer/Edit CharacterButton" to="." method="_on_edit_character_pressed"]
+[connection signal="pressed" from="CanvasLayer/UI/CenterContainer/VBoxContainer/ViewStatsButton" to="." method="_on_view_stats_pressed"]
+[connection signal="pressed" from="CanvasLayer/UI/CenterContainer/VBoxContainer/LogOutButton" to="." method="_on_log_out_pressed"]

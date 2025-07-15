@@ -48,4 +48,4 @@ func _on_female_button_pressed() -> void:
 	load_model(FEMALE_MODEL_PATH)
 
 func _on_main_menu_pressed() -> void:
-	game_manager.change_scene("res://ui/main_menu/main_menu.tscn")
+	game_manager.go_to_main_menu()

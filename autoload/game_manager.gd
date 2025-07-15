@@ -31,10 +31,22 @@ func start_new_game(username: String) -> void:
 		else:
 			print("Created and saved new character: %s" % username)
 
-	change_scene("res://ui/character_hub/character_hub.tscn")
+	go_to_main_menu()
 
-func return_to_main_menu() -> void:
+func go_to_login_page() -> void:
+	change_scene("res://ui/login_page/login_page.tscn")
+
+func go_to_main_menu() -> void:
 	change_scene("res://ui/main_menu/main_menu.tscn")
+	
+func go_to_game_world() -> void:
+	change_scene("res://scenes/game_world/game_world.tscn")
+
+func go_to_character_customization() -> void:
+	change_scene("res://scenes/character_customization/character_customization.tscn")
+
+func go_to_view_stats() -> void:
+	change_scene("res://ui/stats_view/stats_view.tscn")
 
 func quit_game() -> void:
 	get_tree().quit()
