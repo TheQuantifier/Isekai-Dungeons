@@ -23,6 +23,8 @@ signal potion_consumed(potion: Potion)
 # --- Core Properties ---
 @export var char_id: String = ""
 @export var char_age: float = 0
+@export var gender: String = "male"  # Options: "male", "female"
+@export var model_path: String = ""
 @export var current_health: int = 10
 @export var gold: int = 0
 
