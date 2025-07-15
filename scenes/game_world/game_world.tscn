@@ -22,7 +22,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7, 0, 2)
 transform = Transform3D(-0.172429, 0.320698, -0.931354, -0.120874, 0.931482, 0.34312, 0.977578, 0.17174, -0.12185, -27.1239, 18.1802, -7.18763)
 
 [node name="Wall" type="CSGBox3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.5, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11, 5.5, 0)
 size = Vector3(10, 5, 1)
 
 [node name="CameraPivot" type="Node3D" parent="."]
@@ -31,9 +31,9 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7, 1, 2)
 [node name="Camera3D" type="Camera3D" parent="CameraPivot"]
 transform = Transform3D(-0.443509, 0, 0.89627, 0, 1, 0, -0.89627, 0, -0.443509, 0, 0, 0)
 
-[node name="CanvasLayer" type="CanvasLayer" parent="."]
+[node name="Main Menu CanvasLayer" type="CanvasLayer" parent="."]
 
-[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="Main Menu CanvasLayer"]
 anchors_preset = 3
 anchor_left = 1.0
 anchor_top = 1.0
@@ -45,7 +45,7 @@ grow_horizontal = 0
 grow_vertical = 0
 alignment = 1
 
-[node name="Main Menu" type="Button" parent="CanvasLayer/VBoxContainer"]
+[node name="Main Menu" type="Button" parent="Main Menu CanvasLayer/VBoxContainer"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 40
 text = "Main Menu"
@@ -61,4 +61,4 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0, 4)
 mesh = SubResource("BoxMesh_mjgxe")
 skeleton = NodePath("../CollisionShape3D")
 
-[connection signal="pressed" from="CanvasLayer/VBoxContainer/Main Menu" to="." method="_on_main_menu_pressed"]
+[connection signal="pressed" from="Main Menu CanvasLayer/VBoxContainer/Main Menu" to="." method="_on_main_menu_pressed"]

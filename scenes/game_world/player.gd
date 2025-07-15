@@ -12,16 +12,15 @@ var is_jumping: bool = false
 
 func _physics_process(delta: float) -> void:
 	var direction = Vector3.ZERO
-	var is_moving_forward = false
-	var is_moving_backward = false
+	var is_moving_forward = Input.is_action_pressed("move_forward")
+	var is_moving_backward = Input.is_action_pressed("move_back")
+	var is_crouching = Input.is_action_pressed("crouch")
 
-	# Movement input
-	if Input.is_action_pressed("move_forward"):
+	# Combine inputs
+	if is_moving_forward:
 		direction += transform.basis.z
-		is_moving_forward = true
-	if Input.is_action_pressed("move_back"):
+	if is_moving_backward:
 		direction -= transform.basis.z
-		is_moving_backward = true
 
 	# Rotation input
 	if Input.is_action_pressed("move_left"):
@@ -32,19 +31,21 @@ func _physics_process(delta: float) -> void:
 	direction.y = 0
 	direction = direction.normalized()
 
-	# Apply horizontal velocity (reduced if airborne)
-	if is_on_floor():
-		velocity.x = direction.x * move_speed
-		velocity.z = direction.z * move_speed
-	else:
-		velocity.x = direction.x * (move_speed * 0.5)
-		velocity.z = direction.z * (move_speed * 0.5)
+	# Determine speed
+	var speed := move_speed
+	if is_crouching and (is_moving_forward or is_moving_backward):
+		speed *= 0.5  # Crouch is slower
+	if not is_on_floor():
+		speed *= 0.5  # Air slows movement
 
-	# Apply gravity
+	velocity.x = direction.x * speed
+	velocity.z = direction.z * speed
+
+	# Gravity
 	if not is_on_floor():
 		velocity.y -= gravity * delta
 
-	# Jump input
+	# Jumping
 	if Input.is_action_just_pressed("jump") and is_on_floor():
 		velocity.y = jump_velocity
 		is_jumping = true
@@ -58,15 +59,16 @@ func _physics_process(delta: float) -> void:
 		if is_jumping:
 			is_jumping = false  # Landed
 
-		if is_moving_forward:
-			if anim_player.current_animation != "run":
-				anim_player.play("run")
+		if is_crouching and is_moving_forward:
+			anim_player.play("crouch_move_forward")
+		elif is_crouching and is_moving_backward:
+			anim_player.play("crouch_move_back")
+		elif is_moving_forward:
+			anim_player.play("run")
 		elif is_moving_backward:
-			if anim_player.current_animation != "run_backward":
-				anim_player.play("run_backward")
+			anim_player.play("run_backward")
 		else:
-			if anim_player.current_animation != "idle":
-				anim_player.play("idle")
+			anim_player.play("idle")
 	else:
-		if is_jumping and anim_player.current_animation != "jump":
+		if is_jumping:
 			anim_player.play("jump", -1.0, 2.75)
