@@ -3,7 +3,9 @@
 .nomedia
 
 # Godot-specific ignores
-.import/
+.import/           # Folder
+*.import           # Individual import files
+*.gd.uid           # Unique Godot metadata files
 export.cfg
 export_credentials.cfg
 
