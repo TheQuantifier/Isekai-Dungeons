@@ -1,0 +1,5 @@
+[gd_scene load_steps=2 format=3 uid="uid://nmh4fgdmhlsj"]
+
+[ext_resource type="PackedScene" uid="uid://bbbbhsk8saa28" path="res://assets/character_models/fbx/Y Bot.fbx" id="1_meodx"]
+
+[node name="Y Bot" instance=ExtResource("1_meodx")]
