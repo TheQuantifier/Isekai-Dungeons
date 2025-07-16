@@ -43,7 +43,7 @@ offset_bottom = 40.0
 
 [node name="Main Menu" type="Button" parent="UI/VBoxContainer2"]
 layout_mode = 2
-theme_override_font_sizes/font_size = 30
+theme_override_font_sizes/font_size = 40
 text = "Main Menu"
 
 [connection signal="pressed" from="UI/VBoxContainer/MaleButton" to="." method="_on_male_button_pressed"]

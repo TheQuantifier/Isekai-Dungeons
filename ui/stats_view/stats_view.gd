@@ -1,34 +1,85 @@
-# res://ui/stats_view/stats_view.gd
 extends Control
 
-@onready var left_vbox := $MarginContainer/HBoxContainer/LeftVBox
-@onready var right_vbox := $MarginContainer/HBoxContainer/RightVBox
+@warning_ignore("shadowed_global_identifier")
+const StatTypes = preload("res://core/stats/stat_types.gd")
+@warning_ignore("shadowed_global_identifier")
+const Character = preload("res://core/character/character.gd")
+
+# --- Main Info ---
+@onready var name_label = get_node("MainInfo/NameLabel")
+@onready var gender_label = get_node("MainInfo/GenderLabel")
+@onready var age_label = get_node("MainInfo/AgeLabel")
+
+# --- Main Stats ---
+@onready var health_label = get_node("MainStats/HealthLabel")
+@onready var mana_label = get_node("MainStats/ManaLabel")
+@onready var wealth_label = get_node("MainStats/WealthLabel")
+
+# --- Defense Stats ---
+@onready var total_defense_label = get_node("DefenseStats/TotalDefenseLabel")
+@onready var head_def_label = get_node("DefenseStats/DefEnums/HeadDefLabel")
+@onready var chest_def_label = get_node("DefenseStats/DefEnums/ChestDefLabel")
+@onready var leg_def_label = get_node("DefenseStats/DefEnums/LegDefLabel")
+@onready var feet_def_label = get_node("DefenseStats/DefEnums/FeetDefLabel")
+@onready var shield_def_label = get_node("DefenseStats/DefEnums/ShieldDefLabel")  # ✅ fixed name
+
+# --- Strength Stats ---
+@onready var physical_strength_label = get_node("StrengthStats/StrengthEnums/PhysicalStrengthLabel")
+@onready var magical_strength_label = get_node("StrengthStats/StrengthEnums/MagicalStrengthLabel")
+@onready var technical_strength_label = get_node("StrengthStats/StrengthEnums/TechnicalStrengthLabel")
+@onready var total_strength_label = get_node("StrengthStats/TotalStrengthLabel")  # Optional placeholder
 
 func _ready() -> void:
 	if game_manager.current_character:
-		update_stats(game_manager.current_character)
-	print("LeftVBox children: ", left_vbox.get_children())
-	print("RightVBox children: ", right_vbox.get_children())
+		show_stats(game_manager.current_character)
+	else:
+		print("No character found in game_manager.")
 
-func update_stats(character) -> void:
-	left_vbox.get_node("Name").text = "Name: %s" % character.char_id
-	left_vbox.get_node("Age").text = "Age: %.1f" % character.char_age
-	left_vbox.get_node("Health").text = "Health: %d" % character.current_health
-	left_vbox.get_node("Gold").text = "Gold: %d" % character.gold
+func show_stats(c: Character) -> void:
+	# Clear all fields
+	name_label.text = ""
+	gender_label.text = ""
+	age_label.text = ""
 
-	var def_stats = character.defense_stats
-	var str_stats = character.strength_stats
+	health_label.text = ""
+	mana_label.text = ""  # Placeholder
+	wealth_label.text = ""
 
-	for i in StatTypes.DefenseType.values():
-		var key_name = StatTypes.DefenseType.keys()[StatTypes.DefenseType.values().find(i)]
-		var label_name = "Defense_%s" % key_name
-		right_vbox.get_node(label_name).text = "%s: %d" % [key_name, def_stats.get(i, 0)]
+	total_defense_label.text = ""
 
-	for i in StatTypes.StrengthType.values():
-		var key_name = StatTypes.StrengthType.keys()[StatTypes.StrengthType.values().find(i)]
-		var label_name = "Strength_%s" % key_name
-		right_vbox.get_node(label_name).text = "%s: %d" % [key_name, str_stats.get(i, 0)]
+	head_def_label.text = ""
+	chest_def_label.text = ""
+	leg_def_label.text = ""
+	feet_def_label.text = ""
+	shield_def_label.text = ""
 
+	physical_strength_label.text = ""
+	magical_strength_label.text = ""
+	technical_strength_label.text = ""
+	total_strength_label.text = ""  # Placeholder
 
-func _on_back_button_pressed() -> void:
+	# Populate values
+	name_label.text = "Name:  " + c.char_id
+	gender_label.text = "Gender:  " + c.gender.capitalize()
+	age_label.text = "Age:  " + str(c.char_age)
+
+	health_label.text = "Health:  " + str(c.current_health)
+	mana_label.text = "Mana: TBA" #+ str(c.mana)  # TODO
+	wealth_label.text = "Gold:  " + str(c.gold)
+
+	total_defense_label.text = "Total Defense:   " + str(c.get_total_defense())
+
+	head_def_label.text = str(c.get_defense(StatTypes.DefenseType.HEAD))
+	chest_def_label.text = str(c.get_defense(StatTypes.DefenseType.CHEST))
+	leg_def_label.text = str(c.get_defense(StatTypes.DefenseType.LEG))
+	feet_def_label.text = str(c.get_defense(StatTypes.DefenseType.FEET))
+	shield_def_label.text = str(c.get_defense(StatTypes.DefenseType.SHIELD))
+
+	physical_strength_label.text = str(c.get_strength(StatTypes.StrengthType.PHYSICAL))
+	magical_strength_label.text = str(c.get_strength(StatTypes.StrengthType.MAGICAL))
+	technical_strength_label.text = str(c.get_strength(StatTypes.StrengthType.TECHNICAL))
+
+	total_strength_label.text = "Total Strength: TBA"  # TODO: implement total strength calc
+
+func _on_button_pressed() -> void:
 	game_manager.go_to_main_menu()
