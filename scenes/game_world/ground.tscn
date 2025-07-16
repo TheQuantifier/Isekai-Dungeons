@@ -3,14 +3,14 @@
 [ext_resource type="Texture2D" uid="uid://dghbv83jx53ul" path="res://assets/textures/seamless-grass-texture-free-thumb27.jpg.png" id="1_scirk"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_oy2tu"]
-size = Vector3(100, 0.1, 100)
+size = Vector3(300, 0.1, 300)
 
 [sub_resource type="BoxMesh" id="BoxMesh_oy2tu"]
-size = Vector3(100, 0.1, 100)
+size = Vector3(300, 0.1, 300)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_scirk"]
 albedo_texture = ExtResource("1_scirk")
-uv1_scale = Vector3(100, 100, 100)
+uv1_scale = Vector3(300, 300, 300)
 
 [node name="Ground" type="StaticBody3D"]
 
