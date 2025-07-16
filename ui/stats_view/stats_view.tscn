@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://bnn4rqstppuyq"]
+[gd_scene load_steps=3 format=3 uid="uid://dsuaihr8go6er"]
 
-[ext_resource type="Script" uid="uid://5hwddljy47hx" path="res://ui/stats_view/stats_view.gd" id="1_2myqe"]
+[ext_resource type="Script" uid="uid://b3e7wmu7tlfq7" path="res://ui/stats_view/stats_view.gd" id="1_2myqe"]
+[ext_resource type="Texture2D" uid="uid://den7yq6jk7svu" path="res://assets/logo.png" id="2_avxw4"]
 
 [node name="StatsView" type="Control"]
 layout_mode = 3
@@ -9,101 +10,298 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 2
 script = ExtResource("1_2myqe")
 
-[node name="MarginContainer" type="MarginContainer" parent="."]
+[node name="Background" type="TextureRect" parent="."]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 2
 
-[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer"]
-layout_mode = 2
+[node name="MainInfo" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 0
+offset_right = 520.0
+offset_bottom = 704.0
 
-[node name="LeftVBox" type="VBoxContainer" parent="MarginContainer/HBoxContainer"]
-layout_mode = 2
-size_flags_horizontal = 2
-alignment = 1
+[node name="NameLabel" type="Label" parent="MainInfo"]
+layout_mode = 0
+offset_left = 64.0
+offset_top = 488.0
+offset_right = 448.0
+offset_bottom = 552.0
+theme_override_font_sizes/font_size = 35
+text = "f"
 
-[node name="Name" type="Label" parent="MarginContainer/HBoxContainer/LeftVBox"]
-layout_mode = 2
-theme_override_font_sizes/font_size = 30
+[node name="Portrait" type="TextureRect" parent="MainInfo"]
+layout_mode = 0
+offset_left = 64.0
+offset_top = 64.0
+offset_right = 448.0
+offset_bottom = 448.0
+texture = ExtResource("2_avxw4")
 
-[node name="Age" type="Label" parent="MarginContainer/HBoxContainer/LeftVBox"]
-layout_mode = 2
-theme_override_font_sizes/font_size = 30
+[node name="GenderLabel" type="Label" parent="MainInfo"]
+offset_left = 64.0
+offset_top = 552.0
+offset_right = 448.0
+offset_bottom = 616.0
+theme_override_font_sizes/font_size = 35
 
-[node name="Health" type="Label" parent="MarginContainer/HBoxContainer/LeftVBox"]
-layout_mode = 2
-theme_override_font_sizes/font_size = 30
+[node name="AgeLabel" type="Label" parent="MainInfo"]
+offset_left = 64.0
+offset_top = 616.0
+offset_right = 448.0
+offset_bottom = 680.0
+theme_override_font_sizes/font_size = 35
 
-[node name="Gold" type="Label" parent="MarginContainer/HBoxContainer/LeftVBox"]
-layout_mode = 2
-theme_override_font_sizes/font_size = 30
+[node name="MainStats" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 0
+offset_top = 704.0
+offset_right = 520.0
+offset_bottom = 1080.0
 
-[node name="RightVBox" type="VBoxContainer" parent="MarginContainer/HBoxContainer"]
-layout_mode = 2
-size_flags_horizontal = 2
-alignment = 1
+[node name="HealthLabel" type="Label" parent="MainStats"]
+offset_left = 64.0
+offset_top = 32.0
+offset_right = 448.0
+offset_bottom = 96.0
+theme_override_font_sizes/font_size = 35
 
-[node name="DefenseStats" type="Label" parent="MarginContainer/HBoxContainer/RightVBox"]
-layout_mode = 2
-theme_override_font_sizes/font_size = 30
-text = "Defense Stats:"
-uppercase = true
+[node name="ManaLabel" type="Label" parent="MainStats"]
+offset_left = 64.0
+offset_top = 96.0
+offset_right = 448.0
+offset_bottom = 160.0
+theme_override_font_sizes/font_size = 35
 
-[node name="Defense_HEAD" type="Label" parent="MarginContainer/HBoxContainer/RightVBox"]
-layout_mode = 2
-theme_override_font_sizes/font_size = 25
+[node name="WealthLabel" type="Label" parent="MainStats"]
+offset_left = 64.0
+offset_top = 160.0
+offset_right = 448.0
+offset_bottom = 224.0
+theme_override_font_sizes/font_size = 35
 
-[node name="Defense_CHEST" type="Label" parent="MarginContainer/HBoxContainer/RightVBox"]
-layout_mode = 2
-theme_override_font_sizes/font_size = 25
+[node name="DefenseStats" type="Control" parent="."]
+anchors_preset = 0
+offset_left = 544.0
+offset_right = 1048.0
+offset_bottom = 704.0
 
-[node name="Defense_LEG" type="Label" parent="MarginContainer/HBoxContainer/RightVBox"]
-layout_mode = 2
-theme_override_font_sizes/font_size = 25
+[node name="DefenseStatsLabel" type="Label" parent="DefenseStats"]
+offset_left = 56.0
+offset_top = 64.0
+offset_right = 504.0
+offset_bottom = 133.0
+theme_override_font_sizes/font_size = 50
+text = "Defense Stats"
 
-[node name="Defense_FEET" type="Label" parent="MarginContainer/HBoxContainer/RightVBox"]
-layout_mode = 2
-theme_override_font_sizes/font_size = 25
-
-[node name="Defense_SHIELD" type="Label" parent="MarginContainer/HBoxContainer/RightVBox"]
-layout_mode = 2
-theme_override_font_sizes/font_size = 25
-
-[node name="StrengthStats" type="Label" parent="MarginContainer/HBoxContainer/RightVBox"]
-layout_mode = 2
-theme_override_font_sizes/font_size = 30
-text = "
-Strength Stats:"
-uppercase = true
-
-[node name="Strength_PHYSICAL" type="Label" parent="MarginContainer/HBoxContainer/RightVBox"]
-layout_mode = 2
-theme_override_font_sizes/font_size = 25
-
-[node name="Strength_MAGICAL" type="Label" parent="MarginContainer/HBoxContainer/RightVBox"]
-layout_mode = 2
-theme_override_font_sizes/font_size = 25
-
-[node name="Strength_TECHNICAL" type="Label" parent="MarginContainer/HBoxContainer/RightVBox"]
-layout_mode = 2
-theme_override_font_sizes/font_size = 25
-
-[node name="HBoxContainer2" type="HBoxContainer" parent="MarginContainer"]
-layout_mode = 2
-alignment = 2
-
-[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/HBoxContainer2"]
-layout_mode = 2
-alignment = 2
-
-[node name="BackButton" type="Button" parent="MarginContainer/HBoxContainer2/VBoxContainer"]
-layout_mode = 2
+[node name="TotalDefenseLabel" type="Label" parent="DefenseStats"]
+offset_left = 56.0
+offset_top = 168.0
+offset_right = 440.0
+offset_bottom = 232.0
 theme_override_font_sizes/font_size = 40
-text = " Back "
 
-[connection signal="pressed" from="MarginContainer/HBoxContainer2/VBoxContainer/BackButton" to="." method="_on_back_button_pressed"]
+[node name="DefEnums" type="Control" parent="DefenseStats"]
+anchors_preset = 0
+offset_left = 56.0
+offset_top = 320.0
+offset_right = 440.0
+offset_bottom = 640.0
+
+[node name="HeadLabel" type="Label" parent="DefenseStats/DefEnums"]
+offset_right = 192.0
+offset_bottom = 64.0
+theme_override_font_sizes/font_size = 35
+text = "Head Def:"
+
+[node name="HeadDefLabel" type="Label" parent="DefenseStats/DefEnums"]
+offset_left = 192.0
+offset_right = 384.0
+offset_bottom = 64.0
+theme_override_font_sizes/font_size = 35
+horizontal_alignment = 2
+
+[node name="ChestLabel" type="Label" parent="DefenseStats/DefEnums"]
+offset_top = 64.0
+offset_right = 192.0
+offset_bottom = 128.0
+theme_override_font_sizes/font_size = 35
+text = "Chest Def:"
+
+[node name="ChestDefLabel" type="Label" parent="DefenseStats/DefEnums"]
+offset_left = 192.0
+offset_top = 64.0
+offset_right = 384.0
+offset_bottom = 128.0
+theme_override_font_sizes/font_size = 35
+horizontal_alignment = 2
+
+[node name="LegLabel" type="Label" parent="DefenseStats/DefEnums"]
+offset_top = 128.0
+offset_right = 192.0
+offset_bottom = 192.0
+theme_override_font_sizes/font_size = 35
+text = "Leg Def:"
+
+[node name="LegDefLabel" type="Label" parent="DefenseStats/DefEnums"]
+offset_left = 192.0
+offset_top = 127.0
+offset_right = 384.0
+offset_bottom = 191.0
+theme_override_font_sizes/font_size = 35
+horizontal_alignment = 2
+
+[node name="FeetLabel" type="Label" parent="DefenseStats/DefEnums"]
+offset_top = 192.0
+offset_right = 192.0
+offset_bottom = 256.0
+theme_override_font_sizes/font_size = 35
+text = "Feet Def:"
+
+[node name="FeetDefLabel" type="Label" parent="DefenseStats/DefEnums"]
+offset_left = 192.0
+offset_top = 191.0
+offset_right = 384.0
+offset_bottom = 255.0
+theme_override_font_sizes/font_size = 35
+horizontal_alignment = 2
+
+[node name="ShieldLabel" type="Label" parent="DefenseStats/DefEnums"]
+offset_top = 256.0
+offset_right = 192.0
+offset_bottom = 320.0
+theme_override_font_sizes/font_size = 35
+text = "Shield Def:"
+
+[node name="ShieldDefLabel" type="Label" parent="DefenseStats/DefEnums"]
+offset_left = 192.0
+offset_top = 256.0
+offset_right = 384.0
+offset_bottom = 320.0
+theme_override_font_sizes/font_size = 35
+horizontal_alignment = 2
+
+[node name="StrengthStats" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 1120.0
+offset_right = 1640.0
+offset_bottom = 704.0
+
+[node name="StrengthStatsLabel" type="Label" parent="StrengthStats"]
+offset_left = 56.0
+offset_top = 64.0
+offset_right = 560.0
+offset_bottom = 133.0
+theme_override_font_sizes/font_size = 50
+text = "Strength Stats"
+
+[node name="TotalStrengthLabel" type="Label" parent="StrengthStats"]
+offset_left = 56.0
+offset_top = 168.0
+offset_right = 443.0
+offset_bottom = 232.0
+theme_override_font_sizes/font_size = 40
+text = "Total Strength: 1234"
+
+[node name="StrengthEnums" type="Control" parent="StrengthStats"]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 56.0
+offset_top = 320.0
+offset_right = 440.0
+offset_bottom = 640.0
+
+[node name="PhysicalLabel" type="Label" parent="StrengthStats/StrengthEnums"]
+offset_right = 192.0
+offset_bottom = 64.0
+theme_override_font_sizes/font_size = 35
+text = "Physical:"
+
+[node name="PhysicalStrengthLabel" type="Label" parent="StrengthStats/StrengthEnums"]
+offset_left = 192.0
+offset_right = 384.0
+offset_bottom = 64.0
+theme_override_font_sizes/font_size = 35
+horizontal_alignment = 2
+
+[node name="MagicalLabel" type="Label" parent="StrengthStats/StrengthEnums"]
+offset_top = 64.0
+offset_right = 192.0
+offset_bottom = 128.0
+theme_override_font_sizes/font_size = 35
+text = "Magical:"
+
+[node name="MagicalStrengthLabel" type="Label" parent="StrengthStats/StrengthEnums"]
+offset_left = 192.0
+offset_top = 64.0
+offset_right = 384.0
+offset_bottom = 128.0
+theme_override_font_sizes/font_size = 35
+horizontal_alignment = 2
+
+[node name="TechnicalLabel" type="Label" parent="StrengthStats/StrengthEnums"]
+offset_top = 128.0
+offset_right = 192.0
+offset_bottom = 192.0
+theme_override_font_sizes/font_size = 35
+text = "Technical:"
+
+[node name="TechnicalStrengthLabel" type="Label" parent="StrengthStats/StrengthEnums"]
+offset_left = 192.0
+offset_top = 127.0
+offset_right = 384.0
+offset_bottom = 191.0
+theme_override_font_sizes/font_size = 35
+horizontal_alignment = 2
+
+[node name="OtherStats1" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 544.0
+offset_top = 704.0
+offset_right = 1048.0
+offset_bottom = 1080.0
+
+[node name="OtherStats1Label" type="Label" parent="OtherStats1"]
+offset_left = 56.0
+offset_right = 504.0
+offset_bottom = 69.0
+theme_override_font_sizes/font_size = 50
+text = "Other Stats 1"
+
+[node name="OtherStats2" type="Control" parent="."]
+anchors_preset = 0
+offset_left = 1176.0
+offset_top = 704.0
+offset_right = 1680.0
+offset_bottom = 1080.0
+
+[node name="OtherStats1Label" type="Label" parent="OtherStats2"]
+offset_right = 456.0
+offset_bottom = 69.0
+theme_override_font_sizes/font_size = 50
+text = "Other Stats 2"
+
+[node name="Button" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -226.0
+offset_top = -63.0
+grow_horizontal = 0
+grow_vertical = 0
+theme_override_font_sizes/font_size = 40
+text = "Main Menu"
+
+[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]
