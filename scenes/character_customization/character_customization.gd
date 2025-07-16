@@ -10,7 +10,7 @@ extends Node3D
 
 const MALE_MODEL_PATH: String = "res://assets/character_models/scenes/male/y_bot.tscn"
 const FEMALE_MODEL_PATH: String = "res://assets/character_models/scenes/female/x_bot.tscn"
-const ROTATION_SPEED := 1.5  # Radians per second
+const ROTATION_SPEED := 2.5  # Radians per second
 
 var current_model: Node3D
 

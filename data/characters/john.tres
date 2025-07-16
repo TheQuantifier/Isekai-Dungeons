@@ -7,8 +7,8 @@
 script = ExtResource("2_5vobn")
 char_id = "john"
 char_age = 15.0
-gender = "female"
-model_path = "res://assets/character_models/scenes/female/x_bot.tscn"
+gender = "male"
+model_path = "res://assets/character_models/scenes/male/y_bot.tscn"
 current_health = 150
 gold = 1200
 equipped_items = Array[ExtResource("1_phn4y")]([])
