@@ -3,7 +3,6 @@
 [ext_resource type="Script" uid="uid://b2ed8ehahjgmq" path="res://scenes/game_world/player.gd" id="1_j2pnm"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_4kb1o"]
-height = 2.53737
 
 [node name="Player" type="CharacterBody3D"]
 script = ExtResource("1_j2pnm")
