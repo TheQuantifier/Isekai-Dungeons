@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://lt15tsobxh7w"]
+[gd_scene load_steps=3 format=3 uid="uid://lt15tsobxh7w"]
 
 [ext_resource type="Script" uid="uid://bdfofyfar61b0" path="res://ui/main_menu/main_menu.gd" id="1_sla82"]
+[ext_resource type="Texture2D" uid="uid://dn8np0h2ugsoe" path="res://assets/textures/3D World Image.jpg" id="2_mu8pm"]
 
 [node name="CharacterHub" type="Control"]
 layout_mode = 3
@@ -52,6 +53,11 @@ text = "View Stats"
 layout_mode = 2
 theme_override_font_sizes/font_size = 40
 text = "Log Out"
+
+[node name="Background image" type="TextureRect" parent="."]
+offset_right = 1200.0
+offset_bottom = 720.0
+texture = ExtResource("2_mu8pm")
 
 [connection signal="pressed" from="CanvasLayer/UI/CenterContainer/VBoxContainer/PlayButton" to="." method="_on_play_pressed"]
 [connection signal="pressed" from="CanvasLayer/UI/CenterContainer/VBoxContainer/Edit CharacterButton" to="." method="_on_edit_character_pressed"]

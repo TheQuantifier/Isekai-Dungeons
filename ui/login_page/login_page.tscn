@@ -1,13 +1,14 @@
-[gd_scene load_steps=5 format=3 uid="uid://dm08ug13g54tn"]
+[gd_scene load_steps=6 format=3 uid="uid://dm08ug13g54tn"]
 
 [ext_resource type="Script" uid="uid://dec8hadisf4cm" path="res://ui/login_page/login_page.gd" id="1_qfmr5"]
-[ext_resource type="Texture2D" uid="uid://den7yq6jk7svu" path="res://assets/images.png" id="2_1lji1"]
+[ext_resource type="Texture2D" uid="uid://den7yq6jk7svu" path="res://assets/logo.png" id="2_1lji1"]
+[ext_resource type="Texture2D" uid="uid://dn8np0h2ugsoe" path="res://assets/textures/3D World Image.jpg" id="3_1lji1"]
 
 [sub_resource type="SystemFont" id="SystemFont_06t4h"]
 
 [sub_resource type="SystemFont" id="SystemFont_rhts7"]
 
-[node name="MainMenu" type="Control"]
+[node name="LoginPage" type="Control"]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -59,7 +60,7 @@ theme_override_fonts/font = SubResource("SystemFont_rhts7")
 theme_override_font_sizes/font_size = 80
 text = "Dungeon101"
 
-[node name="TextureRect" type="TextureRect" parent="CenterContainer/Node"]
+[node name="Logo" type="TextureRect" parent="CenterContainer/Node"]
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
@@ -69,6 +70,12 @@ offset_right = 113.0
 offset_bottom = 273.0
 grow_horizontal = 2
 texture = ExtResource("2_1lji1")
+
+[node name="Background image" type="TextureRect" parent="."]
+layout_mode = 2
+offset_right = 1200.0
+offset_bottom = 720.0
+texture = ExtResource("3_1lji1")
 
 [connection signal="text_changed" from="CenterContainer/VBoxContainer/UsernameField" to="." method="_on_username_field_text_changed"]
 [connection signal="pressed" from="CenterContainer/VBoxContainer/StartGameButton" to="." method="_on_start_game_button_pressed"]
