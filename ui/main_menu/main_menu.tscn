@@ -36,27 +36,28 @@ alignment = 1
 
 [node name="PlayButton" type="Button" parent="CanvasLayer/UI/CenterContainer/VBoxContainer"]
 layout_mode = 2
-theme_override_font_sizes/font_size = 40
+theme_override_font_sizes/font_size = 50
 text = "Play"
 
 [node name="Edit CharacterButton" type="Button" parent="CanvasLayer/UI/CenterContainer/VBoxContainer"]
 layout_mode = 2
-theme_override_font_sizes/font_size = 40
+theme_override_font_sizes/font_size = 50
 text = "Edit Character"
 
 [node name="ViewStatsButton" type="Button" parent="CanvasLayer/UI/CenterContainer/VBoxContainer"]
 layout_mode = 2
-theme_override_font_sizes/font_size = 40
+theme_override_font_sizes/font_size = 50
 text = "View Stats"
 
 [node name="LogOutButton" type="Button" parent="CanvasLayer/UI/CenterContainer/VBoxContainer"]
 layout_mode = 2
-theme_override_font_sizes/font_size = 40
+theme_override_font_sizes/font_size = 50
 text = "Log Out"
 
 [node name="Background image" type="TextureRect" parent="."]
-offset_right = 1200.0
-offset_bottom = 720.0
+layout_mode = 0
+offset_right = 1800.0
+offset_bottom = 1080.0
 texture = ExtResource("2_mu8pm")
 
 [connection signal="pressed" from="CanvasLayer/UI/CenterContainer/VBoxContainer/PlayButton" to="." method="_on_play_pressed"]

@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://tvefuc2jd8cc"]
+[gd_scene load_steps=10 format=3 uid="uid://tvefuc2jd8cc"]
 
 [ext_resource type="PackedScene" uid="uid://bkd5chj1tyrsd" path="res://scenes/game_world/ground.tscn" id="1_254f3"]
 [ext_resource type="Script" uid="uid://dj6ds81qxtn0j" path="res://scenes/game_world/game_world.gd" id="1_mjgxe"]
@@ -10,6 +10,17 @@ size = Vector3(4, 1, 4)
 [sub_resource type="BoxMesh" id="BoxMesh_mjgxe"]
 size = Vector3(4, 1, 4)
 
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_mjgxe"]
+
+[sub_resource type="Sky" id="Sky_yb5st"]
+sky_material = SubResource("ProceduralSkyMaterial_mjgxe")
+
+[sub_resource type="Environment" id="Environment_6sh6l"]
+background_mode = 2
+sky = SubResource("Sky_yb5st")
+
+[sub_resource type="SphereMesh" id="SphereMesh_mjgxe"]
+
 [node name="GameWorld" type="Node3D"]
 script = ExtResource("1_mjgxe")
 
@@ -17,13 +28,6 @@ script = ExtResource("1_mjgxe")
 
 [node name="Player" parent="." instance=ExtResource("2_mjgxe")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7, 0, 2)
-
-[node name="Sun" type="DirectionalLight3D" parent="."]
-transform = Transform3D(-0.172429, 0.320698, -0.931354, -0.120874, 0.931482, 0.34312, 0.977578, 0.17174, -0.12185, -27.1239, 18.1802, -7.18763)
-
-[node name="Wall" type="CSGBox3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11, 5.5, 0)
-size = Vector3(10, 5, 1)
 
 [node name="CameraPivot" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7, 1, 2)
@@ -60,5 +64,19 @@ shape = SubResource("BoxShape3D_mjgxe")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0, 4)
 mesh = SubResource("BoxMesh_mjgxe")
 skeleton = NodePath("../CollisionShape3D")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_6sh6l")
+
+[node name="SunPivot" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -159, 0, 0)
+
+[node name="VisibleSun" type="MeshInstance3D" parent="SunPivot"]
+transform = Transform3D(0.258819, 0, 0.965926, 0, 1, 0, -0.965926, 0, 0.258819, 0, 0, 0)
+mesh = SubResource("SphereMesh_mjgxe")
+skeleton = NodePath("../..")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="SunPivot"]
+shadow_enabled = true
 
 [connection signal="pressed" from="Main Menu CanvasLayer/VBoxContainer/Main Menu" to="." method="_on_main_menu_pressed"]
