@@ -4,15 +4,16 @@ importer="texture"
 type="CompressedTexture2D"
 uid="uid://by0w4vmsciofy"
 path.s3tc="res://.godot/imported/close-up-view-of-a-textured-material-surface-resembling-cobblestones-urban-environment-natural-stone-texture-aesthetic-appeal-photo.jpg-eab3d2f686bf3d7be5aa515a2cf231b0.s3tc.ctex"
+path.etc2="res://.godot/imported/close-up-view-of-a-textured-material-surface-resembling-cobblestones-urban-environment-natural-stone-texture-aesthetic-appeal-photo.jpg-eab3d2f686bf3d7be5aa515a2cf231b0.etc2.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
+"imported_formats": ["s3tc_bptc", "etc2_astc"],
 "vram_texture": true
 }
 
 [deps]
 
 source_file="res://assets/textures/close-up-view-of-a-textured-material-surface-resembling-cobblestones-urban-environment-natural-stone-texture-aesthetic-appeal-photo.jpg"
-dest_files=["res://.godot/imported/close-up-view-of-a-textured-material-surface-resembling-cobblestones-urban-environment-natural-stone-texture-aesthetic-appeal-photo.jpg-eab3d2f686bf3d7be5aa515a2cf231b0.s3tc.ctex"]
+dest_files=["res://.godot/imported/close-up-view-of-a-textured-material-surface-resembling-cobblestones-urban-environment-natural-stone-texture-aesthetic-appeal-photo.jpg-eab3d2f686bf3d7be5aa515a2cf231b0.s3tc.ctex", "res://.godot/imported/close-up-view-of-a-textured-material-surface-resembling-cobblestones-urban-environment-natural-stone-texture-aesthetic-appeal-photo.jpg-eab3d2f686bf3d7be5aa515a2cf231b0.etc2.ctex"]
 
 [params]
 
