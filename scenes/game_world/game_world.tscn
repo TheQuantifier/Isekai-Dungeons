@@ -62,6 +62,16 @@ layout_mode = 2
 theme_override_font_sizes/font_size = 40
 text = "Main Menu"
 
+[node name="SunSlider" type="HSlider" parent="MenusCanvasLayer"]
+offset_left = 512.0
+offset_top = 1017.0
+offset_right = 1472.0
+offset_bottom = 1080.0
+focus_mode = 0
+max_value = 180.0
+tick_count = 13
+ticks_on_borders = true
+
 [node name="Platform" type="StaticBody3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3, -1)
 
@@ -112,3 +122,4 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.2, 0.3, 0)
 mesh = SubResource("BoxMesh_yb5st")
 
 [connection signal="pressed" from="MenusCanvasLayer/VBoxContainer/Main Menu" to="." method="_on_main_menu_pressed"]
+[connection signal="value_changed" from="MenusCanvasLayer/SunSlider" to="." method="_on_sun_slider_changed"]
