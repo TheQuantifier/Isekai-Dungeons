@@ -1,14 +1,15 @@
-[gd_scene load_steps=10 format=3 uid="uid://tvefuc2jd8cc"]
+[gd_scene load_steps=12 format=3 uid="uid://tvefuc2jd8cc"]
 
 [ext_resource type="PackedScene" uid="uid://bkd5chj1tyrsd" path="res://scenes/game_world/ground.tscn" id="1_254f3"]
 [ext_resource type="Script" uid="uid://dj6ds81qxtn0j" path="res://scenes/game_world/game_world.gd" id="1_mjgxe"]
 [ext_resource type="PackedScene" uid="uid://cgjylwr71uayr" path="res://scenes/player/player.tscn" id="2_mjgxe"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_mjgxe"]
-size = Vector3(4, 1, 4)
+margin = 0.0
+size = Vector3(4, 2, 4)
 
 [sub_resource type="BoxMesh" id="BoxMesh_mjgxe"]
-size = Vector3(4, 1, 4)
+size = Vector3(4, 2, 4)
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_mjgxe"]
 
@@ -20,6 +21,13 @@ background_mode = 2
 sky = SubResource("Sky_yb5st")
 
 [sub_resource type="SphereMesh" id="SphereMesh_mjgxe"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_yb5st"]
+margin = 0.0
+size = Vector3(4, 0.1, 8)
+
+[sub_resource type="BoxMesh" id="BoxMesh_yb5st"]
+size = Vector3(4, 0.1, 8)
 
 [node name="GameWorld" type="Node3D"]
 script = ExtResource("1_mjgxe")
@@ -55,6 +63,7 @@ theme_override_font_sizes/font_size = 40
 text = "Main Menu"
 
 [node name="Platform" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3, -1)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Platform"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0, 4)
@@ -78,5 +87,28 @@ skeleton = NodePath("../..")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="SunPivot"]
 shadow_enabled = true
+
+[node name="Platform2" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 3)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Platform2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0, 4)
+shape = SubResource("BoxShape3D_mjgxe")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Platform2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0, 4)
+mesh = SubResource("BoxMesh_mjgxe")
+skeleton = NodePath("../CollisionShape3D")
+
+[node name="Ramp" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.838604, 0.544741, 0, -0.544741, 0.838604, -0.798, 1.55, -2.15)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Ramp"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.2, 0.3, 0)
+shape = SubResource("BoxShape3D_yb5st")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Ramp"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.2, 0.3, 0)
+mesh = SubResource("BoxMesh_yb5st")
 
 [connection signal="pressed" from="MenusCanvasLayer/VBoxContainer/Main Menu" to="." method="_on_main_menu_pressed"]

@@ -78,10 +78,13 @@ func _physics_process(delta: float) -> void:
 	if anim_player and is_on_floor():
 		if is_jumping:
 			is_jumping = false
-		if is_crouching and is_moving_forward:
-			anim_player.play("crouch_move_forward")
-		elif is_crouching and is_moving_backward:
-			anim_player.play("crouch_move_back")
+		if is_crouching:
+			if is_moving_forward:
+				anim_player.play("crouch_move_forward")
+			elif is_moving_backward:
+				anim_player.play("crouch_move_back")
+			else:
+				anim_player.play("crouch_idle")
 		elif is_moving_forward:
 			anim_player.play("run")
 		elif is_moving_backward:
