@@ -46,6 +46,7 @@ offset_bottom = 448.0
 texture = ExtResource("2_avxw4")
 
 [node name="GenderLabel" type="Label" parent="MainInfo"]
+layout_mode = 0
 offset_left = 64.0
 offset_top = 552.0
 offset_right = 448.0
@@ -53,6 +54,7 @@ offset_bottom = 616.0
 theme_override_font_sizes/font_size = 35
 
 [node name="AgeLabel" type="Label" parent="MainInfo"]
+layout_mode = 0
 offset_left = 64.0
 offset_top = 616.0
 offset_right = 448.0
@@ -67,6 +69,7 @@ offset_right = 520.0
 offset_bottom = 1080.0
 
 [node name="HealthLabel" type="Label" parent="MainStats"]
+layout_mode = 0
 offset_left = 64.0
 offset_top = 32.0
 offset_right = 448.0
@@ -74,6 +77,7 @@ offset_bottom = 96.0
 theme_override_font_sizes/font_size = 35
 
 [node name="ManaLabel" type="Label" parent="MainStats"]
+layout_mode = 0
 offset_left = 64.0
 offset_top = 96.0
 offset_right = 448.0
@@ -81,6 +85,7 @@ offset_bottom = 160.0
 theme_override_font_sizes/font_size = 35
 
 [node name="WealthLabel" type="Label" parent="MainStats"]
+layout_mode = 0
 offset_left = 64.0
 offset_top = 160.0
 offset_right = 448.0
@@ -94,6 +99,7 @@ offset_right = 1048.0
 offset_bottom = 704.0
 
 [node name="DefenseStatsLabel" type="Label" parent="DefenseStats"]
+layout_mode = 0
 offset_left = 56.0
 offset_top = 64.0
 offset_right = 504.0
@@ -102,11 +108,13 @@ theme_override_font_sizes/font_size = 50
 text = "Defense Stats"
 
 [node name="TotalDefenseLabel" type="Label" parent="DefenseStats"]
+layout_mode = 0
 offset_left = 56.0
 offset_top = 168.0
 offset_right = 440.0
 offset_bottom = 232.0
 theme_override_font_sizes/font_size = 40
+text = "Total Defense: 1234"
 
 [node name="DefEnums" type="Control" parent="DefenseStats"]
 anchors_preset = 0
@@ -116,12 +124,14 @@ offset_right = 440.0
 offset_bottom = 640.0
 
 [node name="HeadLabel" type="Label" parent="DefenseStats/DefEnums"]
+layout_mode = 0
 offset_right = 192.0
 offset_bottom = 64.0
 theme_override_font_sizes/font_size = 35
 text = "Head Def:"
 
 [node name="HeadDefLabel" type="Label" parent="DefenseStats/DefEnums"]
+layout_mode = 0
 offset_left = 192.0
 offset_right = 384.0
 offset_bottom = 64.0
@@ -129,6 +139,7 @@ theme_override_font_sizes/font_size = 35
 horizontal_alignment = 2
 
 [node name="ChestLabel" type="Label" parent="DefenseStats/DefEnums"]
+layout_mode = 0
 offset_top = 64.0
 offset_right = 192.0
 offset_bottom = 128.0
@@ -136,6 +147,7 @@ theme_override_font_sizes/font_size = 35
 text = "Chest Def:"
 
 [node name="ChestDefLabel" type="Label" parent="DefenseStats/DefEnums"]
+layout_mode = 0
 offset_left = 192.0
 offset_top = 64.0
 offset_right = 384.0
@@ -144,6 +156,7 @@ theme_override_font_sizes/font_size = 35
 horizontal_alignment = 2
 
 [node name="LegLabel" type="Label" parent="DefenseStats/DefEnums"]
+layout_mode = 0
 offset_top = 128.0
 offset_right = 192.0
 offset_bottom = 192.0
@@ -151,6 +164,7 @@ theme_override_font_sizes/font_size = 35
 text = "Leg Def:"
 
 [node name="LegDefLabel" type="Label" parent="DefenseStats/DefEnums"]
+layout_mode = 0
 offset_left = 192.0
 offset_top = 127.0
 offset_right = 384.0
@@ -159,6 +173,7 @@ theme_override_font_sizes/font_size = 35
 horizontal_alignment = 2
 
 [node name="FeetLabel" type="Label" parent="DefenseStats/DefEnums"]
+layout_mode = 0
 offset_top = 192.0
 offset_right = 192.0
 offset_bottom = 256.0
@@ -166,6 +181,7 @@ theme_override_font_sizes/font_size = 35
 text = "Feet Def:"
 
 [node name="FeetDefLabel" type="Label" parent="DefenseStats/DefEnums"]
+layout_mode = 0
 offset_left = 192.0
 offset_top = 191.0
 offset_right = 384.0
@@ -174,6 +190,7 @@ theme_override_font_sizes/font_size = 35
 horizontal_alignment = 2
 
 [node name="ShieldLabel" type="Label" parent="DefenseStats/DefEnums"]
+layout_mode = 0
 offset_top = 256.0
 offset_right = 192.0
 offset_bottom = 320.0
@@ -181,6 +198,7 @@ theme_override_font_sizes/font_size = 35
 text = "Shield Def:"
 
 [node name="ShieldDefLabel" type="Label" parent="DefenseStats/DefEnums"]
+layout_mode = 0
 offset_left = 192.0
 offset_top = 256.0
 offset_right = 384.0
@@ -196,6 +214,7 @@ offset_right = 1640.0
 offset_bottom = 704.0
 
 [node name="StrengthStatsLabel" type="Label" parent="StrengthStats"]
+layout_mode = 0
 offset_left = 56.0
 offset_top = 64.0
 offset_right = 560.0
@@ -204,6 +223,7 @@ theme_override_font_sizes/font_size = 50
 text = "Strength Stats"
 
 [node name="TotalStrengthLabel" type="Label" parent="StrengthStats"]
+layout_mode = 0
 offset_left = 56.0
 offset_top = 168.0
 offset_right = 443.0
@@ -220,12 +240,14 @@ offset_right = 440.0
 offset_bottom = 640.0
 
 [node name="PhysicalLabel" type="Label" parent="StrengthStats/StrengthEnums"]
+layout_mode = 0
 offset_right = 192.0
 offset_bottom = 64.0
 theme_override_font_sizes/font_size = 35
 text = "Physical:"
 
 [node name="PhysicalStrengthLabel" type="Label" parent="StrengthStats/StrengthEnums"]
+layout_mode = 0
 offset_left = 192.0
 offset_right = 384.0
 offset_bottom = 64.0
@@ -233,6 +255,7 @@ theme_override_font_sizes/font_size = 35
 horizontal_alignment = 2
 
 [node name="MagicalLabel" type="Label" parent="StrengthStats/StrengthEnums"]
+layout_mode = 0
 offset_top = 64.0
 offset_right = 192.0
 offset_bottom = 128.0
@@ -240,6 +263,7 @@ theme_override_font_sizes/font_size = 35
 text = "Magical:"
 
 [node name="MagicalStrengthLabel" type="Label" parent="StrengthStats/StrengthEnums"]
+layout_mode = 0
 offset_left = 192.0
 offset_top = 64.0
 offset_right = 384.0
@@ -248,6 +272,7 @@ theme_override_font_sizes/font_size = 35
 horizontal_alignment = 2
 
 [node name="TechnicalLabel" type="Label" parent="StrengthStats/StrengthEnums"]
+layout_mode = 0
 offset_top = 128.0
 offset_right = 192.0
 offset_bottom = 192.0
@@ -255,10 +280,59 @@ theme_override_font_sizes/font_size = 35
 text = "Technical:"
 
 [node name="TechnicalStrengthLabel" type="Label" parent="StrengthStats/StrengthEnums"]
+layout_mode = 0
 offset_left = 192.0
 offset_top = 127.0
 offset_right = 384.0
 offset_bottom = 191.0
+theme_override_font_sizes/font_size = 35
+horizontal_alignment = 2
+
+[node name="ResistanceStats" type="Control" parent="."]
+anchors_preset = 0
+offset_left = 1176.0
+offset_top = 616.0
+offset_right = 1680.0
+offset_bottom = 992.0
+
+[node name="OtherStats1Label" type="Label" parent="ResistanceStats"]
+layout_mode = 0
+offset_right = 456.0
+offset_bottom = 69.0
+theme_override_font_sizes/font_size = 50
+text = "Resistance Stats"
+
+[node name="ResistanceEnums" type="Control" parent="ResistanceStats"]
+anchors_preset = 0
+offset_top = 96.0
+offset_right = 376.0
+offset_bottom = 320.0
+
+[node name="PhysicalLabel" type="Label" parent="ResistanceStats/ResistanceEnums"]
+offset_right = 192.0
+offset_bottom = 64.0
+theme_override_font_sizes/font_size = 35
+text = "Physical:"
+
+[node name="PhysicalResistanceLabel" type="Label" parent="ResistanceStats/ResistanceEnums"]
+offset_left = 192.0
+offset_right = 384.0
+offset_bottom = 64.0
+theme_override_font_sizes/font_size = 35
+horizontal_alignment = 2
+
+[node name="MagicalLabel" type="Label" parent="ResistanceStats/ResistanceEnums"]
+offset_top = 64.0
+offset_right = 192.0
+offset_bottom = 128.0
+theme_override_font_sizes/font_size = 35
+text = "Magical:"
+
+[node name="MagicalResistanceLabel" type="Label" parent="ResistanceStats/ResistanceEnums"]
+offset_left = 192.0
+offset_top = 64.0
+offset_right = 384.0
+offset_bottom = 128.0
 theme_override_font_sizes/font_size = 35
 horizontal_alignment = 2
 
@@ -271,26 +345,14 @@ offset_right = 1048.0
 offset_bottom = 1080.0
 
 [node name="OtherStats1Label" type="Label" parent="OtherStats1"]
+layout_mode = 0
 offset_left = 56.0
 offset_right = 504.0
 offset_bottom = 69.0
 theme_override_font_sizes/font_size = 50
 text = "Other Stats 1"
 
-[node name="OtherStats2" type="Control" parent="."]
-anchors_preset = 0
-offset_left = 1176.0
-offset_top = 704.0
-offset_right = 1680.0
-offset_bottom = 1080.0
-
-[node name="OtherStats1Label" type="Label" parent="OtherStats2"]
-offset_right = 456.0
-offset_bottom = 69.0
-theme_override_font_sizes/font_size = 50
-text = "Other Stats 2"
-
-[node name="Button" type="Button" parent="."]
+[node name="MainMenuButton" type="Button" parent="."]
 layout_mode = 1
 anchors_preset = 3
 anchor_left = 1.0
@@ -304,4 +366,4 @@ grow_vertical = 0
 theme_override_font_sizes/font_size = 40
 text = "Main Menu"
 
-[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]
+[connection signal="pressed" from="MainMenuButton" to="." method="_on_button_pressed"]

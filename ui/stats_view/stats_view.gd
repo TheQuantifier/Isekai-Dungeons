@@ -21,13 +21,18 @@ const Character = preload("res://core/character/character.gd")
 @onready var chest_def_label = get_node("DefenseStats/DefEnums/ChestDefLabel")
 @onready var leg_def_label = get_node("DefenseStats/DefEnums/LegDefLabel")
 @onready var feet_def_label = get_node("DefenseStats/DefEnums/FeetDefLabel")
-@onready var shield_def_label = get_node("DefenseStats/DefEnums/ShieldDefLabel")  # ✅ fixed name
+@onready var shield_def_label = get_node("DefenseStats/DefEnums/ShieldDefLabel")
 
 # --- Strength Stats ---
 @onready var physical_strength_label = get_node("StrengthStats/StrengthEnums/PhysicalStrengthLabel")
 @onready var magical_strength_label = get_node("StrengthStats/StrengthEnums/MagicalStrengthLabel")
 @onready var technical_strength_label = get_node("StrengthStats/StrengthEnums/TechnicalStrengthLabel")
-@onready var total_strength_label = get_node("StrengthStats/TotalStrengthLabel")  # Optional placeholder
+@onready var total_strength_label = get_node("StrengthStats/TotalStrengthLabel")
+
+
+# --- Resistance Stats ---
+@onready var physical_resistance_label = get_node("ResistanceStats/ResistanceEnums/PhysicalResistanceLabel")
+@onready var magical_resistance_label = get_node("ResistanceStats/ResistanceEnums/MagicalResistanceLabel")
 
 func _ready() -> void:
 	if game_manager.current_character:
@@ -64,22 +69,22 @@ func show_stats(c: Character) -> void:
 	age_label.text = "Age:  " + str(c.char_age)
 
 	health_label.text = "Health:  " + str(c.current_health)
-	mana_label.text = "Mana: TBA" #+ str(c.mana)  # TODO
+	mana_label.text = "Mana: " + str(c.current_mana)
 	wealth_label.text = "Gold:  " + str(c.gold)
 
 	total_defense_label.text = "Total Defense:   " + str(c.get_total_defense())
-
 	head_def_label.text = str(c.get_defense(StatTypes.DefenseType.HEAD))
 	chest_def_label.text = str(c.get_defense(StatTypes.DefenseType.CHEST))
 	leg_def_label.text = str(c.get_defense(StatTypes.DefenseType.LEG))
 	feet_def_label.text = str(c.get_defense(StatTypes.DefenseType.FEET))
 	shield_def_label.text = str(c.get_defense(StatTypes.DefenseType.SHIELD))
 
+	total_strength_label.text = "Total Strength:  " + str(c.get_total_strength())
 	physical_strength_label.text = str(c.get_strength(StatTypes.StrengthType.PHYSICAL))
 	magical_strength_label.text = str(c.get_strength(StatTypes.StrengthType.MAGICAL))
 	technical_strength_label.text = str(c.get_strength(StatTypes.StrengthType.TECHNICAL))
 
-	total_strength_label.text = "Total Strength: TBA"  # TODO: implement total strength calc
-
+	physical_resistance_label.text = str(c.get_resistance(StatTypes.ResistanceType.PHYSICAL)) + "%"
+	magical_resistance_label.text = str(c.get_resistance(StatTypes.ResistanceType.MAGICAL)) + "%"
 func _on_button_pressed() -> void:
 	game_manager.go_to_main_menu()

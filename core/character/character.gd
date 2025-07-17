@@ -26,6 +26,7 @@ signal potion_consumed(potion: Potion)
 @export var gender: String = "male"  # Options: "male", "female"
 @export var model_path: String = ""
 @export var current_health: int = 10
+@export var current_mana: int = 10
 @export var gold: int = 0
 
 # --- Inventory System ---
@@ -35,14 +36,18 @@ var backpack: Backpack
 # --- Stat Maps ---
 @export var strength_stats: Dictionary = {}
 @export var defense_stats: Dictionary = {}
+@export var resistance_stats: Dictionary = {}
 
 func _init() -> void:
 	backpack = Backpack.new(30, self)
-
+	
 	for s_type in StatTypes.StrengthType.values():
 		strength_stats[s_type] = 0
 	for d_type in StatTypes.DefenseType.values():
 		defense_stats[d_type] = 0
+	for r_type in StatTypes.ResistanceType.values():
+		resistance_stats[r_type] = 0
+
 
 # ---------- Stat Manipulation ----------
 func add_gold(amount: int) -> void:
@@ -52,6 +57,10 @@ func add_gold(amount: int) -> void:
 func add_health(amount: int) -> void:
 	current_health += amount
 	emit_signal("health_changed", current_health)
+
+func add_mana(amount: int) -> void:
+	current_mana += amount
+	emit_signal("mana_changed", current_mana)
 
 func get_strength(s_type: int) -> int:
 	return strength_stats.get(s_type, 0)
@@ -65,12 +74,24 @@ func get_defense(d_type: int) -> int:
 func add_defense(d_type: int, amount: int) -> void:
 	defense_stats[d_type] = get_defense(d_type) + amount
 
+func get_resistance(type: int) -> int:
+	return resistance_stats.get(type, 0)
+
+func add_resistance(type: int, percent: int) -> void:
+	resistance_stats[type] = get_resistance(type) + percent
+
 func get_total_defense() -> int:
 	var total := 0
 	for value in defense_stats.values():
 		total += value
 	return total
 
+func get_total_strength() -> int:
+	var total := 0
+	for value in strength_stats.values():
+		total += value
+	return total
+	
 # ---------- Equipment Logic ----------
 func equip(item: Equipment) -> String:
 	if item.equip_type == Equipment.EquipmentType.POTION:
@@ -163,10 +184,13 @@ func consume_potion(potion: Potion) -> String:
 # ---------- Stat Reset ----------
 func reset_stats() -> void:
 	for s_type in StatTypes.StrengthType.values():
-		strength_stats[s_type] = 0
+		strength_stats[s_type] = 1
 	for d_type in StatTypes.DefenseType.values():
-		defense_stats[d_type] = 0
+		defense_stats[d_type] = 1
+	for r_type in StatTypes.ResistanceType.values():
+		resistance_stats[r_type] = 0
 	current_health = 10
+	current_mana = 10
 	gold = 0
 	emit_signal("health_changed", current_health)
 	emit_signal("gold_changed", gold)
@@ -192,6 +216,10 @@ func data() -> String:
 	s += "\n-- Defense Stats --\n"
 	for k in defense_stats.keys():
 		s += "%s: %d\n" % [str(k), defense_stats[k]]
+
+	s += "\n-- Resistances --\n"
+	for k in resistance_stats.keys():
+		s += "%s: %d%%\n" % [str(k).capitalize(), resistance_stats[k]]
 
 	s += "\n-- Equipped Items --\n"
 	for item in equipped_items:
