@@ -13,7 +13,7 @@ extends Node3D
 
 const SUN_DISTANCE: float = 1000.0
 var sun_elevation_degrees: float = -25.0  # Negative to point downward
-var sun_azimuth_degrees: float = 0.0      # Fixed azimuth for now
+var sun_azimuth_degrees: float = 120.0      # Fixed azimuth for now
 
 func _ready() -> void:
 	# ☀️ Setup directional light
@@ -77,3 +77,4 @@ func _on_main_menu_pressed() -> void:
 func _on_sun_slider_changed(value: float) -> void:
 	# Convert slider value (0 to 180) to elevation angle (0 to -180)
 	sun_elevation_degrees = -clamp(value, 0.0, 180.0)
+	sun_slider.release_focus()
