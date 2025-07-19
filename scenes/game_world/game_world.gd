@@ -10,10 +10,14 @@ extends Node3D
 @onready var sun_light: DirectionalLight3D = $SunPivot/DirectionalLight3D
 @onready var world_env: WorldEnvironment = $WorldEnvironment
 @onready var sun_slider: HSlider = $MenusCanvasLayer/SunSlider
+@onready var stats_button: Button = $MenusCanvasLayer/VBoxContainer/StatsButton
+@onready var menus_canvas: CanvasLayer = $MenusCanvasLayer
 
 const SUN_DISTANCE: float = 1000.0
 var sun_elevation_degrees: float = -25.0  # Negative to point downward
-var sun_azimuth_degrees: float = 120.0      # Fixed azimuth for now
+var sun_azimuth_degrees: float = -30.0    # Fixed azimuth for now
+
+var stats_panel: Control = null
 
 func _ready() -> void:
 	# ☀️ Setup directional light
@@ -42,6 +46,9 @@ func _ready() -> void:
 	sun_slider.min_value = 0.0
 	sun_slider.max_value = 180.0
 	sun_slider.value = abs(sun_elevation_degrees)
+
+	# 🎮 Connect stats button
+	stats_button.focus_mode = Control.FOCUS_NONE
 
 func _process(_delta: float) -> void:
 	# 🎥 Update camera position
@@ -78,3 +85,11 @@ func _on_sun_slider_changed(value: float) -> void:
 	# Convert slider value (0 to 180) to elevation angle (0 to -180)
 	sun_elevation_degrees = -clamp(value, 0.0, 180.0)
 	sun_slider.release_focus()
+
+func _on_stats_button_pressed() -> void:
+	if stats_panel == null:
+		stats_panel = load("res://ui/stats_view/stats_view.tscn").instantiate()
+		menus_canvas.add_child(stats_panel)
+		stats_panel.position = get_viewport().get_visible_rect().size / 2 - stats_panel.size / 2
+	else:
+		stats_panel.visible = not stats_panel.visible

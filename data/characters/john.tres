@@ -7,9 +7,10 @@
 script = ExtResource("2_5vobn")
 char_id = "john"
 char_age = 15.0
-gender = "male"
-model_path = "res://assets/character_models/scenes/male/y_bot.tscn"
+gender = "female"
+model_path = "res://assets/character_models/scenes/female/x_bot.tscn"
 current_health = 150
+current_mana = 10
 gold = 1200
 equipped_items = Array[ExtResource("1_phn4y")]([])
 strength_stats = {
@@ -23,4 +24,8 @@ defense_stats = {
 2: 250,
 3: 100,
 4: 50
+}
+resistance_stats = {
+0: 0,
+1: 0
 }

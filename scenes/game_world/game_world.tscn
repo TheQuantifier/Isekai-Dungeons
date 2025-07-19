@@ -4,13 +4,6 @@
 [ext_resource type="Script" uid="uid://dj6ds81qxtn0j" path="res://scenes/game_world/game_world.gd" id="1_mjgxe"]
 [ext_resource type="PackedScene" uid="uid://cgjylwr71uayr" path="res://scenes/player/player.tscn" id="2_mjgxe"]
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_mjgxe"]
-margin = 0.0
-size = Vector3(4, 2, 4)
-
-[sub_resource type="BoxMesh" id="BoxMesh_mjgxe"]
-size = Vector3(4, 2, 4)
-
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_mjgxe"]
 
 [sub_resource type="Sky" id="Sky_yb5st"]
@@ -29,6 +22,13 @@ size = Vector3(4, 0.1, 8)
 [sub_resource type="BoxMesh" id="BoxMesh_yb5st"]
 size = Vector3(4, 0.1, 8)
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_mjgxe"]
+margin = 0.0
+size = Vector3(4, 2, 4)
+
+[sub_resource type="BoxMesh" id="BoxMesh_mjgxe"]
+size = Vector3(4, 2, 4)
+
 [node name="GameWorld" type="Node3D"]
 script = ExtResource("1_mjgxe")
 
@@ -43,6 +43,57 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7, 1, 2)
 [node name="Camera3D" type="Camera3D" parent="CameraPivot"]
 transform = Transform3D(-0.443509, 0, 0.89627, 0, 1, 0, -0.89627, 0, -0.443509, 0, 0, 0)
 
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_6sh6l")
+
+[node name="SunPivot" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -159, 0, 0)
+
+[node name="VisibleSun" type="MeshInstance3D" parent="SunPivot"]
+transform = Transform3D(0.258819, 0, 0.965926, 0, 1, 0, -0.965926, 0, 0.258819, 0, 0, 0)
+mesh = SubResource("SphereMesh_mjgxe")
+skeleton = NodePath("../..")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="SunPivot"]
+shadow_enabled = true
+
+[node name="Objects" type="Node3D" parent="."]
+
+[node name="Ramp" type="StaticBody3D" parent="Objects"]
+transform = Transform3D(1, 0, 0, 0, 0.838604, 0.544741, 0, -0.544741, 0.838604, -0.798, 1.55, -2.15)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Objects/Ramp"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.2, 0.3, 0)
+shape = SubResource("BoxShape3D_yb5st")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Objects/Ramp"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.2, 0.3, 0)
+mesh = SubResource("BoxMesh_yb5st")
+
+[node name="Platform" type="StaticBody3D" parent="Objects"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3, -1)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Objects/Platform"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0, 4)
+shape = SubResource("BoxShape3D_mjgxe")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Objects/Platform"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0, 4)
+mesh = SubResource("BoxMesh_mjgxe")
+skeleton = NodePath("../CollisionShape3D")
+
+[node name="Platform2" type="StaticBody3D" parent="Objects"]
+transform = Transform3D(1, 0, 0, 0, 1, -2.98023e-08, 0, 2.98023e-08, 1, 0, 1, 3)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Objects/Platform2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0, 4)
+shape = SubResource("BoxShape3D_mjgxe")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Objects/Platform2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0, 4)
+mesh = SubResource("BoxMesh_mjgxe")
+skeleton = NodePath("../CollisionShape3D")
+
 [node name="MenusCanvasLayer" type="CanvasLayer" parent="."]
 
 [node name="VBoxContainer" type="VBoxContainer" parent="MenusCanvasLayer"]
@@ -56,6 +107,11 @@ offset_top = -40.0
 grow_horizontal = 0
 grow_vertical = 0
 alignment = 1
+
+[node name="StatsButton" type="Button" parent="MenusCanvasLayer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 40
+text = "Stats"
 
 [node name="Main Menu" type="Button" parent="MenusCanvasLayer/VBoxContainer"]
 layout_mode = 2
@@ -72,54 +128,6 @@ max_value = 180.0
 tick_count = 13
 ticks_on_borders = true
 
-[node name="Platform" type="StaticBody3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3, -1)
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Platform"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0, 4)
-shape = SubResource("BoxShape3D_mjgxe")
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Platform"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0, 4)
-mesh = SubResource("BoxMesh_mjgxe")
-skeleton = NodePath("../CollisionShape3D")
-
-[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
-environment = SubResource("Environment_6sh6l")
-
-[node name="SunPivot" type="Node3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -159, 0, 0)
-
-[node name="VisibleSun" type="MeshInstance3D" parent="SunPivot"]
-transform = Transform3D(0.258819, 0, 0.965926, 0, 1, 0, -0.965926, 0, 0.258819, 0, 0, 0)
-mesh = SubResource("SphereMesh_mjgxe")
-skeleton = NodePath("../..")
-
-[node name="DirectionalLight3D" type="DirectionalLight3D" parent="SunPivot"]
-shadow_enabled = true
-
-[node name="Platform2" type="StaticBody3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 3)
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Platform2"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0, 4)
-shape = SubResource("BoxShape3D_mjgxe")
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Platform2"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0, 4)
-mesh = SubResource("BoxMesh_mjgxe")
-skeleton = NodePath("../CollisionShape3D")
-
-[node name="Ramp" type="StaticBody3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 0.838604, 0.544741, 0, -0.544741, 0.838604, -0.798, 1.55, -2.15)
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Ramp"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.2, 0.3, 0)
-shape = SubResource("BoxShape3D_yb5st")
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Ramp"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.2, 0.3, 0)
-mesh = SubResource("BoxMesh_yb5st")
-
+[connection signal="pressed" from="MenusCanvasLayer/VBoxContainer/StatsButton" to="." method="_on_stats_button_pressed"]
 [connection signal="pressed" from="MenusCanvasLayer/VBoxContainer/Main Menu" to="." method="_on_main_menu_pressed"]
 [connection signal="value_changed" from="MenusCanvasLayer/SunSlider" to="." method="_on_sun_slider_changed"]
