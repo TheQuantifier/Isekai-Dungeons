@@ -6,26 +6,27 @@
 [resource]
 script = ExtResource("2_5vobn")
 char_id = "john"
-char_age = 15.0
-gender = "female"
-model_path = "res://assets/character_models/scenes/female/x_bot.tscn"
-current_health = 150
-current_mana = 10
-gold = 1200
+char_age = 100.0
+gender = "male"
+model_path = "res://assets/character_models/scenes/male/y_bot.tscn"
+current_health = 100
+current_mana = 200
+gold = 1234
+password = "john"
 equipped_items = Array[ExtResource("1_phn4y")]([])
 strength_stats = {
-0: 95,
-1: 80,
-2: 100
+0: 20,
+1: 10,
+2: 30
 }
 defense_stats = {
-0: 200,
-1: 150,
-2: 250,
-3: 100,
-4: 50
+0: 30,
+1: 20,
+2: 30,
+3: 20,
+4: 10
 }
 resistance_stats = {
-0: 0,
-1: 0
+0: 40,
+1: 30
 }

@@ -28,6 +28,7 @@ signal potion_consumed(potion: Potion)
 @export var current_health: int = 10
 @export var current_mana: int = 10
 @export var gold: int = 0
+@export var password: String = ""
 
 # --- Inventory System ---
 var backpack: Backpack
