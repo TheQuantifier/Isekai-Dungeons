@@ -1,8 +1,10 @@
-[gd_scene load_steps=12 format=3 uid="uid://tvefuc2jd8cc"]
+[gd_scene load_steps=14 format=3 uid="uid://tvefuc2jd8cc"]
 
 [ext_resource type="PackedScene" uid="uid://bkd5chj1tyrsd" path="res://scenes/game_world/ground.tscn" id="1_254f3"]
 [ext_resource type="Script" uid="uid://dj6ds81qxtn0j" path="res://scenes/game_world/game_world.gd" id="1_mjgxe"]
 [ext_resource type="PackedScene" uid="uid://cgjylwr71uayr" path="res://scenes/player/player.tscn" id="2_mjgxe"]
+[ext_resource type="PackedScene" uid="uid://csnj2r5qa4y34" path="res://assets/scenary/tree-gn/source/tree_gen.tscn" id="4_yb5st"]
+[ext_resource type="PackedScene" uid="uid://bfu4xrg80meww" path="res://assets/scenary/cobble_stone_path.tscn" id="5_6sh6l"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_mjgxe"]
 
@@ -93,6 +95,15 @@ shape = SubResource("BoxShape3D_mjgxe")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0, 4)
 mesh = SubResource("BoxMesh_mjgxe")
 skeleton = NodePath("../CollisionShape3D")
+
+[node name="TreeGen" parent="Objects" instance=ExtResource("4_yb5st")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 65.0043, 0.524078, -4.43403)
+
+[node name="Path" parent="Objects" instance=ExtResource("5_6sh6l")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10, 0, 0)
+
+[node name="Path2" parent="Objects" instance=ExtResource("5_6sh6l")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 20, 0, 0)
 
 [node name="MenusCanvasLayer" type="CanvasLayer" parent="."]
 
