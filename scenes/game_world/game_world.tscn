@@ -1,10 +1,11 @@
-[gd_scene load_steps=14 format=3 uid="uid://tvefuc2jd8cc"]
+[gd_scene load_steps=15 format=3 uid="uid://tvefuc2jd8cc"]
 
 [ext_resource type="PackedScene" uid="uid://bkd5chj1tyrsd" path="res://scenes/game_world/ground.tscn" id="1_254f3"]
 [ext_resource type="Script" uid="uid://dj6ds81qxtn0j" path="res://scenes/game_world/game_world.gd" id="1_mjgxe"]
 [ext_resource type="PackedScene" uid="uid://cgjylwr71uayr" path="res://scenes/player/player.tscn" id="2_mjgxe"]
 [ext_resource type="PackedScene" uid="uid://csnj2r5qa4y34" path="res://assets/scenary/tree-gn/source/tree_gen.tscn" id="4_yb5st"]
 [ext_resource type="PackedScene" uid="uid://bfu4xrg80meww" path="res://assets/scenary/cobble_stone_path.tscn" id="5_6sh6l"]
+[ext_resource type="PackedScene" uid="uid://cjlguukmmm60l" path="res://assets/scenary/cobblestone_floor_texture/road_1.tscn" id="6_liei2"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_mjgxe"]
 
@@ -60,6 +61,7 @@ skeleton = NodePath("../..")
 shadow_enabled = true
 
 [node name="Objects" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 179.743, 0, 49.237)
 
 [node name="Ramp" type="StaticBody3D" parent="Objects"]
 transform = Transform3D(1, 0, 0, 0, 0.838604, 0.544741, 0, -0.544741, 0.838604, -0.798, 1.55, -2.15)
@@ -144,6 +146,193 @@ focus_mode = 0
 max_value = 180.0
 tick_count = 13
 ticks_on_borders = true
+
+[node name="Village Setup" type="Node3D" parent="."]
+
+[node name="MainRoads" type="Node3D" parent="Village Setup"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+
+[node name="RoadsCrossSection" type="Node3D" parent="Village Setup/MainRoads"]
+process_priority = 1
+
+[node name="Road1" parent="Village Setup/MainRoads/RoadsCrossSection" instance=ExtResource("6_liei2")]
+
+[node name="Road2" parent="Village Setup/MainRoads/RoadsCrossSection" instance=ExtResource("6_liei2")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12, 0, 0)
+
+[node name="Road3" parent="Village Setup/MainRoads/RoadsCrossSection" instance=ExtResource("6_liei2")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12, 0, 0)
+
+[node name="Road4" parent="Village Setup/MainRoads/RoadsCrossSection" instance=ExtResource("6_liei2")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -24, 0, 0)
+
+[node name="Road5" parent="Village Setup/MainRoads/RoadsCrossSection" instance=ExtResource("6_liei2")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 24, 0, 0)
+
+[node name="RoadsMain" type="Node3D" parent="Village Setup/MainRoads"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 84)
+
+[node name="Roads" type="Node3D" parent="Village Setup/MainRoads/RoadsMain"]
+
+[node name="Road1" parent="Village Setup/MainRoads/RoadsMain/Roads" instance=ExtResource("6_liei2")]
+
+[node name="Road2" parent="Village Setup/MainRoads/RoadsMain/Roads" instance=ExtResource("6_liei2")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -12)
+
+[node name="Road3" parent="Village Setup/MainRoads/RoadsMain/Roads" instance=ExtResource("6_liei2")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -24)
+
+[node name="Road4" parent="Village Setup/MainRoads/RoadsMain/Roads" instance=ExtResource("6_liei2")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 12)
+
+[node name="Road5" parent="Village Setup/MainRoads/RoadsMain/Roads" instance=ExtResource("6_liei2")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -36)
+
+[node name="Road6" parent="Village Setup/MainRoads/RoadsMain/Roads" instance=ExtResource("6_liei2")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -48)
+
+[node name="Road7" parent="Village Setup/MainRoads/RoadsMain/Roads" instance=ExtResource("6_liei2")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -60)
+
+[node name="Road8" parent="Village Setup/MainRoads/RoadsMain/Roads" instance=ExtResource("6_liei2")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -72)
+
+[node name="Roads2" type="Node3D" parent="Village Setup/MainRoads/RoadsMain"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 96)
+
+[node name="Road1" parent="Village Setup/MainRoads/RoadsMain/Roads2" instance=ExtResource("6_liei2")]
+
+[node name="Road2" parent="Village Setup/MainRoads/RoadsMain/Roads2" instance=ExtResource("6_liei2")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -12)
+
+[node name="Road3" parent="Village Setup/MainRoads/RoadsMain/Roads2" instance=ExtResource("6_liei2")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -24)
+
+[node name="Road4" parent="Village Setup/MainRoads/RoadsMain/Roads2" instance=ExtResource("6_liei2")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 12)
+
+[node name="Road5" parent="Village Setup/MainRoads/RoadsMain/Roads2" instance=ExtResource("6_liei2")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -36)
+
+[node name="Road6" parent="Village Setup/MainRoads/RoadsMain/Roads2" instance=ExtResource("6_liei2")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -48)
+
+[node name="Road7" parent="Village Setup/MainRoads/RoadsMain/Roads2" instance=ExtResource("6_liei2")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -60)
+
+[node name="Road8" parent="Village Setup/MainRoads/RoadsMain/Roads2" instance=ExtResource("6_liei2")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -72)
+
+[node name="RoadsLeftLeg" type="Node3D" parent="Village Setup/MainRoads"]
+process_priority = -1
+transform = Transform3D(0.707106, 0, 0.707106, 0, 1, 0, -0.707106, 0, 0.707106, -106.329, 0, -78.867)
+top_level = true
+
+[node name="Roads" type="Node3D" parent="Village Setup/MainRoads/RoadsLeftLeg"]
+
+[node name="Road1" parent="Village Setup/MainRoads/RoadsLeftLeg/Roads" instance=ExtResource("6_liei2")]
+
+[node name="Road2" parent="Village Setup/MainRoads/RoadsLeftLeg/Roads" instance=ExtResource("6_liei2")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -12)
+
+[node name="Road3" parent="Village Setup/MainRoads/RoadsLeftLeg/Roads" instance=ExtResource("6_liei2")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -24)
+
+[node name="Road4" parent="Village Setup/MainRoads/RoadsLeftLeg/Roads" instance=ExtResource("6_liei2")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 12)
+
+[node name="Road5" parent="Village Setup/MainRoads/RoadsLeftLeg/Roads" instance=ExtResource("6_liei2")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -36)
+
+[node name="Road6" parent="Village Setup/MainRoads/RoadsLeftLeg/Roads" instance=ExtResource("6_liei2")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -48)
+
+[node name="Road7" parent="Village Setup/MainRoads/RoadsLeftLeg/Roads" instance=ExtResource("6_liei2")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -60)
+
+[node name="Road8" parent="Village Setup/MainRoads/RoadsLeftLeg/Roads" instance=ExtResource("6_liei2")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -72)
+
+[node name="Roads2" type="Node3D" parent="Village Setup/MainRoads/RoadsLeftLeg"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 96)
+
+[node name="Road1" parent="Village Setup/MainRoads/RoadsLeftLeg/Roads2" instance=ExtResource("6_liei2")]
+
+[node name="Road2" parent="Village Setup/MainRoads/RoadsLeftLeg/Roads2" instance=ExtResource("6_liei2")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -12)
+
+[node name="Road3" parent="Village Setup/MainRoads/RoadsLeftLeg/Roads2" instance=ExtResource("6_liei2")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -24)
+
+[node name="Road4" parent="Village Setup/MainRoads/RoadsLeftLeg/Roads2" instance=ExtResource("6_liei2")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 12)
+
+[node name="Road5" parent="Village Setup/MainRoads/RoadsLeftLeg/Roads2" instance=ExtResource("6_liei2")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -36)
+
+[node name="Road6" parent="Village Setup/MainRoads/RoadsLeftLeg/Roads2" instance=ExtResource("6_liei2")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -48)
+
+[node name="Road7" parent="Village Setup/MainRoads/RoadsLeftLeg/Roads2" instance=ExtResource("6_liei2")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -60)
+
+[node name="Road8" parent="Village Setup/MainRoads/RoadsLeftLeg/Roads2" instance=ExtResource("6_liei2")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -72)
+
+[node name="RoadsRightLeg" type="Node3D" parent="Village Setup/MainRoads"]
+process_priority = -1
+transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, 106.325, 0, -78.855)
+
+[node name="Roads" type="Node3D" parent="Village Setup/MainRoads/RoadsRightLeg"]
+
+[node name="Road1" parent="Village Setup/MainRoads/RoadsRightLeg/Roads" instance=ExtResource("6_liei2")]
+
+[node name="Road2" parent="Village Setup/MainRoads/RoadsRightLeg/Roads" instance=ExtResource("6_liei2")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -12)
+
+[node name="Road3" parent="Village Setup/MainRoads/RoadsRightLeg/Roads" instance=ExtResource("6_liei2")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -24)
+
+[node name="Road4" parent="Village Setup/MainRoads/RoadsRightLeg/Roads" instance=ExtResource("6_liei2")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 12)
+
+[node name="Road5" parent="Village Setup/MainRoads/RoadsRightLeg/Roads" instance=ExtResource("6_liei2")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -36)
+
+[node name="Road6" parent="Village Setup/MainRoads/RoadsRightLeg/Roads" instance=ExtResource("6_liei2")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -48)
+
+[node name="Road7" parent="Village Setup/MainRoads/RoadsRightLeg/Roads" instance=ExtResource("6_liei2")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -60)
+
+[node name="Road8" parent="Village Setup/MainRoads/RoadsRightLeg/Roads" instance=ExtResource("6_liei2")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -72)
+
+[node name="Roads2" type="Node3D" parent="Village Setup/MainRoads/RoadsRightLeg"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 96)
+
+[node name="Road1" parent="Village Setup/MainRoads/RoadsRightLeg/Roads2" instance=ExtResource("6_liei2")]
+
+[node name="Road2" parent="Village Setup/MainRoads/RoadsRightLeg/Roads2" instance=ExtResource("6_liei2")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -12)
+
+[node name="Road3" parent="Village Setup/MainRoads/RoadsRightLeg/Roads2" instance=ExtResource("6_liei2")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -24)
+
+[node name="Road4" parent="Village Setup/MainRoads/RoadsRightLeg/Roads2" instance=ExtResource("6_liei2")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 12)
+
+[node name="Road5" parent="Village Setup/MainRoads/RoadsRightLeg/Roads2" instance=ExtResource("6_liei2")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -36)
+
+[node name="Road6" parent="Village Setup/MainRoads/RoadsRightLeg/Roads2" instance=ExtResource("6_liei2")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -48)
+
+[node name="Road7" parent="Village Setup/MainRoads/RoadsRightLeg/Roads2" instance=ExtResource("6_liei2")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -60)
+
+[node name="Road8" parent="Village Setup/MainRoads/RoadsRightLeg/Roads2" instance=ExtResource("6_liei2")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -72)
 
 [connection signal="pressed" from="MenusCanvasLayer/VBoxContainer/StatsButton" to="." method="_on_stats_button_pressed"]
 [connection signal="pressed" from="MenusCanvasLayer/VBoxContainer/Main Menu" to="." method="_on_main_menu_pressed"]
