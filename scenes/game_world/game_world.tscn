@@ -100,10 +100,16 @@ skeleton = NodePath("../CollisionShape3D")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 65.0043, 0.524078, -4.43403)
 
 [node name="Path" parent="Objects" instance=ExtResource("5_6sh6l")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10, 0, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10, -0.32, 0)
 
 [node name="Path2" parent="Objects" instance=ExtResource("5_6sh6l")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 20, 0, 0)
+transform = Transform3D(0.985686, 0, -0.168593, 0, 1, 0, 0.168593, 0, 0.985686, 19.5, -0.32, 0.8)
+
+[node name="Path3" parent="Objects" instance=ExtResource("5_6sh6l")]
+transform = Transform3D(0.985686, 0, -0.168593, 0, 1, 0, 0.168593, 0, 0.985686, 28.8736, -0.32, 2.37078)
+
+[node name="Path4" parent="Objects" instance=ExtResource("5_6sh6l")]
+transform = Transform3D(0.985686, 0, -0.168593, 0, 1, 0, 0.168593, 0, 0.985686, 38.192, -0.32, 3.955)
 
 [node name="MenusCanvasLayer" type="CanvasLayer" parent="."]
 
