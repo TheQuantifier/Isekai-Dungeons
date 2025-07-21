@@ -49,7 +49,11 @@ func _ready() -> void:
 
 	# 🎮 Connect stats button
 	stats_button.focus_mode = Control.FOCUS_NONE
-
+	
+		# ⛲ Play fountain animation on load
+	var fountain_anim_player: AnimationPlayer = $'Village Setup/Fountain/Sketchfab_Scene/AnimationPlayer'
+	fountain_anim_player.play("Object_0")
+	
 func _process(_delta: float) -> void:
 	# 🎥 Update camera position
 	var player_transform = player.global_transform

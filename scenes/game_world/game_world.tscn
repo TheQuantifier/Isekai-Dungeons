@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://tvefuc2jd8cc"]
+[gd_scene load_steps=16 format=3 uid="uid://tvefuc2jd8cc"]
 
 [ext_resource type="PackedScene" uid="uid://bkd5chj1tyrsd" path="res://scenes/game_world/ground.tscn" id="1_254f3"]
 [ext_resource type="Script" uid="uid://dj6ds81qxtn0j" path="res://scenes/game_world/game_world.gd" id="1_mjgxe"]
@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://csnj2r5qa4y34" path="res://assets/scenary/tree-gn/source/tree_gen.tscn" id="4_yb5st"]
 [ext_resource type="PackedScene" uid="uid://bfu4xrg80meww" path="res://assets/scenary/cobble_stone_path.tscn" id="5_6sh6l"]
 [ext_resource type="PackedScene" uid="uid://cjlguukmmm60l" path="res://assets/scenary/cobblestone_floor_texture/road_1.tscn" id="6_liei2"]
+[ext_resource type="PackedScene" uid="uid://v7ugv4xboyuf" path="res://assets/models/fountain.tscn" id="7_nxv6a"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_mjgxe"]
 
@@ -170,7 +171,8 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -24, 0, 0)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 24, 0, 0)
 
 [node name="RoadsMain" type="Node3D" parent="Village Setup/MainRoads"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 84)
+process_priority = 4
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 97)
 
 [node name="Roads" type="Node3D" parent="Village Setup/MainRoads/RoadsMain"]
 
@@ -225,7 +227,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -72)
 
 [node name="RoadsLeftLeg" type="Node3D" parent="Village Setup/MainRoads"]
 process_priority = -1
-transform = Transform3D(0.707106, 0, 0.707106, 0, 1, 0, -0.707106, 0, 0.707106, -106.329, 0, -78.867)
+transform = Transform3D(0.707106, 0, 0.707106, 0, 1, 0, -0.707106, 0, 0.707106, -82.329, 0, -54.867)
 top_level = true
 
 [node name="Roads" type="Node3D" parent="Village Setup/MainRoads/RoadsLeftLeg"]
@@ -281,7 +283,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -72)
 
 [node name="RoadsRightLeg" type="Node3D" parent="Village Setup/MainRoads"]
 process_priority = -1
-transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, 106.325, 0, -78.855)
+transform = Transform3D(0.707106, 0, -0.707106, 0, 1, 0, 0.707106, 0, 0.707106, 82.325, 0, -54.855)
 
 [node name="Roads" type="Node3D" parent="Village Setup/MainRoads/RoadsRightLeg"]
 
@@ -333,6 +335,25 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -60)
 
 [node name="Road8" parent="Village Setup/MainRoads/RoadsRightLeg/Roads2" instance=ExtResource("6_liei2")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -72)
+
+[node name="plaza" type="Node3D" parent="Village Setup/MainRoads"]
+process_priority = 5
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 9)
+
+[node name="Road1" parent="Village Setup/MainRoads/plaza" instance=ExtResource("6_liei2")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8, 0, 3)
+
+[node name="Road2" parent="Village Setup/MainRoads/plaza" instance=ExtResource("6_liei2")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8, 0, 3)
+
+[node name="Road3" parent="Village Setup/MainRoads/plaza" instance=ExtResource("6_liei2")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 3)
+
+[node name="Road4" parent="Village Setup/MainRoads/plaza" instance=ExtResource("6_liei2")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 15)
+
+[node name="Fountain" parent="Village Setup" instance=ExtResource("7_nxv6a")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 12)
 
 [connection signal="pressed" from="MenusCanvasLayer/VBoxContainer/StatsButton" to="." method="_on_stats_button_pressed"]
 [connection signal="pressed" from="MenusCanvasLayer/VBoxContainer/Main Menu" to="." method="_on_main_menu_pressed"]

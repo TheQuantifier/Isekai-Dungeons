@@ -48,7 +48,7 @@ func go_to_main_menu() -> void:
 	change_scene("res://ui/main_menu/main_menu.tscn")
 
 func go_to_game_world() -> void:
-	change_scene("res://scenes/game_world/game_world.tscn")
+	change_scene("res://ui/loading_scene/loading.tscn")
 
 func go_to_character_customization() -> void:
 	change_scene("res://scenes/character_customization/character_customization.tscn")
