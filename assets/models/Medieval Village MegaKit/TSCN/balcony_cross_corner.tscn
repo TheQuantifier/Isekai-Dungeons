@@ -1,0 +1,18 @@
+[gd_scene load_steps=3 format=3 uid="uid://ccxva1kvn2ui5"]
+
+[ext_resource type="PackedScene" uid="uid://jcb036uars4d" path="res://assets/models/Medieval Village MegaKit/FBX/Balcony_Cross_Corner.fbx" id="1_uda4h"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_t370l"]
+size = Vector3(0.211, 1.23464, 2.12454)
+
+[node name="BalconyCrossCorner" type="StaticBody3D"]
+
+[node name="Balcony_Cross_Corner" parent="." instance=ExtResource("1_uda4h")]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.997, 0.508901, -0.0517263)
+shape = SubResource("BoxShape3D_t370l")
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="."]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0.0517564, 0.508901, -1.001)
+shape = SubResource("BoxShape3D_t370l")
