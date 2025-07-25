@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://cs7d14iq1hryo"]
+
+[ext_resource type="PackedScene" uid="uid://blntut7wgi13h" path="res://assets/models/Medieval Village MegaKit/FBX/Corner_ExteriorWide_Brick.fbx" id="1_61vb6"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_61vb6"]
+size = Vector3(0.724487, 3.02304, 0.77063)
+
+[node name="CornerExteriorWideBrick" type="StaticBody3D"]
+
+[node name="Corner_ExteriorWide_Brick" parent="." instance=ExtResource("1_61vb6")]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.129289, 1.50287, 0.152405)
+shape = SubResource("BoxShape3D_61vb6")

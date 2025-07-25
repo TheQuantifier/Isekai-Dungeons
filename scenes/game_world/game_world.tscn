@@ -338,6 +338,10 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7, 1, 2)
 
 [node name="Camera3D" type="Camera3D" parent="CameraPivot"]
 transform = Transform3D(-0.443509, 0, 0.89627, 0, 1, 0, -0.89627, 0, -0.443509, 0, 0, 0)
+current = true
+
+[node name="Camera3D_FirstPerson" type="Camera3D" parent="CameraPivot"]
+cull_mask = 1048573
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_6sh6l")
@@ -429,6 +433,11 @@ text = "Stats"
 layout_mode = 2
 theme_override_font_sizes/font_size = 40
 text = "Main Menu"
+
+[node name="ViewSwitchButton" type="Button" parent="MenusCanvasLayer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 40
+text = "Switch View"
 
 [node name="SunSlider" type="HSlider" parent="MenusCanvasLayer"]
 offset_left = 512.0
@@ -684,4 +693,5 @@ transform = Transform3D(-2.18557e-07, 0, 5, 0, 5, 0, -5, 0, -2.18557e-07, -15, 0
 
 [connection signal="pressed" from="MenusCanvasLayer/VBoxContainer/StatsButton" to="." method="_on_stats_button_pressed"]
 [connection signal="pressed" from="MenusCanvasLayer/VBoxContainer/Main Menu" to="." method="_on_main_menu_pressed"]
+[connection signal="pressed" from="MenusCanvasLayer/VBoxContainer/ViewSwitchButton" to="." method="_on_view_switch_button_pressed"]
 [connection signal="value_changed" from="MenusCanvasLayer/SunSlider" to="." method="_on_sun_slider_changed"]

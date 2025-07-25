@@ -60,6 +60,12 @@ bones/61/rotation = Quaternion(-0.144345, -0.0149145, 0.037574, 0.988701)
 bones/62/rotation = Quaternion(0.449246, -0.0294089, -0.0547739, 0.891242)
 bones/63/rotation = Quaternion(0.375477, -2.20761e-08, -2.1367e-08, 0.926832)
 
+[node name="Beta_Surface" parent="Skeleton3D" index="0"]
+layers = 2
+
+[node name="Beta_Joints" parent="Skeleton3D" index="1"]
+layers = 2
+
 [node name="AnimationPlayer" parent="." index="1"]
 libraries = {
 &"": ExtResource("2_qua8d")
