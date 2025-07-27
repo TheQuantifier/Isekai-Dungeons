@@ -1,4 +1,4 @@
-[gd_scene load_steps=35 format=4 uid="uid://tvefuc2jd8cc"]
+[gd_scene load_steps=36 format=4 uid="uid://tvefuc2jd8cc"]
 
 [ext_resource type="PackedScene" uid="uid://bkd5chj1tyrsd" path="res://scenes/game_world/ground.tscn" id="1_254f3"]
 [ext_resource type="Script" uid="uid://dj6ds81qxtn0j" path="res://scenes/game_world/game_world.gd" id="1_mjgxe"]
@@ -15,6 +15,7 @@
 [ext_resource type="PackedScene" uid="uid://ci7g3t6vxufo2" path="res://assets/models/Simple Medieval Pack/Stable.fbx" id="13_q8eqm"]
 [ext_resource type="PackedScene" uid="uid://b51ui1hnuxcah" path="res://assets/models/Simple Medieval Pack/Bell_Tower.fbx" id="14_j0ghf"]
 [ext_resource type="PackedScene" uid="uid://cthddn4un0rmq" path="res://assets/models/Simple Medieval Pack/Blacksmith.fbx" id="15_tvw1y"]
+[ext_resource type="PackedScene" uid="uid://l0mbtf4cgplq" path="res://assets/models/Medieval Modular Pack/TSCN/tall_wall.tscn" id="16_uk4sg"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_mjgxe"]
 
@@ -690,6 +691,240 @@ transform = Transform3D(-2.18557e-07, 0, 5, 0, 5, 0, -5, 0, -2.18557e-07, -13, 0
 
 [node name="Blacksmith" parent="Village Setup" instance=ExtResource("15_tvw1y")]
 transform = Transform3D(-2.18557e-07, 0, 5, 0, 5, 0, -5, 0, -2.18557e-07, -15, 0, 90)
+
+[node name="CityWalls" type="Node3D" parent="."]
+
+[node name="WallSectionEast" type="Node3D" parent="CityWalls"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 500, 0, 0)
+
+[node name="TallWall1" parent="CityWalls/WallSectionEast" instance=ExtResource("16_uk4sg")]
+
+[node name="TallWall2" parent="CityWalls/WallSectionEast" instance=ExtResource("16_uk4sg")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 45.607)
+
+[node name="TallWall3" parent="CityWalls/WallSectionEast" instance=ExtResource("16_uk4sg")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -45.607)
+
+[node name="TallWall4" parent="CityWalls/WallSectionEast" instance=ExtResource("16_uk4sg")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 91.214)
+
+[node name="TallWall5" parent="CityWalls/WallSectionEast" instance=ExtResource("16_uk4sg")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -91.214)
+
+[node name="TallWall6" parent="CityWalls/WallSectionEast" instance=ExtResource("16_uk4sg")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -136.821)
+
+[node name="TallWall7" parent="CityWalls/WallSectionEast" instance=ExtResource("16_uk4sg")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 136.821)
+
+[node name="TallWall8" parent="CityWalls/WallSectionEast" instance=ExtResource("16_uk4sg")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 182.428)
+
+[node name="TallWall9" parent="CityWalls/WallSectionEast" instance=ExtResource("16_uk4sg")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -182.428)
+
+[node name="WallSectionSouth" type="Node3D" parent="CityWalls"]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, 0, 500)
+
+[node name="TallWall1" parent="CityWalls/WallSectionSouth" instance=ExtResource("16_uk4sg")]
+
+[node name="TallWall2" parent="CityWalls/WallSectionSouth" instance=ExtResource("16_uk4sg")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 45.607)
+
+[node name="TallWall3" parent="CityWalls/WallSectionSouth" instance=ExtResource("16_uk4sg")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -45.607)
+
+[node name="TallWall4" parent="CityWalls/WallSectionSouth" instance=ExtResource("16_uk4sg")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 91.214)
+
+[node name="TallWall5" parent="CityWalls/WallSectionSouth" instance=ExtResource("16_uk4sg")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -91.214)
+
+[node name="TallWall6" parent="CityWalls/WallSectionSouth" instance=ExtResource("16_uk4sg")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -136.821)
+
+[node name="TallWall7" parent="CityWalls/WallSectionSouth" instance=ExtResource("16_uk4sg")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 136.821)
+
+[node name="TallWall8" parent="CityWalls/WallSectionSouth" instance=ExtResource("16_uk4sg")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 182.428)
+
+[node name="TallWall9" parent="CityWalls/WallSectionSouth" instance=ExtResource("16_uk4sg")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -182.428)
+
+[node name="WallSectionWest" type="Node3D" parent="CityWalls"]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -500, 0, 0)
+
+[node name="TallWall1" parent="CityWalls/WallSectionWest" instance=ExtResource("16_uk4sg")]
+
+[node name="TallWall2" parent="CityWalls/WallSectionWest" instance=ExtResource("16_uk4sg")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 45.607)
+
+[node name="TallWall3" parent="CityWalls/WallSectionWest" instance=ExtResource("16_uk4sg")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -45.607)
+
+[node name="TallWall4" parent="CityWalls/WallSectionWest" instance=ExtResource("16_uk4sg")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 91.214)
+
+[node name="TallWall5" parent="CityWalls/WallSectionWest" instance=ExtResource("16_uk4sg")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -91.214)
+
+[node name="TallWall6" parent="CityWalls/WallSectionWest" instance=ExtResource("16_uk4sg")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -136.821)
+
+[node name="TallWall7" parent="CityWalls/WallSectionWest" instance=ExtResource("16_uk4sg")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 136.821)
+
+[node name="TallWall8" parent="CityWalls/WallSectionWest" instance=ExtResource("16_uk4sg")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 182.428)
+
+[node name="TallWall9" parent="CityWalls/WallSectionWest" instance=ExtResource("16_uk4sg")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -182.428)
+
+[node name="WallSectionNorth" type="Node3D" parent="CityWalls"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 0, -500)
+
+[node name="TallWall1" parent="CityWalls/WallSectionNorth" instance=ExtResource("16_uk4sg")]
+
+[node name="TallWall2" parent="CityWalls/WallSectionNorth" instance=ExtResource("16_uk4sg")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 45.607)
+
+[node name="TallWall3" parent="CityWalls/WallSectionNorth" instance=ExtResource("16_uk4sg")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -45.607)
+
+[node name="TallWall4" parent="CityWalls/WallSectionNorth" instance=ExtResource("16_uk4sg")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 91.214)
+
+[node name="TallWall5" parent="CityWalls/WallSectionNorth" instance=ExtResource("16_uk4sg")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -91.214)
+
+[node name="TallWall6" parent="CityWalls/WallSectionNorth" instance=ExtResource("16_uk4sg")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -136.821)
+
+[node name="TallWall7" parent="CityWalls/WallSectionNorth" instance=ExtResource("16_uk4sg")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 136.821)
+
+[node name="TallWall8" parent="CityWalls/WallSectionNorth" instance=ExtResource("16_uk4sg")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 182.428)
+
+[node name="TallWall9" parent="CityWalls/WallSectionNorth" instance=ExtResource("16_uk4sg")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -182.428)
+
+[node name="WallSectionSE" type="Node3D" parent="CityWalls"]
+transform = Transform3D(0.707107, 0, -0.735391, 0, 1, 0, 0.707107, 0, 0.735391, 351.108, 0.035, 351.108)
+
+[node name="TallWall1" parent="CityWalls/WallSectionSE" instance=ExtResource("16_uk4sg")]
+
+[node name="TallWall2" parent="CityWalls/WallSectionSE" instance=ExtResource("16_uk4sg")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 45.607)
+
+[node name="TallWall3" parent="CityWalls/WallSectionSE" instance=ExtResource("16_uk4sg")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -45.607)
+
+[node name="TallWall4" parent="CityWalls/WallSectionSE" instance=ExtResource("16_uk4sg")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 91.214)
+
+[node name="TallWall5" parent="CityWalls/WallSectionSE" instance=ExtResource("16_uk4sg")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -91.214)
+
+[node name="TallWall6" parent="CityWalls/WallSectionSE" instance=ExtResource("16_uk4sg")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -136.821)
+
+[node name="TallWall7" parent="CityWalls/WallSectionSE" instance=ExtResource("16_uk4sg")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 136.821)
+
+[node name="TallWall8" parent="CityWalls/WallSectionSE" instance=ExtResource("16_uk4sg")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 182.428)
+
+[node name="TallWall9" parent="CityWalls/WallSectionSE" instance=ExtResource("16_uk4sg")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -182.428)
+
+[node name="WallSectionSW" type="Node3D" parent="CityWalls"]
+transform = Transform3D(-0.707107, 0, -0.735391, 0, 1, 0, 0.707107, 0, -0.735391, -351.108, 0.035, 351.108)
+
+[node name="TallWall1" parent="CityWalls/WallSectionSW" instance=ExtResource("16_uk4sg")]
+
+[node name="TallWall2" parent="CityWalls/WallSectionSW" instance=ExtResource("16_uk4sg")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 45.607)
+
+[node name="TallWall3" parent="CityWalls/WallSectionSW" instance=ExtResource("16_uk4sg")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -45.607)
+
+[node name="TallWall4" parent="CityWalls/WallSectionSW" instance=ExtResource("16_uk4sg")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 91.214)
+
+[node name="TallWall5" parent="CityWalls/WallSectionSW" instance=ExtResource("16_uk4sg")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -91.214)
+
+[node name="TallWall6" parent="CityWalls/WallSectionSW" instance=ExtResource("16_uk4sg")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -136.821)
+
+[node name="TallWall7" parent="CityWalls/WallSectionSW" instance=ExtResource("16_uk4sg")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 136.821)
+
+[node name="TallWall8" parent="CityWalls/WallSectionSW" instance=ExtResource("16_uk4sg")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 182.428)
+
+[node name="TallWall9" parent="CityWalls/WallSectionSW" instance=ExtResource("16_uk4sg")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -182.428)
+
+[node name="WallSectionNE" type="Node3D" parent="CityWalls"]
+transform = Transform3D(0.707107, 0, 0.735391, 0, 1, 0, -0.707107, 0, 0.735391, 351.108, 0.035, -351.108)
+
+[node name="TallWall1" parent="CityWalls/WallSectionNE" instance=ExtResource("16_uk4sg")]
+
+[node name="TallWall2" parent="CityWalls/WallSectionNE" instance=ExtResource("16_uk4sg")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 45.607)
+
+[node name="TallWall3" parent="CityWalls/WallSectionNE" instance=ExtResource("16_uk4sg")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -45.607)
+
+[node name="TallWall4" parent="CityWalls/WallSectionNE" instance=ExtResource("16_uk4sg")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 91.214)
+
+[node name="TallWall5" parent="CityWalls/WallSectionNE" instance=ExtResource("16_uk4sg")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -91.214)
+
+[node name="TallWall6" parent="CityWalls/WallSectionNE" instance=ExtResource("16_uk4sg")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -136.821)
+
+[node name="TallWall7" parent="CityWalls/WallSectionNE" instance=ExtResource("16_uk4sg")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 136.821)
+
+[node name="TallWall8" parent="CityWalls/WallSectionNE" instance=ExtResource("16_uk4sg")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 182.428)
+
+[node name="TallWall9" parent="CityWalls/WallSectionNE" instance=ExtResource("16_uk4sg")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -182.428)
+
+[node name="WallSectionSE2" type="Node3D" parent="CityWalls"]
+transform = Transform3D(-0.707107, 0, 0.735391, 0, 1, 0, -0.707107, 0, -0.735391, -351.108, 0.035, -351.108)
+
+[node name="TallWall1" parent="CityWalls/WallSectionSE2" instance=ExtResource("16_uk4sg")]
+
+[node name="TallWall2" parent="CityWalls/WallSectionSE2" instance=ExtResource("16_uk4sg")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 45.607)
+
+[node name="TallWall3" parent="CityWalls/WallSectionSE2" instance=ExtResource("16_uk4sg")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -45.607)
+
+[node name="TallWall4" parent="CityWalls/WallSectionSE2" instance=ExtResource("16_uk4sg")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 91.214)
+
+[node name="TallWall5" parent="CityWalls/WallSectionSE2" instance=ExtResource("16_uk4sg")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -91.214)
+
+[node name="TallWall6" parent="CityWalls/WallSectionSE2" instance=ExtResource("16_uk4sg")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -136.821)
+
+[node name="TallWall7" parent="CityWalls/WallSectionSE2" instance=ExtResource("16_uk4sg")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 136.821)
+
+[node name="TallWall8" parent="CityWalls/WallSectionSE2" instance=ExtResource("16_uk4sg")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 182.428)
+
+[node name="TallWall9" parent="CityWalls/WallSectionSE2" instance=ExtResource("16_uk4sg")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -182.428)
 
 [connection signal="pressed" from="MenusCanvasLayer/VBoxContainer/StatsButton" to="." method="_on_stats_button_pressed"]
 [connection signal="pressed" from="MenusCanvasLayer/VBoxContainer/Main Menu" to="." method="_on_main_menu_pressed"]
