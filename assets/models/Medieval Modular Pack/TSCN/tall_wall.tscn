@@ -1,4 +1,6 @@
-[gd_scene load_steps=6 format=4 uid="uid://l0mbtf4cgplq"]
+[gd_scene load_steps=8 format=4 uid="uid://l0mbtf4cgplq"]
+
+[ext_resource type="Texture2D" uid="uid://dfw7uoruhlw84" path="res://assets/models/Medieval Modular Pack/Bricks068_1K-JPG/Bricks068.png" id="1_3rrhv"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_4g5ww"]
 resource_name = "LightRock"
@@ -6,12 +8,16 @@ vertex_color_use_as_albedo = true
 albedo_color = Color(0.906332, 0.906332, 0.906332, 1)
 emission_enabled = true
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_r2at4"]
+albedo_texture = ExtResource("1_3rrhv")
+
 [sub_resource type="ArrayMesh" id="ArrayMesh_djjqr"]
 _surfaces = [{
 "aabb": AABB(-0.0076018, -0.00240342, 0.000176942, 0.0152385, 0.00424691, 0.0234846),
 "format": 34359742465,
 "index_count": 324,
 "index_data": PackedByteArray("AAABAAIAAwABAAAABAACAAEAAAAFAAMAAgAGAAAABQAAAAYABgAHAAUAAwAFAAcACAABAAMAAQAIAAQABgACAAkABwAGAAoACQAKAAYACgALAAcADAALAAoABwALAAwACgAJAAwADAANAAcABwANAAMADAAOAA0ADwADAA0ADQAOAA8AAwAPAAgAEAAMAAkADAAQAA4ACQACABEAAgAEABEACQARABIACQASABAAEgARABMAFAARAAQAEwARABQABAAVABQAFQAEABYAFgAEAAgAFwAUABUAFAAXABMAFgATABcAFQAYABcAFwAYABYAFgAYABUAGQAWAAgAEwAWABkAEgATABoAGQAaABMAEgAaABsAEAASABsAHAAaABkAHQAZAAgAGQAeABwAHgAZAB0AHAAeAB8AHQAfAB4AGgAcACAAHwAgABwAIAAfAB0AIAAbABoAHQAbACAAHQAIAA8AGwAdACEAIQAdAA8AIQAiABsAEAAbACIAIwAiACEAIQAkACMAIgAjACUAJQAjACQAJAAhACYAJgAhAA8AJAAnACUAJgAnACQAJQAnACYAJQAoACIAJgAoACUAEAAiACgAKQAoACYAEAAoACkAKgAmAA8AJgAqACkAEAApACsALAAqAA8ALQApACoAKQAtAC4ALgArACkAKgAvAC0ALwAqACwAMAAuAC0ALQAvADAALAAwAC8AKwAuADAAMAAsACsAMQAsAA8AKwAsADEAMQAPAA4AEAArADIAMQAyACsAEAAyADMAEAAzAA4ANAAzADIANQAOADMAMwA0ADUAMQAOADUAMgA2ADQANgAyADEANQA0ADYAMQA3ADYANgA3ADUANQA3ADEA"),
+"material": SubResource("StandardMaterial3D_r2at4"),
 "name": "LightRock",
 "primitive": 3,
 "uv_scale": Vector4(0, 0, 0, 0),
