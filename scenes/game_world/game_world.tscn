@@ -451,6 +451,10 @@ max_value = 180.0
 tick_count = 13
 ticks_on_borders = true
 
+[node name="MiniMapTextureRect" type="TextureRect" parent="MenusCanvasLayer"]
+offset_right = 40.0
+offset_bottom = 40.0
+
 [node name="Village Setup" type="Node3D" parent="."]
 
 [node name="MainRoadsNew" type="Node3D" parent="Village Setup"]
@@ -1411,6 +1415,15 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 182.428)
 
 [node name="TallWall9" parent="CityWalls/WallSectionSE2" instance=ExtResource("16_uk4sg")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -182.428)
+
+[node name="MiniMapViewport" type="SubViewport" parent="."]
+disable_3d = true
+transparent_bg = true
+
+[node name="MiniMapCamera" type="Camera3D" parent="MiniMapViewport"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 100, 0)
+projection = 1
+size = 0.001
 
 [connection signal="pressed" from="MenusCanvasLayer/VBoxContainer/StatsButton" to="." method="_on_stats_button_pressed"]
 [connection signal="pressed" from="MenusCanvasLayer/VBoxContainer/Main Menu" to="." method="_on_main_menu_pressed"]

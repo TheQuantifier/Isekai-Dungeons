@@ -14,7 +14,13 @@ extends Node3D
 @onready var view_switch_button: Button = $MenusCanvasLayer/VBoxContainer/ViewSwitchButton
 @onready var menus_canvas: CanvasLayer = $MenusCanvasLayer
 
+@onready var minimap_viewport: SubViewport = $MiniMapViewport
+@onready var minimap_camera: Camera3D = $MiniMapViewport/MiniMapCamera
+@onready var minimap_display: TextureRect = $MenusCanvasLayer/MiniMapTextureRect
+
 const SUN_DISTANCE: float = 1000.0
+const MINIMAP_HEIGHT: float = 100.0
+
 var sun_elevation_degrees: float = -25.0
 var sun_azimuth_degrees: float = -30.0
 
@@ -56,6 +62,20 @@ func _ready() -> void:
 	# 🔘 Initial camera view
 	view_switch_button.text = "3rd Person"
 
+	# 🧭 Minimap setup
+	minimap_viewport.size = Vector2i(256, 256)
+	minimap_viewport.disable_3d = false
+	minimap_viewport.transparent_bg = true
+	minimap_viewport.render_target_update_mode = SubViewport.UPDATE_ALWAYS
+	minimap_viewport.render_target_clear_mode = SubViewport.CLEAR_MODE_ALWAYS
+
+	minimap_camera.projection = Camera3D.PROJECTION_ORTHOGONAL
+	minimap_camera.size = 200.0  # Adjust for zoom
+	minimap_camera.current = true
+
+	minimap_display.texture = minimap_viewport.get_texture()
+	minimap_display.stretch_mode = TextureRect.STRETCH_KEEP_ASPECT_CENTERED
+
 func _process(_delta: float) -> void:
 	var player_transform = player.global_transform
 
@@ -92,6 +112,16 @@ func _process(_delta: float) -> void:
 
 	sun_pivot.look_at(sun_pivot.global_transform.origin + sun_direction, up_vector)
 	visible_sun.global_position = sun_direction * SUN_DISTANCE
+
+	# 🧭 Update minimap camera position and rotation
+	var minimap_basis := Basis()
+	minimap_basis = minimap_basis.rotated(Vector3.RIGHT, -PI / 2)  # Look down
+	minimap_basis = minimap_basis.rotated(Vector3.UP, player.global_rotation.y + PI)  # Match player heading
+
+	minimap_camera.global_transform = Transform3D(
+		minimap_basis,
+		Vector3(player.global_position.x, MINIMAP_HEIGHT, player.global_position.z)
+	)
 
 func _unhandled_input(event: InputEvent) -> void:
 	if event.is_action_pressed("switch_view"):
