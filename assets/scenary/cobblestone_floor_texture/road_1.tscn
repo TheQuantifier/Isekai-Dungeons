@@ -119,3 +119,81 @@ transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 5, 0.07, 1)
 
 [node name="CoblestoneTexture12" parent="Slab6x2_3" instance=ExtResource("1_ggd47")]
 transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 5, 0.07, -1)
+
+[node name="Slab6x2_4" type="Node3D" parent="."]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -8, 0, 0)
+
+[node name="CoblestoneTexture" parent="Slab6x2_4" instance=ExtResource("1_ggd47")]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 1, 0.07, 1)
+
+[node name="CoblestoneTexture2" parent="Slab6x2_4" instance=ExtResource("1_ggd47")]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, -1, 0.07, 1)
+
+[node name="CoblestoneTexture3" parent="Slab6x2_4" instance=ExtResource("1_ggd47")]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, -1, 0.07, -1)
+
+[node name="CoblestoneTexture4" parent="Slab6x2_4" instance=ExtResource("1_ggd47")]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 1, 0.07, -1)
+
+[node name="CoblestoneTexture5" parent="Slab6x2_4" instance=ExtResource("1_ggd47")]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 3, 0.07, 1)
+
+[node name="CoblestoneTexture6" parent="Slab6x2_4" instance=ExtResource("1_ggd47")]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 3, 0.07, -1)
+
+[node name="CoblestoneTexture7" parent="Slab6x2_4" instance=ExtResource("1_ggd47")]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, -3, 0.07, 1)
+
+[node name="CoblestoneTexture8" parent="Slab6x2_4" instance=ExtResource("1_ggd47")]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, -3, 0.07, -1)
+
+[node name="CoblestoneTexture9" parent="Slab6x2_4" instance=ExtResource("1_ggd47")]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, -5, 0.07, 1)
+
+[node name="CoblestoneTexture10" parent="Slab6x2_4" instance=ExtResource("1_ggd47")]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, -5, 0.07, -1)
+
+[node name="CoblestoneTexture11" parent="Slab6x2_4" instance=ExtResource("1_ggd47")]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 5, 0.07, 1)
+
+[node name="CoblestoneTexture12" parent="Slab6x2_4" instance=ExtResource("1_ggd47")]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 5, 0.07, -1)
+
+[node name="Slab6x2_5" type="Node3D" parent="."]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 8, 0, 0)
+
+[node name="CoblestoneTexture" parent="Slab6x2_5" instance=ExtResource("1_ggd47")]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 1, 0.07, 1)
+
+[node name="CoblestoneTexture2" parent="Slab6x2_5" instance=ExtResource("1_ggd47")]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, -1, 0.07, 1)
+
+[node name="CoblestoneTexture3" parent="Slab6x2_5" instance=ExtResource("1_ggd47")]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, -1, 0.07, -1)
+
+[node name="CoblestoneTexture4" parent="Slab6x2_5" instance=ExtResource("1_ggd47")]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 1, 0.07, -1)
+
+[node name="CoblestoneTexture5" parent="Slab6x2_5" instance=ExtResource("1_ggd47")]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 3, 0.07, 1)
+
+[node name="CoblestoneTexture6" parent="Slab6x2_5" instance=ExtResource("1_ggd47")]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 3, 0.07, -1)
+
+[node name="CoblestoneTexture7" parent="Slab6x2_5" instance=ExtResource("1_ggd47")]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, -3, 0.07, 1)
+
+[node name="CoblestoneTexture8" parent="Slab6x2_5" instance=ExtResource("1_ggd47")]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, -3, 0.07, -1)
+
+[node name="CoblestoneTexture9" parent="Slab6x2_5" instance=ExtResource("1_ggd47")]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, -5, 0.07, 1)
+
+[node name="CoblestoneTexture10" parent="Slab6x2_5" instance=ExtResource("1_ggd47")]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, -5, 0.07, -1)
+
+[node name="CoblestoneTexture11" parent="Slab6x2_5" instance=ExtResource("1_ggd47")]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 5, 0.07, 1)
+
+[node name="CoblestoneTexture12" parent="Slab6x2_5" instance=ExtResource("1_ggd47")]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 5, 0.07, -1)
