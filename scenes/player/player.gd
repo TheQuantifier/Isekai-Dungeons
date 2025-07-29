@@ -41,6 +41,7 @@ func _physics_process(delta: float) -> void:
 	var is_moving_forward = Input.is_action_pressed("move_forward")
 	var is_moving_backward = Input.is_action_pressed("move_back")
 	var is_crouching = Input.is_action_pressed("crouch")
+	var is_sprinting = Input.is_action_pressed("sprint")
 
 	if is_moving_forward:
 		direction += transform.basis.z
@@ -56,6 +57,10 @@ func _physics_process(delta: float) -> void:
 	direction = direction.normalized()
 
 	var speed := move_speed
+
+	if is_sprinting and is_moving_forward and not is_crouching:
+		speed *= 2.0  # Apply sprint multiplier
+
 	if is_crouching and (is_moving_forward or is_moving_backward):
 		speed *= 0.5
 	if not is_on_floor():

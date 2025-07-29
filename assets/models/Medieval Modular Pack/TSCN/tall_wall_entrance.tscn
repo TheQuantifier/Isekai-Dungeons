@@ -81,7 +81,7 @@ size = Vector3(1.11169, 0.882874, 0.791107)
 [node name="TallWallEntrance" type="StaticBody3D"]
 
 [node name="TallWallEntrance2" type="MeshInstance3D" parent="."]
-transform = Transform3D(-0.000112849, -552.18, -0.000108546, 0, -2.41366e-05, 2483.25, -2581.68, 2.41366e-05, 4.7447e-12, 0, 0, 0)
+transform = Transform3D(-0.000112849, -552.18, -0.000108546, 0, -2.41366e-05, 2483.25, -2581.68, 2.41366e-05, 4.7447e-12, 0, -0.128214, 0)
 mesh = SubResource("ArrayMesh_hugfd")
 skeleton = NodePath("")
 

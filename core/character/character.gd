@@ -25,6 +25,7 @@ signal potion_consumed(potion: Potion)
 @export var char_age: float = 0
 @export var gender: String = "male"  # Options: "male", "female"
 @export var model_path: String = ""
+@export var last_position: Vector3 = Vector3(0, 2, 0)
 @export var current_health: int = 10
 @export var current_mana: int = 10
 @export var gold: int = 0

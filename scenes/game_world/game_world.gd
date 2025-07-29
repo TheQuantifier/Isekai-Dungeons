@@ -1,4 +1,5 @@
 extends Node3D
+class_name GameWorld
 
 @onready var player: CharacterBody3D = $Player
 @onready var camera_pivot: Node3D = $CameraPivot
@@ -75,7 +76,11 @@ func _ready() -> void:
 
 	minimap_display.texture = minimap_viewport.get_texture()
 	minimap_display.stretch_mode = TextureRect.STRETCH_KEEP_ASPECT_CENTERED
-
+	
+	# Position Character at saved location:
+	if game_manager.current_character and game_manager.current_character.last_position:
+		player.global_position = game_manager.current_character.last_position
+		
 func _process(_delta: float) -> void:
 	var player_transform = player.global_transform
 
@@ -141,6 +146,7 @@ func _toggle_camera_view() -> void:
 		view_switch_button.text = "3rd Person"
 
 func _on_main_menu_pressed() -> void:
+	game_manager.save_player_position(player.global_position)
 	game_manager.go_to_main_menu()
 
 func _on_sun_slider_changed(value: float) -> void:

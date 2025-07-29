@@ -9,6 +9,7 @@ char_id = "john"
 char_age = 100.0
 gender = "male"
 model_path = "res://assets/character_models/scenes/male/y_bot.tscn"
+last_position = Vector3(-172.082, 0.0537469, 411.33)
 current_health = 100
 current_mana = 200
 gold = 1234
