@@ -35,7 +35,7 @@ offset_top = 488.0
 offset_right = 448.0
 offset_bottom = 552.0
 theme_override_font_sizes/font_size = 35
-text = "f"
+text = "Name"
 
 [node name="Portrait" type="TextureRect" parent="MainInfo"]
 layout_mode = 0
@@ -52,14 +52,24 @@ offset_top = 552.0
 offset_right = 448.0
 offset_bottom = 616.0
 theme_override_font_sizes/font_size = 35
+text = "Gender"
 
 [node name="AgeLabel" type="Label" parent="MainInfo"]
 layout_mode = 0
+offset_left = 64.0
+offset_top = 685.0
+offset_right = 448.0
+offset_bottom = 749.0
+theme_override_font_sizes/font_size = 35
+text = "Age"
+
+[node name="ClassLabel" type="Label" parent="MainInfo"]
 offset_left = 64.0
 offset_top = 616.0
 offset_right = 448.0
 offset_bottom = 680.0
 theme_override_font_sizes/font_size = 35
+text = "Class"
 
 [node name="MainStats" type="Control" parent="."]
 layout_mode = 1
@@ -71,26 +81,29 @@ offset_bottom = 1080.0
 [node name="HealthLabel" type="Label" parent="MainStats"]
 layout_mode = 0
 offset_left = 64.0
-offset_top = 32.0
+offset_top = 64.0
 offset_right = 448.0
-offset_bottom = 96.0
+offset_bottom = 128.0
 theme_override_font_sizes/font_size = 35
+text = "Health:"
 
 [node name="ManaLabel" type="Label" parent="MainStats"]
 layout_mode = 0
 offset_left = 64.0
-offset_top = 96.0
+offset_top = 128.0
 offset_right = 448.0
-offset_bottom = 160.0
+offset_bottom = 192.0
 theme_override_font_sizes/font_size = 35
+text = "Mana:"
 
 [node name="WealthLabel" type="Label" parent="MainStats"]
 layout_mode = 0
 offset_left = 64.0
-offset_top = 160.0
+offset_top = 192.0
 offset_right = 448.0
-offset_bottom = 224.0
+offset_bottom = 256.0
 theme_override_font_sizes/font_size = 35
+text = "Wealth:"
 
 [node name="DefenseStats" type="Control" parent="."]
 anchors_preset = 0

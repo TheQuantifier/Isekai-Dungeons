@@ -12,6 +12,7 @@ const Backpack = preload("res://core/character/backpack.gd")
 const Armor = preload("res://core/equipment/armor.gd")
 @warning_ignore("shadowed_global_identifier")
 const Potion = preload("res://core/equipment/potion.gd")
+const ClassTypes = preload("res://core/stats/stat_types.gd")
 
 # --- Signals ---
 signal health_changed(new_health: int)
@@ -27,9 +28,14 @@ signal potion_consumed(potion: Potion)
 @export var model_path: String = ""
 @export var last_position: Vector3 = Vector3(0, 2, 0)
 @export var current_health: int = 10
+@export var max_health: int = 10
 @export var current_mana: int = 10
+@export var max_mana: int = 10
 @export var gold: int = 0
 @export var password: String = ""
+@export var class_type: int = ClassTypes.ClassType.NONE
+@export var known_skills: Array[Skill] = []
+var skill_cooldowns: Dictionary = {}
 
 # --- Inventory System ---
 var backpack: Backpack
@@ -229,3 +235,32 @@ func data() -> String:
 
 	s += "================================================"
 	return s
+	
+# ---------- Using Skills ----------
+func use_skill(skill_name: String, target: Character) -> String:
+	for skill in known_skills:
+		if skill.name == skill_name:
+			if skill_cooldowns.has(skill_name) and skill_cooldowns[skill_name] > Time.get_ticks_msec() / 1000.0:
+				return "%s is on cooldown!" % skill_name
+			var result = skill.use(self, target)
+			skill_cooldowns[skill_name] = Time.get_ticks_msec() / 1000.0 + skill.cooldown
+			return result
+	return "Skill not known."
+	
+func assign_class_skills():
+	match class_type:
+		ClassTypes.ClassType.MAGE:
+			var fireball = preload("res://core/skills/fireball.gd").new()
+			fireball.name = "Fireball"
+			fireball.description = "Shoots a ball of flame"
+			fireball.mana_cost = 5
+			fireball.cooldown = 2.0
+			known_skills.append(fireball)
+		# Add others as needed
+
+func level_up_skill(skill_name: String) -> String:
+	for skill in known_skills:
+		if skill.name == skill_name:
+			skill.level_up()
+			return "%s leveled up to %d!" % [skill_name, skill.level]
+	return "Skill not found."

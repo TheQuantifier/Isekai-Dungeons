@@ -9,6 +9,7 @@ const Character = preload("res://core/character/character.gd")
 @onready var name_label = get_node("MainInfo/NameLabel")
 @onready var gender_label = get_node("MainInfo/GenderLabel")
 @onready var age_label = get_node("MainInfo/AgeLabel")
+@onready var class_label = get_node("MainInfo/ClassLabel")
 
 # --- Main Stats ---
 @onready var health_label = get_node("MainStats/HealthLabel")
@@ -65,11 +66,12 @@ func show_stats(c: Character) -> void:
 
 	# Populate values
 	name_label.text = "Name:  " + c.char_id
+	class_label.text = "Class:  " + StatTypes.ClassType.keys()[c.class_type]
 	gender_label.text = "Gender:  " + c.gender.capitalize()
 	age_label.text = "Age:  " + str(c.char_age)
 
-	health_label.text = "Health:  " + str(c.current_health)
-	mana_label.text = "Mana: " + str(c.current_mana)
+	health_label.text = "Health:  " + str(c.current_health) + "/" + str(c.max_health)
+	mana_label.text = "Mana: " + str(c.current_mana) + "/" + str(c.max_mana)
 	wealth_label.text = "Gold:  " + str(c.gold)
 
 	total_defense_label.text = "Total Defense:   " + str(c.get_total_defense())

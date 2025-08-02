@@ -1,19 +1,24 @@
-[gd_resource type="Resource" script_class="Character" load_steps=3 format=3]
+[gd_resource type="Resource" script_class="Character" load_steps=4 format=3 uid="uid://cqeohtpyv7dl2"]
 
-[ext_resource type="Script" path="res://core/equipment/equipment.gd" id="1_phn4y"]
-[ext_resource type="Script" path="res://core/character/character.gd" id="2_5vobn"]
+[ext_resource type="Script" uid="uid://ctnpxtaagonpd" path="res://core/equipment/equipment.gd" id="1_phn4y"]
+[ext_resource type="Script" uid="uid://crij0abu047dx" path="res://core/skills/skill.gd" id="2_1xsd4"]
+[ext_resource type="Script" uid="uid://bpe2nbae6km0c" path="res://core/character/character.gd" id="2_5vobn"]
 
 [resource]
 script = ExtResource("2_5vobn")
 char_id = "john"
-char_age = 100.0
+char_age = 10.0
 gender = "male"
 model_path = "res://assets/character_models/scenes/male/y_bot.tscn"
-last_position = Vector3(-172.082, 0.0537469, 411.33)
-current_health = 100
-current_mana = 200
-gold = 1234
+last_position = Vector3(1.76421, 0.0834247, 117.039)
+current_health = 50
+max_health = 50
+current_mana = 50
+max_mana = 50
+gold = 200
 password = "john"
+class_type = 0
+known_skills = Array[ExtResource("2_1xsd4")]([])
 equipped_items = Array[ExtResource("1_phn4y")]([])
 strength_stats = {
 0: 20,

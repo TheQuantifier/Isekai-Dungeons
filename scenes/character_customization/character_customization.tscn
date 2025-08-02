@@ -17,6 +17,9 @@ script = ExtResource("1_30xwd")
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_left = 186.0
+offset_top = 922.0
+offset_right = -1319.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
@@ -37,16 +40,13 @@ layout_mode = 2
 theme_override_font_sizes/font_size = 30
 text = "Confirm"
 
-[node name="VBoxContainer2" type="VBoxContainer" parent="UI"]
-offset_right = 40.0
-offset_bottom = 40.0
-
-[node name="Main Menu" type="Button" parent="UI/VBoxContainer2"]
-layout_mode = 2
+[node name="Main Menu" type="Button" parent="UI"]
+offset_right = 226.0
+offset_bottom = 63.0
 theme_override_font_sizes/font_size = 40
 text = "Main Menu"
 
 [connection signal="pressed" from="UI/VBoxContainer/MaleButton" to="." method="_on_male_button_pressed"]
 [connection signal="pressed" from="UI/VBoxContainer/FemaleButton" to="." method="_on_female_button_pressed"]
 [connection signal="pressed" from="UI/VBoxContainer/ConfirmButton" to="." method="_on_confirm_button_pressed"]
-[connection signal="pressed" from="UI/VBoxContainer2/Main Menu" to="." method="_on_main_menu_pressed"]
+[connection signal="pressed" from="UI/Main Menu" to="." method="_on_main_menu_pressed"]

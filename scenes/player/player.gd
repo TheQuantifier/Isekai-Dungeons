@@ -59,7 +59,7 @@ func _physics_process(delta: float) -> void:
 	var speed := move_speed
 
 	if is_sprinting and is_moving_forward and not is_crouching:
-		speed *= 2.0  # Apply sprint multiplier
+		speed *= 5.0  # Apply sprint multiplier
 
 	if is_crouching and (is_moving_forward or is_moving_backward):
 		speed *= 0.5
@@ -83,18 +83,25 @@ func _physics_process(delta: float) -> void:
 	if anim_player and is_on_floor():
 		if is_jumping:
 			is_jumping = false
+
 		if is_crouching:
 			if is_moving_forward:
-				anim_player.play("crouch_move_forward")
+				anim_player.play("crouch_move_forward", -1.0, 1.0)
 			elif is_moving_backward:
-				anim_player.play("crouch_move_back")
+				anim_player.play("crouch_move_back", -1.0, 1.0)
 			else:
-				anim_player.play("crouch_idle")
+				anim_player.play("crouch_idle", -1.0, 1.0)
 		elif is_moving_forward:
-			anim_player.play("run")
+			if is_sprinting:
+				anim_player.play("run", -1.0, 1.5)
+			else:
+				anim_player.play("run", -1.0, 1.0)
 		elif is_moving_backward:
-			anim_player.play("run_backward")
+			if is_sprinting:
+				anim_player.play("run_backward", -1.0, 2.0)
+			else:
+				anim_player.play("run_backward", -1.0, 1.0)
 		else:
-			anim_player.play("idle")
+			anim_player.play("idle", -1.0, 1.0)
 	elif anim_player and is_jumping:
 		anim_player.play("jump", -1.0, 2.75)
