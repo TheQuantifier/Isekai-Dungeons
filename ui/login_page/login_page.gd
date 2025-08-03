@@ -9,6 +9,8 @@ extends Control
 
 @onready var create_character_dialog_overlay: Control = $CreateCharacterDialogOverlay
 @onready var create_character_dialog: Panel = $CreateCharacterDialogOverlay/CreateCharacterDialog
+@onready var char_id_field: LineEdit = $CreateCharacterDialogOverlay/CreateCharacterDialog/CharacterIDField
+@onready var create_character_yes_button: Button = $CreateCharacterDialogOverlay/CreateCharacterDialog/YesButton
 
 var is_new := false
 
@@ -16,16 +18,16 @@ func _ready() -> void:
 	start_button.disabled = true
 	username_field.grab_focus()
 
-	# Hide both overlays at startup
 	hide_overlay(wrong_password_popup_overlay)
 	hide_overlay(create_character_dialog_overlay)
 
-	# Ensure both overlays block input and appear above everything
 	wrong_password_popup_overlay.mouse_filter = Control.MOUSE_FILTER_STOP
 	create_character_dialog_overlay.mouse_filter = Control.MOUSE_FILTER_STOP
 
 	wrong_password_popup_overlay.z_index = 100
 	create_character_dialog_overlay.z_index = 100
+
+	create_character_yes_button.disabled = true
 
 func get_trimmed_credentials() -> Dictionary:
 	return {
@@ -71,14 +73,20 @@ func _on_start_game_button_pressed() -> void:
 		else:
 			push_error("Character file found but is not a valid Character resource.")
 	else:
+		char_id_field.clear()
 		show_overlay(create_character_dialog_overlay)
 
 func _on_create_character_dialog_yes_pressed() -> void:
 	is_new = true
 	var creds := get_trimmed_credentials()
+	var character_id := char_id_field.text.strip_edges()
+	if character_id.is_empty():
+		char_id_field.grab_focus()
+		return
+
 	hide_overlay(create_character_dialog_overlay)
 	start_button.disabled = false
-	game_manager.start_new_game(creds.username, creds.password, true)
+	game_manager.start_new_game(creds.username, creds.password, true, character_id)
 
 func _on_create_character_dialog_no_pressed() -> void:
 	is_new = false
@@ -87,7 +95,10 @@ func _on_create_character_dialog_no_pressed() -> void:
 
 func _on_wrong_password_ok_button_pressed() -> void:
 	hide_overlay(wrong_password_popup_overlay)
-	_check_fields()  # Re-check fields to re-enable Start button if applicable
+	_check_fields()
+
+func _on_character_id_field_text_changed(new_text: String) -> void:
+	create_character_yes_button.disabled = new_text.strip_edges().is_empty()
 
 func _unhandled_key_input(event: InputEvent) -> void:
 	if event.is_action_pressed("ui_accept") and not start_button.disabled:

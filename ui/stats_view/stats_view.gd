@@ -4,6 +4,8 @@ extends Control
 const StatTypes = preload("res://core/stats/stat_types.gd")
 @warning_ignore("shadowed_global_identifier")
 const Character = preload("res://core/character/character.gd")
+@warning_ignore("shadowed_global_identifier")
+const EnumUtils = preload("res://utilities/enum_utilities.gd")
 
 # --- Main Info ---
 @onready var name_label = get_node("MainInfo/NameLabel")
@@ -30,7 +32,6 @@ const Character = preload("res://core/character/character.gd")
 @onready var technical_strength_label = get_node("StrengthStats/StrengthEnums/TechnicalStrengthLabel")
 @onready var total_strength_label = get_node("StrengthStats/TotalStrengthLabel")
 
-
 # --- Resistance Stats ---
 @onready var physical_resistance_label = get_node("ResistanceStats/ResistanceEnums/PhysicalResistanceLabel")
 @onready var magical_resistance_label = get_node("ResistanceStats/ResistanceEnums/MagicalResistanceLabel")
@@ -46,9 +47,10 @@ func show_stats(c: Character) -> void:
 	name_label.text = ""
 	gender_label.text = ""
 	age_label.text = ""
+	class_label.text = ""
 
 	health_label.text = ""
-	mana_label.text = ""  # Placeholder
+	mana_label.text = ""
 	wealth_label.text = ""
 
 	total_defense_label.text = ""
@@ -62,12 +64,12 @@ func show_stats(c: Character) -> void:
 	physical_strength_label.text = ""
 	magical_strength_label.text = ""
 	technical_strength_label.text = ""
-	total_strength_label.text = ""  # Placeholder
+	total_strength_label.text = ""
 
 	# Populate values
-	name_label.text = "Name:  " + c.char_id
-	class_label.text = "Class:  " + StatTypes.ClassType.keys()[c.class_type]
-	gender_label.text = "Gender:  " + c.gender.capitalize()
+	name_label.text = "Name:  " + c.char_id.capitalize()
+	class_label.text = "Class:  " + EnumUtils.EtoS(c.class_type, StatTypes.ClassType as Dictionary, "Title Case")
+	gender_label.text = "Gender:  " + EnumUtils.EtoS(c.gender, StatTypes.Gender as Dictionary, "Title Case")
 	age_label.text = "Age:  " + str(c.char_age)
 
 	health_label.text = "Health:  " + str(c.current_health) + "/" + str(c.max_health)
@@ -88,5 +90,6 @@ func show_stats(c: Character) -> void:
 
 	physical_resistance_label.text = str(c.get_resistance(StatTypes.ResistanceType.PHYSICAL)) + "%"
 	magical_resistance_label.text = str(c.get_resistance(StatTypes.ResistanceType.MAGICAL)) + "%"
+
 func _on_button_pressed() -> void:
 	game_manager.go_to_main_menu()

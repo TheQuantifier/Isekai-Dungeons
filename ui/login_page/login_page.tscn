@@ -136,6 +136,16 @@ offset_bottom = 415.0
 theme_override_font_sizes/font_size = 40
 text = "No"
 
+[node name="CharacterIDField" type="LineEdit" parent="CreateCharacterDialogOverlay/CreateCharacterDialog"]
+z_index = 1
+layout_mode = 0
+offset_left = 240.0
+offset_top = 240.0
+offset_right = 752.0
+offset_bottom = 296.0
+theme_override_font_sizes/font_size = 40
+placeholder_text = "Insert Player Name"
+
 [node name="WrongPasswordPopupOverlay" type="Control" parent="."]
 layout_mode = 1
 anchors_preset = 15
@@ -179,4 +189,5 @@ text = "OK"
 [connection signal="pressed" from="CenterContainer/VBoxContainer/StartGameButton" to="." method="_on_start_game_button_pressed"]
 [connection signal="pressed" from="CreateCharacterDialogOverlay/CreateCharacterDialog/YesButton" to="." method="_on_create_character_dialog_yes_pressed"]
 [connection signal="pressed" from="CreateCharacterDialogOverlay/CreateCharacterDialog/NoButton" to="." method="_on_create_character_dialog_no_pressed"]
+[connection signal="text_changed" from="CreateCharacterDialogOverlay/CreateCharacterDialog/CharacterIDField" to="." method="_on_character_id_field_text_changed"]
 [connection signal="pressed" from="WrongPasswordPopupOverlay/WrongPasswordPopup/OkButton" to="." method="_on_wrong_password_ok_button_pressed"]

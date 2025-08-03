@@ -12,6 +12,8 @@ const MALE_MODEL_PATH: String = "res://assets/character_models/scenes/male/y_bot
 const FEMALE_MODEL_PATH: String = "res://assets/character_models/scenes/female/x_bot.tscn"
 const ROTATION_SPEED := 2.5  # Radians per second
 
+const Gender = preload("res://core/stats/stat_types.gd").Gender
+
 var current_model: Node3D
 
 func _ready() -> void:
@@ -21,10 +23,9 @@ func _ready() -> void:
 	# Disable Confirm button initially
 	confirm_button.disabled = true
 
-	# Set default gender and model only if gender not already chosen
 	if game_manager.current_character:
-		if game_manager.current_character.gender == "":
-			game_manager.current_character.gender = "male"
+		if game_manager.current_character.gender not in [Gender.MALE, Gender.FEMALE]:
+			game_manager.current_character.gender = Gender.MALE
 			game_manager.current_character.model_path = MALE_MODEL_PATH
 		_load_gender_model()
 	else:
@@ -54,28 +55,32 @@ func load_model(path: String) -> void:
 		push_error("Failed to load model at: " + path)
 
 func _load_gender_model() -> void:
-	if game_manager.current_character.gender == "male":
-		load_model(MALE_MODEL_PATH)
-	elif game_manager.current_character.gender == "female":
-		load_model(FEMALE_MODEL_PATH)
+	match game_manager.current_character.gender:
+		Gender.MALE:
+			load_model(MALE_MODEL_PATH)
+		Gender.FEMALE:
+			load_model(FEMALE_MODEL_PATH)
+		_:
+			push_warning("Unrecognized gender value: " + str(game_manager.current_character.gender))
 
 func _on_male_button_pressed() -> void:
 	load_model(MALE_MODEL_PATH)
 	if game_manager.current_character:
-		game_manager.current_character.gender = "male"
+		game_manager.current_character.gender = Gender.MALE
 		game_manager.current_character.model_path = MALE_MODEL_PATH
 		confirm_button.disabled = false
 
 func _on_female_button_pressed() -> void:
 	load_model(FEMALE_MODEL_PATH)
 	if game_manager.current_character:
-		game_manager.current_character.gender = "female"
+		game_manager.current_character.gender = Gender.FEMALE
 		game_manager.current_character.model_path = FEMALE_MODEL_PATH
 		confirm_button.disabled = false
 
 func _on_confirm_button_pressed() -> void:
 	if game_manager.current_character:
-		var save_path := "res://data/characters/%s.tres" % game_manager.current_character.char_id
+		# ✅ Save using the username as the filename to stay consistent
+		var save_path := "res://data/characters/%s.tres" % game_manager.current_character.username
 		var result := ResourceSaver.save(game_manager.current_character, save_path)
 		if result != OK:
 			push_error("Failed to save character.")

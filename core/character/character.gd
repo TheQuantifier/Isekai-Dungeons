@@ -23,8 +23,9 @@ signal potion_consumed(potion: Potion)
 
 # --- Core Properties ---
 @export var char_id: String = ""
+@export var username: String = ""
 @export var char_age: float = 0
-@export var gender: String = "male"  # Options: "male", "female"
+@export var gender: int = StatTypes.Gender.MALE
 @export var model_path: String = ""
 @export var last_position: Vector3 = Vector3(0, 2, 0)
 @export var current_health: int = 10
@@ -35,7 +36,7 @@ signal potion_consumed(potion: Potion)
 @export var password: String = ""
 @export var class_type: int = ClassTypes.ClassType.NONE
 @export var known_skills: Array[Skill] = []
-var skill_cooldowns: Dictionary = {}
+@export var skill_cooldowns: Dictionary = {}
 
 # --- Inventory System ---
 var backpack: Backpack
@@ -48,14 +49,7 @@ var backpack: Backpack
 
 func _init() -> void:
 	backpack = Backpack.new(30, self)
-	
-	for s_type in StatTypes.StrengthType.values():
-		strength_stats[s_type] = 0
-	for d_type in StatTypes.DefenseType.values():
-		defense_stats[d_type] = 0
-	for r_type in StatTypes.ResistanceType.values():
-		resistance_stats[r_type] = 0
-
+	reset_stats()
 
 # ---------- Stat Manipulation ----------
 func add_gold(amount: int) -> void:
@@ -99,7 +93,14 @@ func get_total_strength() -> int:
 	for value in strength_stats.values():
 		total += value
 	return total
-	
+
+func is_alive() -> bool:
+	return current_health > 0
+
+func take_damage(amount: int) -> void:
+	current_health = max(current_health - amount, 0)
+	emit_signal("health_changed", current_health)
+
 # ---------- Equipment Logic ----------
 func equip(item: Equipment) -> String:
 	if item.equip_type == Equipment.EquipmentType.POTION:
@@ -191,12 +192,17 @@ func consume_potion(potion: Potion) -> String:
 
 # ---------- Stat Reset ----------
 func reset_stats() -> void:
+	strength_stats.clear()
+	defense_stats.clear()
+	resistance_stats.clear()
+
 	for s_type in StatTypes.StrengthType.values():
 		strength_stats[s_type] = 1
 	for d_type in StatTypes.DefenseType.values():
 		defense_stats[d_type] = 1
 	for r_type in StatTypes.ResistanceType.values():
 		resistance_stats[r_type] = 0
+
 	current_health = 10
 	current_mana = 10
 	gold = 0
@@ -235,7 +241,7 @@ func data() -> String:
 
 	s += "================================================"
 	return s
-	
+
 # ---------- Using Skills ----------
 func use_skill(skill_name: String, target: Character) -> String:
 	for skill in known_skills:
@@ -246,7 +252,7 @@ func use_skill(skill_name: String, target: Character) -> String:
 			skill_cooldowns[skill_name] = Time.get_ticks_msec() / 1000.0 + skill.cooldown
 			return result
 	return "Skill not known."
-	
+
 func assign_class_skills():
 	match class_type:
 		ClassTypes.ClassType.MAGE:

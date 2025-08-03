@@ -1,38 +1,40 @@
-[gd_resource type="Resource" script_class="Character" load_steps=4 format=3 uid="uid://cqeohtpyv7dl2"]
+[gd_resource type="Resource" script_class="Character" load_steps=4 format=3]
 
-[ext_resource type="Script" uid="uid://ctnpxtaagonpd" path="res://core/equipment/equipment.gd" id="1_phn4y"]
-[ext_resource type="Script" uid="uid://crij0abu047dx" path="res://core/skills/skill.gd" id="2_1xsd4"]
-[ext_resource type="Script" uid="uid://bpe2nbae6km0c" path="res://core/character/character.gd" id="2_5vobn"]
+[ext_resource type="Script" path="res://core/equipment/equipment.gd" id="1_5vobn"]
+[ext_resource type="Script" path="res://core/skills/skill.gd" id="2_1xsd4"]
+[ext_resource type="Script" path="res://core/character/character.gd" id="3_1vnc0"]
 
 [resource]
-script = ExtResource("2_5vobn")
-char_id = "john"
-char_age = 10.0
-gender = "male"
+script = ExtResource("3_1vnc0")
+char_id = "MaxAZillion"
+username = "john"
+char_age = 0.0
+gender = 0
 model_path = "res://assets/character_models/scenes/male/y_bot.tscn"
-last_position = Vector3(1.76421, 0.0834247, 117.039)
-current_health = 50
-max_health = 50
-current_mana = 50
-max_mana = 50
-gold = 200
+last_position = Vector3(0, 0.0832031, 147.067)
+current_health = 10
+max_health = 10
+current_mana = 10
+max_mana = 10
+gold = 0
 password = "john"
 class_type = 0
 known_skills = Array[ExtResource("2_1xsd4")]([])
-equipped_items = Array[ExtResource("1_phn4y")]([])
+skill_cooldowns = {}
+equipped_items = Array[ExtResource("1_5vobn")]([])
 strength_stats = {
-0: 20,
-1: 10,
-2: 30
+0: 1,
+1: 1,
+2: 1
 }
 defense_stats = {
-0: 30,
-1: 20,
-2: 30,
-3: 20,
+0: 10,
+1: 10,
+2: 10,
+3: 10,
 4: 10
 }
 resistance_stats = {
-0: 40,
-1: 30
+0: 15,
+1: 20
 }
