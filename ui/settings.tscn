@@ -16,10 +16,9 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_font_sizes/font_size = 40
-current_tab = 2
+current_tab = 0
 
 [node name="Audio" type="Control" parent="TabContainer"]
-visible = false
 layout_mode = 2
 metadata/_tab_index = 0
 
@@ -29,5 +28,6 @@ layout_mode = 2
 metadata/_tab_index = 1
 
 [node name="Controls" type="Control" parent="TabContainer"]
+visible = false
 layout_mode = 2
 metadata/_tab_index = 2

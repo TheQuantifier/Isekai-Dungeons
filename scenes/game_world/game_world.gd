@@ -147,7 +147,7 @@ func _toggle_camera_view() -> void:
 
 func _on_main_menu_pressed() -> void:
 	game_manager.save_player_position(player.global_position)
-	game_manager.go_to_main_menu()
+	game_manager.go_to("main_menu")
 
 func _on_sun_slider_changed(value: float) -> void:
 	sun_elevation_degrees = -clamp(value, 0.0, 180.0)

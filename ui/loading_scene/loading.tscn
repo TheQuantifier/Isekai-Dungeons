@@ -1,7 +1,4 @@
-[gd_scene load_steps=3 format=3 uid="uid://c0dkm617plkg0"]
-
-[ext_resource type="Script" uid="uid://dkcgjg8h7hgdi" path="res://ui/loading_scene/loading.gd" id="1_m6h60"]
-[ext_resource type="Texture2D" uid="uid://dn8np0h2ugsoe" path="res://assets/textures/3D World Image.jpg" id="2_hlys1"]
+[gd_scene format=3 uid="uid://c0dkm617plkg0"]
 
 [node name="Loading" type="Control"]
 layout_mode = 3
@@ -10,12 +7,11 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("1_m6h60")
 
-[node name="Background image" type="TextureRect" parent="."]
+[node name="BackgroundImage" type="TextureRect" parent="."]
+layout_mode = 0
 offset_right = 1800.0
 offset_bottom = 1080.0
-texture = ExtResource("2_hlys1")
 
 [node name="LoadingLabel" type="Label" parent="."]
 layout_mode = 0

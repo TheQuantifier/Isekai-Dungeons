@@ -92,4 +92,4 @@ func show_stats(c: Character) -> void:
 	magical_resistance_label.text = str(c.get_resistance(StatTypes.ResistanceType.MAGICAL)) + "%"
 
 func _on_button_pressed() -> void:
-	game_manager.go_to_main_menu()
+	game_manager.go_to("main_menu")

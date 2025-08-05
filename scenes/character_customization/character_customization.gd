@@ -79,7 +79,7 @@ func _on_female_button_pressed() -> void:
 
 func _on_confirm_button_pressed() -> void:
 	if game_manager.current_character:
-		# ✅ Save using the username as the filename to stay consistent
+		# Save using the username as the filename to stay consistent
 		var save_path := "res://data/characters/%s.tres" % game_manager.current_character.username
 		var result := ResourceSaver.save(game_manager.current_character, save_path)
 		if result != OK:
@@ -90,4 +90,4 @@ func _on_confirm_button_pressed() -> void:
 	confirm_button.disabled = true  # Gray out again after confirm
 
 func _on_main_menu_pressed() -> void:
-	game_manager.go_to_main_menu()
+	game_manager.go_to("main_menu")
