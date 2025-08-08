@@ -1,7 +1,63 @@
-[gd_scene load_steps=3 format=3 uid="uid://lt15tsobxh7w"]
+[gd_scene load_steps=11 format=3 uid="uid://lt15tsobxh7w"]
 
 [ext_resource type="Script" uid="uid://bdfofyfar61b0" path="res://ui/main_menu/main_menu.gd" id="1_sla82"]
-[ext_resource type="Texture2D" uid="uid://dn8np0h2ugsoe" path="res://assets/textures/3D World Image.jpg" id="2_mu8pm"]
+[ext_resource type="Texture2D" uid="uid://bdkn3v4s6b3tw" path="res://assets/RPG-Actiongame-Environment-01.jpg" id="2_mu8pm"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_u184e"]
+bg_color = Color(0.478431, 0.290196, 0.176471, 1)
+corner_radius_top_left = 50
+corner_radius_top_right = 50
+corner_radius_bottom_right = 50
+corner_radius_bottom_left = 50
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_mu8pm"]
+bg_color = Color(0.294118, 0.180392, 0.101961, 1)
+corner_radius_top_left = 50
+corner_radius_top_right = 50
+corner_radius_bottom_right = 50
+corner_radius_bottom_left = 50
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_joh67"]
+bg_color = Color(0.478431, 0.290196, 0.176471, 1)
+corner_radius_top_left = 50
+corner_radius_top_right = 50
+corner_radius_bottom_right = 50
+corner_radius_bottom_left = 50
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_omy8q"]
+bg_color = Color(0.294118, 0.180392, 0.101961, 1)
+corner_radius_top_left = 50
+corner_radius_top_right = 50
+corner_radius_bottom_right = 50
+corner_radius_bottom_left = 50
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6mijq"]
+bg_color = Color(0.478431, 0.290196, 0.176471, 1)
+corner_radius_top_left = 50
+corner_radius_top_right = 50
+corner_radius_bottom_right = 50
+corner_radius_bottom_left = 50
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_i5wg5"]
+bg_color = Color(0.294118, 0.180392, 0.101961, 1)
+corner_radius_top_left = 50
+corner_radius_top_right = 50
+corner_radius_bottom_right = 50
+corner_radius_bottom_left = 50
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_w2r0d"]
+bg_color = Color(0.478431, 0.290196, 0.176471, 1)
+corner_radius_top_left = 50
+corner_radius_top_right = 50
+corner_radius_bottom_right = 50
+corner_radius_bottom_left = 50
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_3c04x"]
+bg_color = Color(0.294118, 0.180392, 0.101961, 1)
+corner_radius_top_left = 50
+corner_radius_top_right = 50
+corner_radius_bottom_right = 50
+corner_radius_bottom_left = 50
 
 [node name="CharacterHub" type="Control"]
 layout_mode = 3
@@ -32,26 +88,52 @@ mouse_filter = 2
 [node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/UI/CenterContainer"]
 layout_mode = 2
 mouse_filter = 2
+theme_override_constants/separation = 30
 alignment = 1
+
+[node name="Label" type="Label" parent="CanvasLayer/UI/CenterContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.909804, 0.85098, 0.709804, 1)
+theme_override_font_sizes/font_size = 100
+text = "Dungeon 101"
+horizontal_alignment = 1
 
 [node name="PlayButton" type="Button" parent="CanvasLayer/UI/CenterContainer/VBoxContainer"]
 layout_mode = 2
+theme_override_colors/font_disabled_color = Color(0.909804, 0.85098, 0.709804, 0.392157)
+theme_override_colors/font_color = Color(0.909804, 0.85098, 0.709804, 1)
+theme_override_constants/h_separation = 0
+theme_override_constants/line_spacing = 65
 theme_override_font_sizes/font_size = 50
+theme_override_styles/hover = SubResource("StyleBoxFlat_u184e")
+theme_override_styles/normal = SubResource("StyleBoxFlat_mu8pm")
 text = "Play"
 
 [node name="Edit CharacterButton" type="Button" parent="CanvasLayer/UI/CenterContainer/VBoxContainer"]
 layout_mode = 2
+theme_override_colors/font_disabled_color = Color(0.909804, 0.85098, 0.709804, 0.392157)
+theme_override_colors/font_color = Color(0.909804, 0.85098, 0.709804, 1)
 theme_override_font_sizes/font_size = 50
+theme_override_styles/hover = SubResource("StyleBoxFlat_joh67")
+theme_override_styles/normal = SubResource("StyleBoxFlat_omy8q")
 text = "Edit Character"
 
 [node name="ViewStatsButton" type="Button" parent="CanvasLayer/UI/CenterContainer/VBoxContainer"]
 layout_mode = 2
+theme_override_colors/font_disabled_color = Color(0.909804, 0.85098, 0.709804, 0.392157)
+theme_override_colors/font_color = Color(0.909804, 0.85098, 0.709804, 1)
 theme_override_font_sizes/font_size = 50
+theme_override_styles/hover = SubResource("StyleBoxFlat_6mijq")
+theme_override_styles/normal = SubResource("StyleBoxFlat_i5wg5")
 text = "View Stats"
 
 [node name="LogOutButton" type="Button" parent="CanvasLayer/UI/CenterContainer/VBoxContainer"]
 layout_mode = 2
+theme_override_colors/font_disabled_color = Color(0.909804, 0.85098, 0.709804, 0.392157)
+theme_override_colors/font_color = Color(0.909804, 0.85098, 0.709804, 1)
 theme_override_font_sizes/font_size = 50
+theme_override_styles/hover = SubResource("StyleBoxFlat_w2r0d")
+theme_override_styles/normal = SubResource("StyleBoxFlat_3c04x")
 text = "Log Out"
 
 [node name="Background image" type="TextureRect" parent="."]

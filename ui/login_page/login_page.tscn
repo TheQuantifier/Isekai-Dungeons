@@ -1,16 +1,64 @@
-[gd_scene load_steps=8 format=3 uid="uid://dm08ug13g54tn"]
+[gd_scene load_steps=14 format=3 uid="uid://dm08ug13g54tn"]
 
 [ext_resource type="Script" uid="uid://dec8hadisf4cm" path="res://ui/login_page/login_page.gd" id="1_qfmr5"]
-[ext_resource type="Texture2D" uid="uid://den7yq6jk7svu" path="res://assets/logo.png" id="2_1lji1"]
-[ext_resource type="Texture2D" uid="uid://dn8np0h2ugsoe" path="res://assets/textures/3D World Image.jpg" id="3_1lji1"]
+[ext_resource type="Texture2D" uid="uid://bdkn3v4s6b3tw" path="res://assets/RPG-Actiongame-Environment-01.jpg" id="3_1lji1"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_11evp"]
+bg_color = Color(0.294118, 0.180392, 0.101961, 1)
+corner_radius_top_left = 50
+corner_radius_top_right = 50
+corner_radius_bottom_right = 50
+corner_radius_bottom_left = 50
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_rpukb"]
+bg_color = Color(0.294118, 0.180392, 0.101961, 1)
+corner_radius_top_left = 50
+corner_radius_top_right = 50
+corner_radius_bottom_right = 50
+corner_radius_bottom_left = 50
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_fk6tm"]
+bg_color = Color(0.294118, 0.180392, 0.101961, 1)
+corner_radius_top_left = 50
+corner_radius_top_right = 50
+corner_radius_bottom_right = 50
+corner_radius_bottom_left = 50
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_lfh03"]
+bg_color = Color(0.294118, 0.180392, 0.101961, 1)
+corner_radius_top_left = 50
+corner_radius_top_right = 50
+corner_radius_bottom_right = 50
+corner_radius_bottom_left = 50
 
 [sub_resource type="SystemFont" id="SystemFont_06t4h"]
 
-[sub_resource type="SystemFont" id="SystemFont_rhts7"]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_qjyds"]
+bg_color = Color(0.227451, 0.141176, 0.0784314, 0.705882)
+corner_radius_top_left = 50
+corner_radius_top_right = 50
+corner_radius_bottom_right = 50
+corner_radius_bottom_left = 50
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8tu0g"]
+bg_color = Color(0.478431, 0.290196, 0.176471, 1)
+corner_radius_top_left = 50
+corner_radius_top_right = 50
+corner_radius_bottom_right = 50
+corner_radius_bottom_left = 50
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_hc3t0"]
+bg_color = Color(0.294118, 0.180392, 0.101961, 1)
+corner_radius_top_left = 50
+corner_radius_top_right = 50
+corner_radius_bottom_right = 50
+corner_radius_bottom_left = 50
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ihlnx"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1lji1"]
+
+[sub_resource type="SystemFont" id="SystemFont_rhts7"]
 
 [node name="LoginPage" type="Control"]
 layout_mode = 3
@@ -36,52 +84,47 @@ grow_vertical = 2
 [node name="VBoxContainer" type="Node" parent="CenterContainer"]
 
 [node name="UsernameField" type="LineEdit" parent="CenterContainer/VBoxContainer"]
-offset_left = 680.0
-offset_top = 584.0
-offset_right = 1112.0
-offset_bottom = 661.0
+offset_left = 600.0
+offset_top = 576.0
+offset_right = 1200.0
+offset_bottom = 656.0
+theme_override_colors/font_placeholder_color = Color(0.909804, 0.85098, 0.709804, 0.392157)
+theme_override_colors/font_color = Color(0.909804, 0.85098, 0.709804, 1)
 theme_override_font_sizes/font_size = 50
-placeholder_text = "Enter Username"
+theme_override_styles/focus = SubResource("StyleBoxFlat_11evp")
+theme_override_styles/normal = SubResource("StyleBoxFlat_rpukb")
+placeholder_text = "Username"
+alignment = 1
 
 [node name="PasswordField" type="LineEdit" parent="CenterContainer/VBoxContainer"]
-offset_left = 680.0
-offset_top = 704.0
-offset_right = 1112.0
-offset_bottom = 781.0
+offset_left = 600.0
+offset_top = 696.0
+offset_right = 1200.0
+offset_bottom = 776.0
+theme_override_colors/font_placeholder_color = Color(0.909804, 0.85098, 0.709804, 0.392157)
+theme_override_colors/font_color = Color(0.909804, 0.85098, 0.709804, 1)
 theme_override_font_sizes/font_size = 50
-placeholder_text = "Enter Password"
+theme_override_styles/focus = SubResource("StyleBoxFlat_fk6tm")
+theme_override_styles/normal = SubResource("StyleBoxFlat_lfh03")
+placeholder_text = "Password"
+alignment = 1
 
 [node name="StartGameButton" type="Button" parent="CenterContainer/VBoxContainer"]
 offset_left = 736.0
-offset_top = 824.0
+offset_top = 816.0
 offset_right = 1064.0
-offset_bottom = 901.0
+offset_bottom = 893.0
+theme_override_colors/font_disabled_color = Color(0.909804, 0.85098, 0.709804, 0.392157)
+theme_override_colors/font_color = Color(0.909804, 0.85098, 0.709804, 1)
 theme_override_fonts/font = SubResource("SystemFont_06t4h")
 theme_override_font_sizes/font_size = 50
+theme_override_styles/disabled = SubResource("StyleBoxFlat_qjyds")
+theme_override_styles/hover = SubResource("StyleBoxFlat_8tu0g")
+theme_override_styles/normal = SubResource("StyleBoxFlat_hc3t0")
 disabled = true
 text = "Start Game"
 
 [node name="Node" type="Node" parent="CenterContainer"]
-
-[node name="GameNameLabel" type="Label" parent="CenterContainer/Node"]
-offset_left = 528.0
-offset_top = 392.0
-offset_right = 1264.0
-offset_bottom = 568.0
-theme_override_fonts/font = SubResource("SystemFont_rhts7")
-theme_override_font_sizes/font_size = 120
-text = "Dungeon101"
-
-[node name="Logo" type="TextureRect" parent="CenterContainer/Node"]
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = -164.0
-offset_top = 64.0
-offset_right = 156.0
-offset_bottom = 368.0
-grow_horizontal = 2
-texture = ExtResource("2_1lji1")
 
 [node name="Background image" type="TextureRect" parent="."]
 layout_mode = 2
@@ -90,6 +133,7 @@ offset_bottom = 1080.0
 texture = ExtResource("3_1lji1")
 
 [node name="CreateCharacterDialogOverlay" type="Control" parent="."]
+visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -147,6 +191,7 @@ theme_override_font_sizes/font_size = 40
 placeholder_text = "Insert Player Name"
 
 [node name="WrongPasswordPopupOverlay" type="Control" parent="."]
+visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -183,6 +228,19 @@ offset_right = 640.0
 offset_bottom = 415.0
 theme_override_font_sizes/font_size = 40
 text = "OK"
+
+[node name="GameNameLabel" type="Label" parent="."]
+top_level = true
+layout_mode = 2
+offset_left = 288.0
+offset_top = 184.0
+offset_right = 1507.0
+offset_bottom = 457.0
+theme_override_colors/font_color = Color(0.909804, 0.85098, 0.709804, 1)
+theme_override_fonts/font = SubResource("SystemFont_rhts7")
+theme_override_font_sizes/font_size = 200
+text = "Dungeon101"
+horizontal_alignment = 1
 
 [connection signal="text_changed" from="CenterContainer/VBoxContainer/UsernameField" to="." method="_on_username_field_text_changed"]
 [connection signal="text_changed" from="CenterContainer/VBoxContainer/PasswordField" to="." method="_on_password_field_text_changed"]
