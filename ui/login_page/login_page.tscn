@@ -1,7 +1,6 @@
-[gd_scene load_steps=26 format=3 uid="uid://dm08ug13g54tn"]
+[gd_scene load_steps=25 format=3 uid="uid://dm08ug13g54tn"]
 
 [ext_resource type="Script" uid="uid://dec8hadisf4cm" path="res://ui/login_page/login_page.gd" id="1_qfmr5"]
-[ext_resource type="Theme" uid="uid://xqyrafaeefir" path="res://ui/login_page/buttonthemes.tres" id="2_1lji1"]
 [ext_resource type="Texture2D" uid="uid://bdkn3v4s6b3tw" path="res://assets/RPG-Actiongame-Environment-01.jpg" id="3_1lji1"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_11evp"]
@@ -199,7 +198,6 @@ offset_left = 736.0
 offset_top = 816.0
 offset_right = 1064.0
 offset_bottom = 893.0
-theme = ExtResource("2_1lji1")
 theme_override_colors/font_disabled_color = Color(0.909804, 0.85098, 0.709804, 0.392157)
 theme_override_colors/font_color = Color(0.909804, 0.85098, 0.709804, 1)
 theme_override_fonts/font = SubResource("SystemFont_06t4h")
