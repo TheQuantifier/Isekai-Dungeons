@@ -1,6 +1,7 @@
-[gd_scene load_steps=14 format=3 uid="uid://dm08ug13g54tn"]
+[gd_scene load_steps=26 format=3 uid="uid://dm08ug13g54tn"]
 
 [ext_resource type="Script" uid="uid://dec8hadisf4cm" path="res://ui/login_page/login_page.gd" id="1_qfmr5"]
+[ext_resource type="Theme" uid="uid://xqyrafaeefir" path="res://ui/login_page/buttonthemes.tres" id="2_1lji1"]
 [ext_resource type="Texture2D" uid="uid://bdkn3v4s6b3tw" path="res://assets/RPG-Actiongame-Environment-01.jpg" id="3_1lji1"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_11evp"]
@@ -55,8 +56,91 @@ corner_radius_bottom_right = 50
 corner_radius_bottom_left = 50
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ihlnx"]
+bg_color = Color(0.14, 0.0854, 0.049, 1)
+corner_radius_top_left = 50
+corner_radius_top_right = 50
+corner_radius_bottom_right = 50
+corner_radius_bottom_left = 50
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4h0er"]
+bg_color = Color(0.227451, 0.141176, 0.0784314, 0.705882)
+corner_radius_top_left = 50
+corner_radius_top_right = 50
+corner_radius_bottom_right = 50
+corner_radius_bottom_left = 50
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_i7tq6"]
+bg_color = Color(0.478431, 0.290196, 0.176471, 1)
+corner_radius_top_left = 50
+corner_radius_top_right = 50
+corner_radius_bottom_right = 50
+corner_radius_bottom_left = 50
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_fxx81"]
+bg_color = Color(0.294118, 0.180392, 0.101961, 1)
+corner_radius_top_left = 50
+corner_radius_top_right = 50
+corner_radius_bottom_right = 50
+corner_radius_bottom_left = 50
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_cj8yt"]
+bg_color = Color(0.227451, 0.141176, 0.0784314, 0.705882)
+corner_radius_top_left = 50
+corner_radius_top_right = 50
+corner_radius_bottom_right = 50
+corner_radius_bottom_left = 50
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_5ylv0"]
+bg_color = Color(0.478431, 0.290196, 0.176471, 1)
+corner_radius_top_left = 50
+corner_radius_top_right = 50
+corner_radius_bottom_right = 50
+corner_radius_bottom_left = 50
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_fht0i"]
+bg_color = Color(0.294118, 0.180392, 0.101961, 1)
+corner_radius_top_left = 50
+corner_radius_top_right = 50
+corner_radius_bottom_right = 50
+corner_radius_bottom_left = 50
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_qfmr5"]
+bg_color = Color(0.294118, 0.180392, 0.101961, 1)
+corner_radius_top_left = 50
+corner_radius_top_right = 50
+corner_radius_bottom_right = 50
+corner_radius_bottom_left = 50
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_qn0p0"]
+bg_color = Color(0.294118, 0.180392, 0.101961, 1)
+corner_radius_top_left = 50
+corner_radius_top_right = 50
+corner_radius_bottom_right = 50
+corner_radius_bottom_left = 50
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1lji1"]
+bg_color = Color(0.141176, 0.0862745, 0.0470588, 1)
+corner_radius_top_left = 50
+corner_radius_top_right = 50
+corner_radius_bottom_right = 50
+corner_radius_bottom_left = 50
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_xvaqr"]
+bg_color = Color(0.227451, 0.141176, 0.0784314, 0.705882)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_rxops"]
+bg_color = Color(0.478431, 0.290196, 0.176471, 1)
+corner_radius_top_left = 50
+corner_radius_top_right = 50
+corner_radius_bottom_right = 50
+corner_radius_bottom_left = 50
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_nsduw"]
+bg_color = Color(0.294118, 0.180392, 0.101961, 1)
+corner_radius_top_left = 50
+corner_radius_top_right = 50
+corner_radius_bottom_right = 50
+corner_radius_bottom_left = 50
 
 [sub_resource type="SystemFont" id="SystemFont_rhts7"]
 
@@ -108,12 +192,14 @@ theme_override_styles/focus = SubResource("StyleBoxFlat_fk6tm")
 theme_override_styles/normal = SubResource("StyleBoxFlat_lfh03")
 placeholder_text = "Password"
 alignment = 1
+secret = true
 
 [node name="StartGameButton" type="Button" parent="CenterContainer/VBoxContainer"]
 offset_left = 736.0
 offset_top = 816.0
 offset_right = 1064.0
 offset_bottom = 893.0
+theme = ExtResource("2_1lji1")
 theme_override_colors/font_disabled_color = Color(0.909804, 0.85098, 0.709804, 0.392157)
 theme_override_colors/font_color = Color(0.909804, 0.85098, 0.709804, 1)
 theme_override_fonts/font = SubResource("SystemFont_06t4h")
@@ -155,7 +241,7 @@ layout_mode = 0
 offset_left = 8.0
 offset_top = 104.0
 offset_right = 960.0
-offset_bottom = 320.0
+offset_bottom = 224.0
 size_flags_vertical = 1
 theme_override_font_sizes/font_size = 40
 text = "There is no character by that name. Would you like to create a new character?"
@@ -168,7 +254,12 @@ offset_left = 136.0
 offset_top = 336.0
 offset_right = 416.0
 offset_bottom = 415.0
+theme_override_colors/font_disabled_color = Color(0.909804, 0.85098, 0.709804, 0.392157)
+theme_override_colors/font_color = Color(0.909804, 0.85098, 0.709804, 1)
 theme_override_font_sizes/font_size = 40
+theme_override_styles/disabled = SubResource("StyleBoxFlat_4h0er")
+theme_override_styles/hover = SubResource("StyleBoxFlat_i7tq6")
+theme_override_styles/normal = SubResource("StyleBoxFlat_fxx81")
 text = "Yes"
 
 [node name="NoButton" type="Button" parent="CreateCharacterDialogOverlay/CreateCharacterDialog"]
@@ -177,7 +268,12 @@ offset_left = 560.0
 offset_top = 336.0
 offset_right = 840.0
 offset_bottom = 415.0
+theme_override_colors/font_disabled_color = Color(0.909804, 0.85098, 0.709804, 0.392157)
+theme_override_colors/font_color = Color(0.909804, 0.85098, 0.709804, 1)
 theme_override_font_sizes/font_size = 40
+theme_override_styles/disabled = SubResource("StyleBoxFlat_cj8yt")
+theme_override_styles/hover = SubResource("StyleBoxFlat_5ylv0")
+theme_override_styles/normal = SubResource("StyleBoxFlat_fht0i")
 text = "No"
 
 [node name="CharacterIDField" type="LineEdit" parent="CreateCharacterDialogOverlay/CreateCharacterDialog"]
@@ -188,10 +284,12 @@ offset_top = 240.0
 offset_right = 752.0
 offset_bottom = 296.0
 theme_override_font_sizes/font_size = 40
-placeholder_text = "Insert Player Name"
+theme_override_styles/focus = SubResource("StyleBoxFlat_qfmr5")
+theme_override_styles/normal = SubResource("StyleBoxFlat_qn0p0")
+placeholder_text = "Player Name"
+alignment = 1
 
 [node name="WrongPasswordPopupOverlay" type="Control" parent="."]
-visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -226,11 +324,15 @@ offset_left = 360.0
 offset_top = 336.0
 offset_right = 640.0
 offset_bottom = 415.0
+theme_override_colors/font_disabled_color = Color(0.909804, 0.85098, 0.709804, 0.392157)
+theme_override_colors/font_color = Color(0.909804, 0.85098, 0.709804, 1)
 theme_override_font_sizes/font_size = 40
+theme_override_styles/disabled = SubResource("StyleBoxFlat_xvaqr")
+theme_override_styles/hover = SubResource("StyleBoxFlat_rxops")
+theme_override_styles/normal = SubResource("StyleBoxFlat_nsduw")
 text = "OK"
 
 [node name="GameNameLabel" type="Label" parent="."]
-top_level = true
 layout_mode = 2
 offset_left = 288.0
 offset_top = 184.0
