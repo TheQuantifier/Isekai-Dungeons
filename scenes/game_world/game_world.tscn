@@ -1,13 +1,16 @@
-[gd_scene load_steps=37 format=4 uid="uid://tvefuc2jd8cc"]
+[gd_scene load_steps=43 format=4 uid="uid://tvefuc2jd8cc"]
 
 [ext_resource type="PackedScene" uid="uid://bkd5chj1tyrsd" path="res://scenes/game_world/ground.tscn" id="1_254f3"]
 [ext_resource type="Script" uid="uid://dj6ds81qxtn0j" path="res://scenes/game_world/game_world.gd" id="1_mjgxe"]
 [ext_resource type="PackedScene" uid="uid://cgjylwr71uayr" path="res://scenes/player/player.tscn" id="2_mjgxe"]
 [ext_resource type="PackedScene" uid="uid://csnj2r5qa4y34" path="res://assets/scenary/tree-gn/source/tree_gen.tscn" id="4_yb5st"]
 [ext_resource type="PackedScene" uid="uid://bfu4xrg80meww" path="res://assets/scenary/cobble_stone_path.tscn" id="5_6sh6l"]
+[ext_resource type="Texture2D" uid="uid://dowgnsnt54qwu" path="res://assets/inventory-backpack-icon-game-2d-game-fantasy-game-pocket-game-cartoon-design-illustration-vector.png" id="6_41oi7"]
 [ext_resource type="PackedScene" uid="uid://cjlguukmmm60l" path="res://assets/scenary/cobblestone_floor_texture/road_1.tscn" id="6_liei2"]
 [ext_resource type="PackedScene" uid="uid://bi2ul83n8cyl4" path="res://assets/models/Simple Medieval Pack/House_2.fbx" id="7_nxv6a"]
+[ext_resource type="Texture2D" uid="uid://dxb7tunty40" path="res://assets/exit-12.png" id="7_wppbw"]
 [ext_resource type="PackedScene" uid="uid://bt37syg8qfv44" path="res://assets/models/Simple Medieval Pack/House_3.fbx" id="8_gakb1"]
+[ext_resource type="PackedScene" uid="uid://6rrjq74htlgk" path="res://ui/exit_menu/exit_menu.tscn" id="8_tyytv"]
 [ext_resource type="PackedScene" uid="uid://bmc66ue15sh3q" path="res://assets/models/Simple Medieval Pack/House_4.fbx" id="9_pon8i"]
 [ext_resource type="PackedScene" uid="uid://8c0r6y3cd1py" path="res://assets/models/Simple Medieval Pack/Inn.fbx" id="10_4vb8v"]
 [ext_resource type="PackedScene" uid="uid://bou5uhmvc0y2v" path="res://assets/models/Simple Medieval Pack/Mill.fbx" id="11_dlc66"]
@@ -42,6 +45,23 @@ size = Vector3(4, 2, 4)
 
 [sub_resource type="BoxMesh" id="BoxMesh_mjgxe"]
 size = Vector3(4, 2, 4)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_41oi7"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_2oxmu"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+corner_radius_top_left = 50
+corner_radius_top_right = 50
+corner_radius_bottom_right = 50
+corner_radius_bottom_left = 50
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_tyytv"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+corner_radius_top_left = 50
+corner_radius_top_right = 50
+corner_radius_bottom_right = 50
+corner_radius_bottom_left = 50
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_alxei"]
 resource_name = "Plaster"
@@ -420,8 +440,10 @@ anchor_left = 1.0
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -40.0
-offset_top = -40.0
+offset_left = -256.0
+offset_top = -464.0
+offset_right = -19.0
+offset_bottom = -267.0
 grow_horizontal = 0
 grow_vertical = 0
 alignment = 1
@@ -456,6 +478,29 @@ offset_left = 16.0
 offset_top = 16.0
 offset_right = 272.0
 offset_bottom = 272.0
+
+[node name="InventoryButton" type="Button" parent="MenusCanvasLayer"]
+offset_left = 1640.0
+offset_top = 944.0
+offset_right = 2319.0
+offset_bottom = 1504.0
+scale = Vector2(0.2, 0.2)
+theme_override_styles/normal = SubResource("StyleBoxFlat_41oi7")
+icon = ExtResource("6_41oi7")
+
+[node name="ExitButton" type="Button" parent="MenusCanvasLayer"]
+offset_left = 1672.0
+offset_top = 16.0
+offset_right = 2192.0
+offset_bottom = 536.0
+scale = Vector2(0.2, 0.2)
+theme_override_styles/hover = SubResource("StyleBoxFlat_2oxmu")
+theme_override_styles/normal = SubResource("StyleBoxFlat_tyytv")
+icon = ExtResource("7_wppbw")
+
+[node name="ExitMenu" parent="MenusCanvasLayer" instance=ExtResource("8_tyytv")]
+process_mode = 3
+visible = false
 
 [node name="Village Setup" type="Node3D" parent="."]
 
@@ -891,7 +936,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -180.02)
 transform = Transform3D(1, 0, -3.55271e-15, 0, 1, 0, 3.55271e-15, 0, 1.1, 0, 0, -192.634)
 
 [node name="Road0" parent="Village Setup/MainRoadsNew/RoadsT" instance=ExtResource("6_liei2")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
 
 [node name="Roads2" type="Node3D" parent="Village Setup/MainRoadsNew/RoadsT"]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 0)
@@ -996,7 +1040,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -168.02)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -180.02)
 
 [node name="Road0" parent="Village Setup/MainRoadsNew/RoadsSE" instance=ExtResource("6_liei2")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
 
 [node name="Roads1" type="Node3D" parent="Village Setup/MainRoadsNew/RoadsSE"]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 0)
@@ -1098,7 +1141,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -168.02)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -180.02)
 
 [node name="Road0" parent="Village Setup/MainRoadsNew/RoadsSW" instance=ExtResource("6_liei2")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
 
 [node name="Roads1" type="Node3D" parent="Village Setup/MainRoadsNew/RoadsSW"]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 0)
@@ -1306,7 +1348,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -182.428)
 transform = Transform3D(0.353553, 0, -0.735391, 0, 1, 0, 0.353553, 0, 0.735391, 351.108, 0.035, 351.108)
 
 [node name="TallWallEntrance" parent="CityWalls/WallSectionSE" instance=ExtResource("17_cv87b")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
 
 [node name="TallWall2" parent="CityWalls/WallSectionSE" instance=ExtResource("16_uk4sg")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 45.607)
@@ -1432,3 +1473,4 @@ size = 0.001
 [connection signal="pressed" from="MenusCanvasLayer/VBoxContainer/Main Menu" to="." method="_on_main_menu_pressed"]
 [connection signal="pressed" from="MenusCanvasLayer/VBoxContainer/ViewSwitchButton" to="." method="_on_view_switch_button_pressed"]
 [connection signal="value_changed" from="MenusCanvasLayer/SunSlider" to="." method="_on_sun_slider_changed"]
+[connection signal="pressed" from="MenusCanvasLayer/ExitButton" to="." method="_on_exit_button_pressed"]

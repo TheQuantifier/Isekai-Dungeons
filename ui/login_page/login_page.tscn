@@ -168,9 +168,9 @@ grow_vertical = 2
 
 [node name="UsernameField" type="LineEdit" parent="CenterContainer/VBoxContainer"]
 offset_left = 600.0
-offset_top = 576.0
+offset_top = 512.0
 offset_right = 1200.0
-offset_bottom = 656.0
+offset_bottom = 592.0
 theme_override_colors/font_placeholder_color = Color(0.909804, 0.85098, 0.709804, 0.392157)
 theme_override_colors/font_color = Color(0.909804, 0.85098, 0.709804, 1)
 theme_override_font_sizes/font_size = 50
@@ -181,9 +181,9 @@ alignment = 1
 
 [node name="PasswordField" type="LineEdit" parent="CenterContainer/VBoxContainer"]
 offset_left = 600.0
-offset_top = 696.0
+offset_top = 632.0
 offset_right = 1200.0
-offset_bottom = 776.0
+offset_bottom = 712.0
 theme_override_colors/font_placeholder_color = Color(0.909804, 0.85098, 0.709804, 0.392157)
 theme_override_colors/font_color = Color(0.909804, 0.85098, 0.709804, 1)
 theme_override_font_sizes/font_size = 50
@@ -194,10 +194,10 @@ alignment = 1
 secret = true
 
 [node name="StartGameButton" type="Button" parent="CenterContainer/VBoxContainer"]
-offset_left = 736.0
-offset_top = 816.0
-offset_right = 1064.0
-offset_bottom = 893.0
+offset_left = 648.0
+offset_top = 752.0
+offset_right = 1148.0
+offset_bottom = 829.0
 theme_override_colors/font_disabled_color = Color(0.909804, 0.85098, 0.709804, 0.392157)
 theme_override_colors/font_color = Color(0.909804, 0.85098, 0.709804, 1)
 theme_override_fonts/font = SubResource("SystemFont_06t4h")
@@ -207,6 +207,20 @@ theme_override_styles/hover = SubResource("StyleBoxFlat_8tu0g")
 theme_override_styles/normal = SubResource("StyleBoxFlat_hc3t0")
 disabled = true
 text = "Start Game"
+
+[node name="Exit" type="Button" parent="CenterContainer/VBoxContainer"]
+offset_left = 728.0
+offset_top = 864.0
+offset_right = 1056.0
+offset_bottom = 941.0
+theme_override_colors/font_disabled_color = Color(0.909804, 0.85098, 0.709804, 0.392157)
+theme_override_colors/font_color = Color(0.909804, 0.85098, 0.709804, 1)
+theme_override_fonts/font = SubResource("SystemFont_06t4h")
+theme_override_font_sizes/font_size = 50
+theme_override_styles/disabled = SubResource("StyleBoxFlat_qjyds")
+theme_override_styles/hover = SubResource("StyleBoxFlat_8tu0g")
+theme_override_styles/normal = SubResource("StyleBoxFlat_hc3t0")
+text = "Exit"
 
 [node name="Node" type="Node" parent="CenterContainer"]
 
@@ -288,6 +302,7 @@ placeholder_text = "Player Name"
 alignment = 1
 
 [node name="WrongPasswordPopupOverlay" type="Control" parent="."]
+visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -345,6 +360,7 @@ horizontal_alignment = 1
 [connection signal="text_changed" from="CenterContainer/VBoxContainer/UsernameField" to="." method="_on_username_field_text_changed"]
 [connection signal="text_changed" from="CenterContainer/VBoxContainer/PasswordField" to="." method="_on_password_field_text_changed"]
 [connection signal="pressed" from="CenterContainer/VBoxContainer/StartGameButton" to="." method="_on_start_game_button_pressed"]
+[connection signal="pressed" from="CenterContainer/VBoxContainer/Exit" to="." method="_on_exit_pressed"]
 [connection signal="pressed" from="CreateCharacterDialogOverlay/CreateCharacterDialog/YesButton" to="." method="_on_create_character_dialog_yes_pressed"]
 [connection signal="pressed" from="CreateCharacterDialogOverlay/CreateCharacterDialog/NoButton" to="." method="_on_create_character_dialog_no_pressed"]
 [connection signal="text_changed" from="CreateCharacterDialogOverlay/CreateCharacterDialog/CharacterIDField" to="." method="_on_character_id_field_text_changed"]

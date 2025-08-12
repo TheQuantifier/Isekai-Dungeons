@@ -18,7 +18,6 @@ config/icon="uid://den7yq6jk7svu"
 
 [autoload]
 
-PersistentUi="*res://ui/persistent_ui/persistent_ui.tscn"
 game_manager="*res://autoload/game_manager.gd"
 
 [display]

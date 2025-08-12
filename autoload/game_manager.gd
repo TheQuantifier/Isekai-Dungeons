@@ -11,7 +11,8 @@ var page_paths : Dictionary = {
 	"game_world": "res://scenes/game_world/game_world.tscn",
 	"character_customization": "res://scenes/character_customization/character_customization.tscn",
 	"stats": "res://ui/stats_view/stats_view.tscn",
-	"loading": "res://ui/loading_scene/loading.tscn"
+	"loading": "res://ui/loading_scene/loading.tscn",
+	"settings": "res://ui/settings/settings.tscn"
 }
 
 func _ready() -> void:

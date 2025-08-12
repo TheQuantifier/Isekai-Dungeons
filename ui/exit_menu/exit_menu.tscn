@@ -1,0 +1,132 @@
+[gd_scene load_steps=9 format=3 uid="uid://6rrjq74htlgk"]
+
+[ext_resource type="Script" uid="uid://dds0f3d6adnox" path="res://ui/exit_menu/exit_menu.gd" id="1_acab7"]
+[ext_resource type="Texture2D" uid="uid://cemeelwywkjda" path="res://assets/xbutton.png" id="2_3by70"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_acab7"]
+bg_color = Color(0.141176, 0.0862745, 0.0470588, 1)
+corner_radius_top_left = 50
+corner_radius_top_right = 50
+corner_radius_bottom_right = 50
+corner_radius_bottom_left = 50
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_3by70"]
+bg_color = Color(0.227451, 0.141176, 0.0784314, 0.705882)
+corner_radius_top_left = 50
+corner_radius_top_right = 50
+corner_radius_bottom_right = 50
+corner_radius_bottom_left = 50
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7u248"]
+bg_color = Color(0.478431, 0.290196, 0.176471, 1)
+corner_radius_top_left = 50
+corner_radius_top_right = 50
+corner_radius_bottom_right = 50
+corner_radius_bottom_left = 50
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_hhj1w"]
+bg_color = Color(0.294118, 0.180392, 0.101961, 1)
+corner_radius_top_left = 50
+corner_radius_top_right = 50
+corner_radius_bottom_right = 50
+corner_radius_bottom_left = 50
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_s048n"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+corner_radius_top_left = 50
+corner_radius_top_right = 50
+corner_radius_bottom_right = 50
+corner_radius_bottom_left = 50
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4aaux"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+corner_radius_top_left = 50
+corner_radius_top_right = 50
+corner_radius_bottom_right = 50
+corner_radius_bottom_left = 50
+
+[node name="ExitMenu" type="CanvasLayer"]
+script = ExtResource("1_acab7")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(1, 1, 1, 0.258824)
+
+[node name="Panel" type="Panel" parent="."]
+z_index = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -268.0
+offset_top = -228.0
+offset_right = 282.0
+offset_bottom = 222.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_acab7")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 24.0
+offset_top = 24.0
+offset_right = -26.0
+offset_bottom = 24.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 60
+alignment = 1
+
+[node name="MainMenuButton" type="Button" parent="Panel/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_disabled_color = Color(0.909804, 0.85098, 0.709804, 0.392157)
+theme_override_colors/font_color = Color(0.909804, 0.85098, 0.709804, 1)
+theme_override_font_sizes/font_size = 40
+theme_override_styles/disabled = SubResource("StyleBoxFlat_3by70")
+theme_override_styles/hover = SubResource("StyleBoxFlat_7u248")
+theme_override_styles/normal = SubResource("StyleBoxFlat_hhj1w")
+text = "Main Menu"
+
+[node name="SettingsButton" type="Button" parent="Panel/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_disabled_color = Color(0.909804, 0.85098, 0.709804, 0.392157)
+theme_override_colors/font_color = Color(0.909804, 0.85098, 0.709804, 1)
+theme_override_font_sizes/font_size = 40
+theme_override_styles/disabled = SubResource("StyleBoxFlat_3by70")
+theme_override_styles/hover = SubResource("StyleBoxFlat_7u248")
+theme_override_styles/normal = SubResource("StyleBoxFlat_hhj1w")
+text = "Settings"
+
+[node name="QuitButton" type="Button" parent="Panel/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_disabled_color = Color(0.909804, 0.85098, 0.709804, 0.392157)
+theme_override_colors/font_color = Color(0.909804, 0.85098, 0.709804, 1)
+theme_override_font_sizes/font_size = 40
+theme_override_styles/disabled = SubResource("StyleBoxFlat_3by70")
+theme_override_styles/hover = SubResource("StyleBoxFlat_7u248")
+theme_override_styles/normal = SubResource("StyleBoxFlat_hhj1w")
+text = "Quit"
+
+[node name="ClossButton" type="Button" parent="Panel"]
+offset_left = 488.0
+offset_top = 16.0
+offset_right = 721.0
+offset_bottom = 249.0
+scale = Vector2(0.2, 0.2)
+theme_override_styles/hover = SubResource("StyleBoxFlat_s048n")
+theme_override_styles/normal = SubResource("StyleBoxFlat_4aaux")
+icon = ExtResource("2_3by70")
+
+[connection signal="pressed" from="Panel/VBoxContainer/MainMenuButton" to="." method="_on_main_menu_button_pressed"]
+[connection signal="pressed" from="Panel/VBoxContainer/SettingsButton" to="." method="_on_settings_button_pressed"]
+[connection signal="pressed" from="Panel/VBoxContainer/QuitButton" to="." method="_on_quit_button_pressed"]
+[connection signal="pressed" from="Panel/ClossButton" to="." method="_on_closs_button_pressed"]

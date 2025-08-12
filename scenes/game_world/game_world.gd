@@ -160,3 +160,8 @@ func _on_stats_button_pressed() -> void:
 		stats_panel.position = get_viewport().get_visible_rect().size / 2 - stats_panel.size / 2
 	else:
 		stats_panel.visible = not stats_panel.visible
+
+
+func _on_exit_button_pressed() -> void:
+	$MenusCanvasLayer/ExitMenu.visible = true
+	

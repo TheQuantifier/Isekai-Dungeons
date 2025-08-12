@@ -103,3 +103,7 @@ func _on_character_id_field_text_changed(new_text: String) -> void:
 func _unhandled_key_input(event: InputEvent) -> void:
 	if event.is_action_pressed("ui_accept") and not start_button.disabled:
 		_on_start_game_button_pressed()
+
+
+func _on_exit_pressed() -> void:
+	game_manager.quit_game()
