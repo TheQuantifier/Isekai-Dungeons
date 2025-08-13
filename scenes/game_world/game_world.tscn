@@ -434,35 +434,6 @@ transform = Transform3D(0.985686, 0, -0.168593, 0, 1, 0, 0.168593, 0, 0.985686, 
 
 [node name="MenusCanvasLayer" type="CanvasLayer" parent="."]
 
-[node name="VBoxContainer" type="VBoxContainer" parent="MenusCanvasLayer"]
-anchors_preset = 3
-anchor_left = 1.0
-anchor_top = 1.0
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = -256.0
-offset_top = -464.0
-offset_right = -19.0
-offset_bottom = -267.0
-grow_horizontal = 0
-grow_vertical = 0
-alignment = 1
-
-[node name="StatsButton" type="Button" parent="MenusCanvasLayer/VBoxContainer"]
-layout_mode = 2
-theme_override_font_sizes/font_size = 40
-text = "Stats"
-
-[node name="Main Menu" type="Button" parent="MenusCanvasLayer/VBoxContainer"]
-layout_mode = 2
-theme_override_font_sizes/font_size = 40
-text = "Main Menu"
-
-[node name="ViewSwitchButton" type="Button" parent="MenusCanvasLayer/VBoxContainer"]
-layout_mode = 2
-theme_override_font_sizes/font_size = 40
-text = "Switch View"
-
 [node name="SunSlider" type="HSlider" parent="MenusCanvasLayer"]
 offset_left = 512.0
 offset_top = 1017.0
@@ -501,6 +472,14 @@ icon = ExtResource("7_wppbw")
 [node name="ExitMenu" parent="MenusCanvasLayer" instance=ExtResource("8_tyytv")]
 process_mode = 3
 visible = false
+
+[node name="ViewSwitchButton" type="Button" parent="MenusCanvasLayer"]
+offset_left = 72.0
+offset_top = 984.0
+offset_right = 309.0
+offset_bottom = 1047.0
+theme_override_font_sizes/font_size = 40
+text = "Switch View"
 
 [node name="Village Setup" type="Node3D" parent="."]
 
@@ -1469,8 +1448,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 100, 0)
 projection = 1
 size = 0.001
 
-[connection signal="pressed" from="MenusCanvasLayer/VBoxContainer/StatsButton" to="." method="_on_stats_button_pressed"]
-[connection signal="pressed" from="MenusCanvasLayer/VBoxContainer/Main Menu" to="." method="_on_main_menu_pressed"]
-[connection signal="pressed" from="MenusCanvasLayer/VBoxContainer/ViewSwitchButton" to="." method="_on_view_switch_button_pressed"]
 [connection signal="value_changed" from="MenusCanvasLayer/SunSlider" to="." method="_on_sun_slider_changed"]
+[connection signal="pressed" from="MenusCanvasLayer/InventoryButton" to="." method="_on_inventory_button_pressed"]
 [connection signal="pressed" from="MenusCanvasLayer/ExitButton" to="." method="_on_exit_button_pressed"]
+[connection signal="pressed" from="MenusCanvasLayer/ViewSwitchButton" to="." method="_on_view_switch_button_pressed"]

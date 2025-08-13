@@ -12,7 +12,7 @@ var page_paths : Dictionary = {
 	"character_customization": "res://scenes/character_customization/character_customization.tscn",
 	"stats": "res://ui/stats_view/stats_view.tscn",
 	"loading": "res://ui/loading_scene/loading.tscn",
-	"settings": "res://ui/settings/settings.tscn"
+	"settings": "res://ui/settings/settings_old.tscn"
 }
 
 func _ready() -> void:

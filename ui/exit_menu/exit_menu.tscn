@@ -117,6 +117,7 @@ theme_override_styles/normal = SubResource("StyleBoxFlat_hhj1w")
 text = "Quit"
 
 [node name="ClossButton" type="Button" parent="Panel"]
+layout_mode = 0
 offset_left = 488.0
 offset_top = 16.0
 offset_right = 721.0

@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://dec8hadisf4cm" path="res://ui/login_page/login_page.gd" id="1_qfmr5"]
 [ext_resource type="Texture2D" uid="uid://bdkn3v4s6b3tw" path="res://assets/RPG-Actiongame-Environment-01.jpg" id="3_1lji1"]
+[ext_resource type="FontFile" uid="uid://b6caicidfsyjh" path="res://assets/fonts/MedievalSharp-Regular.ttf" id="3_ihlnx"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_11evp"]
 bg_color = Color(0.294118, 0.180392, 0.101961, 1)
@@ -141,8 +142,6 @@ corner_radius_top_right = 50
 corner_radius_bottom_right = 50
 corner_radius_bottom_left = 50
 
-[sub_resource type="SystemFont" id="SystemFont_rhts7"]
-
 [node name="LoginPage" type="Control"]
 layout_mode = 3
 anchors_preset = 15
@@ -221,8 +220,6 @@ theme_override_styles/disabled = SubResource("StyleBoxFlat_qjyds")
 theme_override_styles/hover = SubResource("StyleBoxFlat_8tu0g")
 theme_override_styles/normal = SubResource("StyleBoxFlat_hc3t0")
 text = "Exit"
-
-[node name="Node" type="Node" parent="CenterContainer"]
 
 [node name="Background image" type="TextureRect" parent="."]
 layout_mode = 2
@@ -352,7 +349,7 @@ offset_top = 184.0
 offset_right = 1507.0
 offset_bottom = 457.0
 theme_override_colors/font_color = Color(0.909804, 0.85098, 0.709804, 1)
-theme_override_fonts/font = SubResource("SystemFont_rhts7")
+theme_override_fonts/font = ExtResource("3_ihlnx")
 theme_override_font_sizes/font_size = 200
 text = "Dungeon101"
 horizontal_alignment = 1

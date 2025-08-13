@@ -1,0 +1,58 @@
+[gd_scene load_steps=3 format=3 uid="uid://brigtig6tmg1n"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_a7smn"]
+bg_color = Color(0.141176, 0.0862745, 0.0470588, 1)
+corner_radius_top_right = 50
+corner_radius_bottom_right = 50
+corner_radius_bottom_left = 50
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_s4pea"]
+bg_color = Color(0.141176, 0.0862745, 0.0470588, 1)
+
+[node name="Settings" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TabContainer" type="TabContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 40
+theme_override_styles/panel = SubResource("StyleBoxFlat_a7smn")
+theme_override_styles/tab_unselected = SubResource("StyleBoxFlat_s4pea")
+current_tab = 0
+
+[node name="Audio" type="Control" parent="TabContainer"]
+layout_mode = 2
+metadata/_tab_index = 0
+
+[node name="ScrollContainer" type="ScrollContainer" parent="TabContainer/Audio"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="TabContainer/Audio/ScrollContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="TabContainer/Audio/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Graphics" type="Control" parent="TabContainer"]
+visible = false
+layout_mode = 2
+metadata/_tab_index = 1
+
+[node name="Controls" type="Control" parent="TabContainer"]
+visible = false
+layout_mode = 2
+metadata/_tab_index = 2
