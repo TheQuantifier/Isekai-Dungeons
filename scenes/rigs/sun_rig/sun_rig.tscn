@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=3 uid="uid://btpruu3ef4op0"]
+
+[ext_resource type="Script" uid="uid://bqtqb5f04xl6b" path="res://scenes/rigs/sun_rig/sun_rig.gd" id="1_0lvm8"]
+
+[sub_resource type="SphereMesh" id="SphereMesh_mjgxe"]
+
+[node name="SunRig" type="Node3D"]
+script = ExtResource("1_0lvm8")
+
+[node name="VisibleSun" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.258819, 0, 0.965926, 0, 1, 0, -0.965926, 0, 0.258819, 0, 0, 0)
+mesh = SubResource("SphereMesh_mjgxe")
+skeleton = NodePath("../..")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+shadow_enabled = true

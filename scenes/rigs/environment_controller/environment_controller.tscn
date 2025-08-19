@@ -1,0 +1,18 @@
+[gd_scene load_steps=5 format=3 uid="uid://dnc7wc80v7ryx"]
+
+[ext_resource type="Script" uid="uid://hawbgkl2e1sf" path="res://scenes/rigs/environment_controller/environment_controller.gd" id="1_df51w"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_mjgxe"]
+
+[sub_resource type="Sky" id="Sky_yb5st"]
+sky_material = SubResource("ProceduralSkyMaterial_mjgxe")
+
+[sub_resource type="Environment" id="Environment_6sh6l"]
+background_mode = 2
+sky = SubResource("Sky_yb5st")
+
+[node name="EnvironmentController" type="Node"]
+script = ExtResource("1_df51w")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_6sh6l")
