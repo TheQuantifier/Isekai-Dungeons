@@ -48,6 +48,12 @@ func _process(_dt: float) -> void:
 		camera_rig.update_follow(player, is_first_person)
 	_update_minimap()
 
+# --- Input: keybind (e.g., V mapped to "switch_view") ---
+func _unhandled_input(event: InputEvent) -> void:
+	if event.is_action_pressed("switch_view"):
+		toggle_camera_view()
+		get_viewport().set_input_as_handled()
+
 # --- UI bridge ---
 func toggle_camera_view() -> void:
 	set_first_person(not is_first_person)
