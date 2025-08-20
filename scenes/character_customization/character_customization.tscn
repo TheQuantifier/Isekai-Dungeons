@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://dpc8blgkl8am6"]
+[gd_scene load_steps=3 format=3 uid="uid://dpc8blgkl8am6"]
 
 [ext_resource type="Script" uid="uid://dpt8fm1cvcxvf" path="res://scenes/character_customization/character_customization.gd" id="1_30xwd"]
+[ext_resource type="Theme" uid="uid://yiax7h37oyks" path="res://assets/themes/main.tres" id="2_qkfn4"]
 
 [node name="CharacterCustomization" type="Node3D"]
 script = ExtResource("1_30xwd")
@@ -18,8 +19,9 @@ anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 offset_left = 186.0
-offset_top = 922.0
+offset_top = 815.0
 offset_right = -1319.0
+offset_bottom = -69.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
@@ -27,23 +29,23 @@ alignment = 2
 
 [node name="MaleButton" type="Button" parent="UI/VBoxContainer"]
 layout_mode = 2
-theme_override_font_sizes/font_size = 30
+theme = ExtResource("2_qkfn4")
 text = "Male"
 
 [node name="FemaleButton" type="Button" parent="UI/VBoxContainer"]
 layout_mode = 2
-theme_override_font_sizes/font_size = 30
+theme = ExtResource("2_qkfn4")
 text = "Female"
 
 [node name="ConfirmButton" type="Button" parent="UI/VBoxContainer"]
 layout_mode = 2
-theme_override_font_sizes/font_size = 30
+theme = ExtResource("2_qkfn4")
 text = "Confirm"
 
 [node name="Main Menu" type="Button" parent="UI"]
 offset_right = 226.0
 offset_bottom = 63.0
-theme_override_font_sizes/font_size = 40
+theme = ExtResource("2_qkfn4")
 text = "Main Menu"
 
 [connection signal="pressed" from="UI/VBoxContainer/MaleButton" to="." method="_on_male_button_pressed"]

@@ -1,4 +1,6 @@
-[gd_scene format=3 uid="uid://c0dkm617plkg0"]
+[gd_scene load_steps=2 format=3 uid="uid://c0dkm617plkg0"]
+
+[ext_resource type="Theme" uid="uid://yiax7h37oyks" path="res://assets/themes/main.tres" id="1_igcrq"]
 
 [node name="Loading" type="Control"]
 layout_mode = 3
@@ -31,6 +33,6 @@ offset_left = 48.0
 offset_top = 968.0
 offset_right = 1768.0
 offset_bottom = 1056.0
-theme_override_font_sizes/font_size = 50
+theme = ExtResource("1_igcrq")
 indeterminate = true
 editor_preview_indeterminate = true

@@ -1,9 +1,10 @@
-[gd_scene load_steps=8 format=3 uid="uid://b4x8xoilsxgnq"]
+[gd_scene load_steps=9 format=3 uid="uid://b4x8xoilsxgnq"]
 
 [ext_resource type="Texture2D" uid="uid://dowgnsnt54qwu" path="res://assets/inventory-backpack-icon-game-2d-game-fantasy-game-pocket-game-cartoon-design-illustration-vector.png" id="1_ku4oe"]
 [ext_resource type="Script" uid="uid://dge70mwyygipr" path="res://ui/menus_canvas_layer/menus_canvas_layer.gd" id="1_o8nmh"]
 [ext_resource type="Texture2D" uid="uid://dxb7tunty40" path="res://assets/exit-12.png" id="2_o8nmh"]
 [ext_resource type="PackedScene" uid="uid://6rrjq74htlgk" path="res://ui/exit_menu/exit_menu.tscn" id="3_srg8d"]
+[ext_resource type="Theme" uid="uid://yiax7h37oyks" path="res://assets/themes/main.tres" id="5_srg8d"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_41oi7"]
 bg_color = Color(0.6, 0.6, 0.6, 0)
@@ -69,6 +70,7 @@ offset_left = 72.0
 offset_top = 984.0
 offset_right = 309.0
 offset_bottom = 1047.0
+theme = ExtResource("5_srg8d")
 theme_override_font_sizes/font_size = 40
 text = "Switch View"
 
