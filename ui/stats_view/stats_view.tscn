@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://dsuaihr8go6er"]
+[gd_scene load_steps=4 format=3 uid="uid://dsuaihr8go6er"]
 
 [ext_resource type="Script" uid="uid://b3e7wmu7tlfq7" path="res://ui/stats_view/stats_view.gd" id="1_2myqe"]
 [ext_resource type="Texture2D" uid="uid://den7yq6jk7svu" path="res://assets/logo.png" id="2_avxw4"]
+[ext_resource type="Theme" uid="uid://yiax7h37oyks" path="res://assets/themes/main.tres" id="3_qi12m"]
 
 [node name="StatsView" type="Control"]
 layout_mode = 3
@@ -362,6 +363,7 @@ theme_override_font_sizes/font_size = 50
 text = "Other Stats 1"
 
 [node name="MainMenuButton" type="Button" parent="."]
+top_level = true
 layout_mode = 1
 anchors_preset = 3
 anchor_left = 1.0
@@ -372,7 +374,7 @@ offset_left = -226.0
 offset_top = -63.0
 grow_horizontal = 0
 grow_vertical = 0
-theme_override_font_sizes/font_size = 40
+theme = ExtResource("3_qi12m")
 text = "Main Menu"
 
 [node name="ColorRect" type="ColorRect" parent="."]

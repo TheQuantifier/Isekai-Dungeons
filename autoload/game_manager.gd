@@ -19,9 +19,21 @@ func _ready() -> void:
 	if get_tree().current_scene:
 		current_scene_path = get_tree().current_scene.scene_file_path
 
+# --- Paths ---
+func get_save_path(username: String) -> String:
+	return "user://data/characters/%s.tres" % username
+
+func _ensure_save_dir() -> void:
+	var dir_path := "user://data/characters"
+	if not DirAccess.dir_exists_absolute(dir_path):
+		var err := DirAccess.make_dir_recursive_absolute(dir_path)
+		if err != OK:
+			push_error("Failed to create save directory: " + dir_path)
+
 # === Game Flow ===
 func start_new_game(username: String, password: String, is_new: bool, char_id := "") -> void:
-	var save_path := "res://data/characters/%s.tres" % username
+	_ensure_save_dir()
+	var save_path := get_save_path(username)
 
 	if is_new:
 		var new_char := Character.new()
@@ -30,39 +42,67 @@ func start_new_game(username: String, password: String, is_new: bool, char_id :=
 		new_char.password = password
 		new_char.last_position = Vector3(0, 0.5, 0)
 		current_character = new_char
+
 		var save_result := ResourceSaver.save(new_char, save_path)
 		if save_result != OK:
-			push_error("Failed to save new character to disk.")
+			push_error("Failed to save new character to disk: " + save_path)
 		else:
-			print("Created and saved new character: %s" % char_id)
+			print("Created and saved new character: %s at %s" % [char_id, save_path])
 		go_to("character_customization")
 	else:
+		# Try user:// first (runtime saves), then res:// (dev fallback/templates)
+		var loaded_res: Resource = null
 		if ResourceLoader.exists(save_path):
-			var loaded_res := ResourceLoader.load(save_path)
-			if loaded_res is Character:
-				if loaded_res.password == password:
-					current_character = loaded_res
-					print("Loaded existing character: %s" % loaded_res.char_id)
-					go_to("main_menu")
-				else:
-					push_error("Password mismatch for existing character: %s" % username)
-			else:
-				push_error("File exists but is not a valid Character resource.")
+			loaded_res = ResourceLoader.load(save_path)
 		else:
-			push_error("No character file found for: %s" % username)
+			var dev_path := "res://data/characters/%s.tres" % username
+			if ResourceLoader.exists(dev_path):
+				loaded_res = ResourceLoader.load(dev_path)
+
+		if loaded_res is Character:
+			var loaded_char := loaded_res as Character
+			if loaded_char.password == password:
+				current_character = loaded_char
+				print("Loaded character: %s" % loaded_char.char_id)
+				go_to("main_menu")
+			else:
+				push_error("Password mismatch for existing character: " + username)
+		else:
+			push_error("No valid character file found for: " + username)
 
 # === Save Logic ===
 func save_player_position(position: Vector3) -> void:
-	if current_character:
-		var safe_position := position
-		if position.y < -1.0:
-			push_warning("Character is falling — saving fallback position instead.")
-			safe_position = Vector3(0, 0.5, 0)
-		current_character.last_position = safe_position
-		var file_path := "res://data/characters/%s.tres" % current_character.username
-		var result := ResourceSaver.save(current_character, file_path)
-		if result != OK:
-			push_error("Failed to save character data to: " + file_path)
+	if current_character == null:
+		push_warning("save_player_position: no current_character to write to.")
+		return
+
+	var safe_position := position
+	if position.y < -1.0:
+		push_warning("Character is falling — saving fallback position instead.")
+		safe_position = Vector3(0, 0.5, 0)
+
+	current_character.last_position = safe_position
+	_ensure_save_dir()
+	var file_path := get_save_path(current_character.username)
+	var result := ResourceSaver.save(current_character, file_path)
+	if result != OK:
+		push_error("Failed to save character data to: " + file_path)
+
+func save_player_position_from(player: Node3D) -> void:
+	if player == null:
+		push_warning("save_player_position_from: player is null.")
+		return
+	save_player_position(player.global_position)
+
+func save_current_character() -> void:
+	if current_character == null:
+		push_warning("save_current_character: no current_character.")
+		return
+	_ensure_save_dir()
+	var file_path := get_save_path(current_character.username)
+	var result := ResourceSaver.save(current_character, file_path)
+	if result != OK:
+		push_error("Failed to save character to: " + file_path)
 
 # === Quit Game ===
 func quit_game() -> void:

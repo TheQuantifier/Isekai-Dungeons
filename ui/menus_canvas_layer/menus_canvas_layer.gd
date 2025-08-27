@@ -77,6 +77,9 @@ func _on_sun_slider_value_changed(value: float) -> void:
 func _on_exit_button_pressed() -> void:
 	if exit_menu != null:
 		exit_menu.visible = true
+		# --- Save player location when exit menu opens ---
+		if is_instance_valid(game_world) and is_instance_valid(game_world.player):
+			game_manager.save_player_position(game_world.player.global_position)
 
 func _on_inventory_button_pressed() -> void:
 	game_manager.go_to("stats")

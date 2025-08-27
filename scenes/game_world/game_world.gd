@@ -18,6 +18,10 @@ signal camera_view_changed(is_first_person: bool)
 
 var is_first_person := false
 
+# --- Autosave ---
+const AUTOSAVE_INTERVAL := 10.0
+var _autosave_timer: Timer
+
 func _ready() -> void:
 	# Configure sub-systems once (guarded)
 	if camera_rig: camera_rig.configure()
@@ -41,12 +45,29 @@ func _ready() -> void:
 	if is_instance_valid(player) and game_manager.current_character and game_manager.current_character.last_position:
 		player.global_position = game_manager.current_character.last_position
 
+	# Start autosave timer
+	_autosave_timer = Timer.new()
+	_autosave_timer.wait_time = AUTOSAVE_INTERVAL
+	_autosave_timer.one_shot = false
+	_autosave_timer.autostart = true
+	add_child(_autosave_timer)
+	_autosave_timer.timeout.connect(_on_autosave_timeout)
+
 func _process(_dt: float) -> void:
 	if not is_instance_valid(player):
 		return
 	if camera_rig:
 		camera_rig.update_follow(player, is_first_person)
 	_update_minimap()
+
+# Save once more when the scene exits (e.g., switching scenes or quitting)
+func _exit_tree() -> void:
+	if is_instance_valid(player):
+		game_manager.save_player_position(player.global_position)
+
+func _on_autosave_timeout() -> void:
+	if is_instance_valid(player):
+		game_manager.save_player_position(player.global_position)
 
 # --- Input: keybind (e.g., V mapped to "switch_view") ---
 func _unhandled_input(event: InputEvent) -> void:
@@ -69,7 +90,9 @@ func set_sun_elevation_ui(v: float) -> void:
 		sun_rig.set_ui_elevation_deg(v)
 
 func get_minimap_texture() -> Texture2D:
-	return minimap_viewport.get_texture() if minimap_viewport else null
+	if minimap_viewport:
+		return minimap_viewport.get_texture()
+	return null
 
 # --- Internals ---
 func _update_minimap() -> void:
