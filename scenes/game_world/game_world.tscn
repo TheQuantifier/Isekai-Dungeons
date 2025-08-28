@@ -1,6 +1,5 @@
 [gd_scene load_steps=11 format=3 uid="uid://tvefuc2jd8cc"]
 
-[ext_resource type="PackedScene" uid="uid://bkd5chj1tyrsd" path="res://scenes/game_world/ground.tscn" id="1_254f3"]
 [ext_resource type="Script" uid="uid://dj6ds81qxtn0j" path="res://scenes/game_world/game_world.gd" id="1_mjgxe"]
 [ext_resource type="PackedScene" uid="uid://cgjylwr71uayr" path="res://scenes/player/player.tscn" id="2_mjgxe"]
 [ext_resource type="PackedScene" uid="uid://bgvjgrw6886vi" path="res://scenes/rigs/camera_rig/camera_pivot.tscn" id="4_5w0b0"]
@@ -10,11 +9,10 @@
 [ext_resource type="PackedScene" uid="uid://cqn3bmrakwgxf" path="res://scenes/game_world/village_setup.tscn" id="9_5w0b0"]
 [ext_resource type="PackedScene" uid="uid://4oi3doh81th4" path="res://scenes/game_world/city_walls.tscn" id="10_4vb8v"]
 [ext_resource type="PackedScene" uid="uid://dnc7wc80v7ryx" path="res://scenes/rigs/environment_controller/environment_controller.tscn" id="10_dlc66"]
+[ext_resource type="PackedScene" uid="uid://cscqmq20f8ib3" path="res://scenes/game_world/main_terrain/main_terrain.tscn" id="11_4vb8v"]
 
 [node name="GameWorld" type="Node3D"]
 script = ExtResource("1_mjgxe")
-
-[node name="Ground" parent="." instance=ExtResource("1_254f3")]
 
 [node name="Player" parent="." instance=ExtResource("2_mjgxe")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7, 0, 2)
@@ -45,3 +43,5 @@ projection = 1
 size = 0.001
 
 [node name="EnvironmentController" parent="." instance=ExtResource("10_dlc66")]
+
+[node name="MainTerrain" parent="." instance=ExtResource("11_4vb8v")]

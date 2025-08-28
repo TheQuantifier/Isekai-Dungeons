@@ -28,18 +28,19 @@ func _ready() -> void:
 	if sun_rig:    sun_rig.configure()
 	if env_ctrl:   env_ctrl.configure()
 
-	# Minimap setup (still world-owned)
+	# Minimap setup (world-owned)
 	if minimap_viewport:
 		minimap_viewport.size = Vector2i(minimap_size, minimap_size)
 		minimap_viewport.disable_3d = false
 		minimap_viewport.transparent_bg = true
 		minimap_viewport.render_target_update_mode = SubViewport.UPDATE_ALWAYS
 		minimap_viewport.render_target_clear_mode = SubViewport.CLEAR_MODE_ALWAYS
+		# Ensure it renders the same World3D as GameWorld (keep Own World 3D OFF)
 
 	if minimap_camera:
 		minimap_camera.projection = Camera3D.PROJECTION_ORTHOGONAL
 		minimap_camera.size = minimap_ortho_size
-		minimap_camera.current = true
+		minimap_camera.current = true  # SubViewport-local
 
 	# Restore player position
 	if is_instance_valid(player) and game_manager.current_character and game_manager.current_character.last_position:
@@ -60,7 +61,6 @@ func _process(_dt: float) -> void:
 		camera_rig.update_follow(player, is_first_person)
 	_update_minimap()
 
-# Save once more when the scene exits (e.g., switching scenes or quitting)
 func _exit_tree() -> void:
 	if is_instance_valid(player):
 		game_manager.save_player_position(player.global_position)
@@ -90,9 +90,7 @@ func set_sun_elevation_ui(v: float) -> void:
 		sun_rig.set_ui_elevation_deg(v)
 
 func get_minimap_texture() -> Texture2D:
-	if minimap_viewport:
-		return minimap_viewport.get_texture()
-	return null
+	return minimap_viewport.get_texture() if minimap_viewport else null
 
 # --- Internals ---
 func _update_minimap() -> void:
