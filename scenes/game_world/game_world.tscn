@@ -8,8 +8,8 @@
 [ext_resource type="PackedScene" uid="uid://b4x8xoilsxgnq" path="res://ui/menus_canvas_layer/menus_canvas_layer.tscn" id="5_nxv6a"]
 [ext_resource type="PackedScene" uid="uid://cqn3bmrakwgxf" path="res://scenes/game_world/village_setup.tscn" id="9_5w0b0"]
 [ext_resource type="PackedScene" uid="uid://4oi3doh81th4" path="res://scenes/game_world/city_walls.tscn" id="10_4vb8v"]
+[ext_resource type="PackedScene" uid="uid://bodi3vk2ktu5p" path="res://scenes/game_world/terrain/main_terrain/main_terrain.tscn" id="10_5w0b0"]
 [ext_resource type="PackedScene" uid="uid://dnc7wc80v7ryx" path="res://scenes/rigs/environment_controller/environment_controller.tscn" id="10_dlc66"]
-[ext_resource type="PackedScene" uid="uid://cscqmq20f8ib3" path="res://scenes/game_world/main_terrain/main_terrain.tscn" id="11_4vb8v"]
 
 [node name="GameWorld" type="Node3D"]
 script = ExtResource("1_mjgxe")
@@ -44,4 +44,4 @@ size = 0.001
 
 [node name="EnvironmentController" parent="." instance=ExtResource("10_dlc66")]
 
-[node name="MainTerrain" parent="." instance=ExtResource("11_4vb8v")]
+[node name="MainTerrain" parent="." instance=ExtResource("10_5w0b0")]

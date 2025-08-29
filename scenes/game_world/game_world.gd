@@ -22,6 +22,9 @@ var is_first_person := false
 const AUTOSAVE_INTERVAL := 10.0
 var _autosave_timer: Timer
 
+# --- NEW: cache last known safe position while we're still in the tree
+var _last_player_pos: Vector3 = Vector3.ZERO
+
 func _ready() -> void:
 	# Configure sub-systems once (guarded)
 	if camera_rig: camera_rig.configure()
@@ -35,7 +38,6 @@ func _ready() -> void:
 		minimap_viewport.transparent_bg = true
 		minimap_viewport.render_target_update_mode = SubViewport.UPDATE_ALWAYS
 		minimap_viewport.render_target_clear_mode = SubViewport.CLEAR_MODE_ALWAYS
-		# Ensure it renders the same World3D as GameWorld (keep Own World 3D OFF)
 
 	if minimap_camera:
 		minimap_camera.projection = Camera3D.PROJECTION_ORTHOGONAL
@@ -45,6 +47,10 @@ func _ready() -> void:
 	# Restore player position
 	if is_instance_valid(player) and game_manager.current_character and game_manager.current_character.last_position:
 		player.global_position = game_manager.current_character.last_position
+
+	# Initialize cached pos if possible
+	if is_instance_valid(player) and player.is_inside_tree():
+		_last_player_pos = player.global_position
 
 	# Start autosave timer
 	_autosave_timer = Timer.new()
@@ -57,17 +63,24 @@ func _ready() -> void:
 func _process(_dt: float) -> void:
 	if not is_instance_valid(player):
 		return
+
+	# Keep the cached position fresh while we're in the tree
+	if player.is_inside_tree():
+		_last_player_pos = player.global_position
+
 	if camera_rig:
 		camera_rig.update_follow(player, is_first_person)
+
 	_update_minimap()
 
 func _exit_tree() -> void:
-	if is_instance_valid(player):
-		game_manager.save_player_position(player.global_position)
+	# Do NOT read player.global_position here (node may be out of the tree).
+	# Use the last cached safe value instead.
+	game_manager.save_player_position(_last_player_pos)
 
 func _on_autosave_timeout() -> void:
-	if is_instance_valid(player):
-		game_manager.save_player_position(player.global_position)
+	# Use cached value so autosave is safe even if a scene change is imminent.
+	game_manager.save_player_position(_last_player_pos)
 
 # --- Input: keybind (e.g., V mapped to "switch_view") ---
 func _unhandled_input(event: InputEvent) -> void:
@@ -99,5 +112,5 @@ func _update_minimap() -> void:
 	var mini_basis := Basis().rotated(Vector3.RIGHT, -PI * 0.5).rotated(Vector3.UP, player.rotation.y + PI)
 	minimap_camera.global_transform = Transform3D(
 		mini_basis,
-		Vector3(player.global_position.x, minimap_height, player.global_position.z)
+		Vector3(_last_player_pos.x, minimap_height, _last_player_pos.z)
 	)
