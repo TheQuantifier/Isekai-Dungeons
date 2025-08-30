@@ -67,22 +67,22 @@ blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_ujf6r")
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_0kj37"]
-size = Vector3(2.22412, 13.1054, 9.14241)
+size = Vector3(1.43695, 13.1054, 9.14241)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_3rrhv"]
-size = Vector3(0.173523, 0.435669, 1.52283)
+size = Vector3(0.0748749, 0.435669, 1.52283)
 
 [node name="TallWall" type="StaticBody3D"]
 
 [node name="TallWallBricks2" type="MeshInstance3D" parent="."]
-transform = Transform3D(-0.000131134, -3000, -0.000357628, 0, -0.000357628, 3000, -3000, 0.000131134, 1.56324e-11, 0, 0, 0)
+transform = Transform3D(-0.000131134, -1750.33, -0.000357628, 0, -0.000208656, 3000, -3000, 7.65095e-05, 1.56324e-11, 0, 0, 0)
 mesh = SubResource("ArrayMesh_fd1r6")
 skeleton = NodePath("")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, 0.00854492, 32.7615, -0.0538254)
+transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, 0.0935369, 32.7615, -0.0538254)
 shape = SubResource("BoxShape3D_0kj37")
 
 [node name="CollisionShape3D2" type="CollisionShape3D" parent="."]
-transform = Transform3D(30, 0, 0, 0, 30, 0, 0, 0, 30, 4.63606, 63.9269, -0.0640869)
+transform = Transform3D(30, 0, 0, 0, 30, 0, 0, 0, 30, 3.15634, 63.9269, -0.0640869)
 shape = SubResource("BoxShape3D_3rrhv")

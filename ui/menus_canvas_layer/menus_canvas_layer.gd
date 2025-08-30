@@ -1,6 +1,7 @@
-# res://ui/menus_canvas_layer/menus_canvas_layer.gd
 extends CanvasLayer
 class_name MenusCanvasLayer
+
+signal exit_menu_visibility_changed(visible: bool)  # NEW
 
 @onready var sun_slider: HSlider = $SunSlider
 @onready var view_switch_button: Button = $ViewSwitchButton
@@ -13,18 +14,16 @@ class_name MenusCanvasLayer
 var sun_rig: SunRig
 
 func _resolve_game_world() -> GameWorld:
-	# 1) Use the exported path if set
 	if String(game_world_path) != "":
 		var n := get_node_or_null(game_world_path)
 		if n is GameWorld:
 			return n
-	# 2) Fallback to parent when MenusCanvasLayer is instanced under GameWorld
 	var p := get_parent()
 	return p as GameWorld
 
 func _ready() -> void:
 	if game_world == null:
-		push_warning("MenusCanvasLayer: Could not resolve GameWorld. Set 'game_world_path' on this instance or make it a child of GameWorld.")
+		push_warning("MenusCanvasLayer: Could not resolve GameWorld. Set 'game_world_path' or make it a child of GameWorld.")
 		return
 
 	# SunRig
@@ -48,6 +47,10 @@ func _ready() -> void:
 	# Minimap texture
 	_set_minimap_texture()
 
+	# NEW: watch Exit Menu visibility changes
+	if exit_menu and not exit_menu.visibility_changed.is_connected(_on_exit_menu_visibility_changed):
+		exit_menu.visibility_changed.connect(_on_exit_menu_visibility_changed)
+
 func _set_minimap_texture() -> void:
 	if game_world == null or minimap_display == null:
 		return
@@ -58,7 +61,7 @@ func _set_minimap_texture() -> void:
 	else:
 		call_deferred("_set_minimap_texture")
 
-# --- Buttons / Handlers (unchanged) ---
+# --- Buttons / Handlers ---
 func _on_view_switch_button_pressed() -> void:
 	if game_world != null:
 		game_world.toggle_camera_view()
@@ -74,11 +77,20 @@ func _on_sun_slider_value_changed(value: float) -> void:
 		sun_rig.set_ui_elevation_deg(value)
 	sun_slider.release_focus()
 
+# CHANGED: just toggle; do NOT save here
 func _on_exit_button_pressed() -> void:
-	if exit_menu != null:
-		exit_menu.visible = true
-		if is_instance_valid(game_world) and is_instance_valid(game_world.player):
-			game_manager.save_player_position(game_world.player.global_position)
+	toggle_exit_menu()
+
+# NEW: single source of truth for opening/closing
+func toggle_exit_menu() -> void:
+	if exit_menu == null:
+		return
+	exit_menu.visible = not exit_menu.visible  # triggers visibility_changed signal
+
+# NEW: emit signal upward with current visibility
+func _on_exit_menu_visibility_changed() -> void:
+	exit_menu_visibility_changed.emit(exit_menu.visible)
+
 
 func _on_inventory_button_pressed() -> void:
-	game_manager.go_to("inventory")
+	game_manager.go_to(Page.INVENTORY)

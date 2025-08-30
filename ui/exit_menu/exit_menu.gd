@@ -3,11 +3,11 @@ extends Control
 
 func _on_main_menu_button_pressed() -> void:
 	get_tree().paused = false
-	game_manager.go_to("main_menu")
+	game_manager.go_to(Page.MAIN_MENU)
 
 func _on_settings_button_pressed() -> void:
 	get_tree().paused = false
-	game_manager.go_to("settings")
+	game_manager.go_to(Page.SETTINGS)
 
 func _on_quit_button_pressed() -> void:
 	get_tree().paused = false

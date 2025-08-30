@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://tvefuc2jd8cc"]
+[gd_scene load_steps=14 format=3 uid="uid://tvefuc2jd8cc"]
 
 [ext_resource type="Script" uid="uid://dj6ds81qxtn0j" path="res://scenes/game_world/game_world.gd" id="1_mjgxe"]
 [ext_resource type="PackedScene" uid="uid://cgjylwr71uayr" path="res://scenes/player/player.tscn" id="2_mjgxe"]
@@ -10,6 +10,14 @@
 [ext_resource type="PackedScene" uid="uid://4oi3doh81th4" path="res://scenes/game_world/city_walls.tscn" id="10_4vb8v"]
 [ext_resource type="PackedScene" uid="uid://bodi3vk2ktu5p" path="res://scenes/game_world/terrain/main_terrain/main_terrain.tscn" id="10_5w0b0"]
 [ext_resource type="PackedScene" uid="uid://dnc7wc80v7ryx" path="res://scenes/rigs/environment_controller/environment_controller.tscn" id="10_dlc66"]
+[ext_resource type="PackedScene" uid="uid://crp3wwcqb31gw" path="res://scenes/game_world/castle/castle.tscn" id="11_4vb8v"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_yb5st"]
+margin = 0.0
+size = Vector3(4, 0.1, 8)
+
+[sub_resource type="BoxMesh" id="BoxMesh_yb5st"]
+size = Vector3(4, 0.1, 8)
 
 [node name="GameWorld" type="Node3D"]
 script = ExtResource("1_mjgxe")
@@ -25,6 +33,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -159, 0, 0)
 
 [node name="Objects" parent="." instance=ExtResource("4_pon8i")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 179.743, 0, 49.237)
+visible = false
 
 [node name="MenusCanvasLayer" parent="." instance=ExtResource("5_nxv6a")]
 
@@ -45,3 +54,19 @@ size = 0.001
 [node name="EnvironmentController" parent="." instance=ExtResource("10_dlc66")]
 
 [node name="MainTerrain" parent="." instance=ExtResource("10_5w0b0")]
+
+[node name="Castle" parent="." instance=ExtResource("11_4vb8v")]
+transform = Transform3D(0.9, 0, 0, 0, 0.9, 0, 0, 0, 0.9, -0.00196075, 10, -312.562)
+
+[node name="RampToCastleTemp" type="StaticBody3D" parent="."]
+transform = Transform3D(-2.8, 1.50716e-08, 5.75878e-07, -8.76229e-08, -0.309526, 1.63744, -2.28564e-07, -0.0659723, -7.68248, -0.126, 3.5, -120.56)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="RampToCastleTemp"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.2, 0.3, 0)
+shape = SubResource("BoxShape3D_yb5st")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="RampToCastleTemp"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.2, 0.3, 0)
+mesh = SubResource("BoxMesh_yb5st")
+
+[editable path="Objects"]

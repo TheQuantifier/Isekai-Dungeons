@@ -26,14 +26,14 @@ func _ready():
 
 func _on_play_pressed():
 	if play_button and not play_button.disabled:
-		game_manager.go_to("game_world",true, 0.0, "res://assets/RPG-Actiongame-Environment-01.jpg")
+		game_manager.go_to(Page.GAME_WORLD,true, 0.0, "res://assets/RPG-Actiongame-Environment-01.jpg")
 
 func _on_edit_character_pressed():
-	game_manager.go_to("character_customization")
+	game_manager.go_to(Page.CHARACTER_CUSTOMIZATION)
 
 func _on_view_stats_pressed():
 	if stats_button and not stats_button.disabled:
-		game_manager.go_to("stats")
+		game_manager.go_to(Page.STATS)
 
 func _on_log_out_pressed():
-	game_manager.go_to("login")
+	game_manager.go_to(Page.LOGIN)

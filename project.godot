@@ -13,7 +13,7 @@ config_version=5
 config/name="ProjectDungeon101"
 config/description="My main game project currently titled Dungeon101."
 run/main_scene="uid://dm08ug13g54tn"
-config/features=PackedStringArray("4.4", "Forward Plus")
+config/features=PackedStringArray("4.4", "C#", "Forward Plus")
 config/icon="uid://den7yq6jk7svu"
 
 [autoload]
@@ -26,9 +26,13 @@ window/size/viewport_width=1800
 window/size/viewport_height=1080
 window/stretch/mode="viewport"
 
+[dotnet]
+
+project/assembly_name="ProjectDungeon101"
+
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/terrain_3d/plugin.cfg")
+enabled=PackedStringArray("res://addons/terrain_3d/plugin.cfg", "res://addons/waterways_net/plugin.cfg")
 
 [input]
 

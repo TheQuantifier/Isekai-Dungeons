@@ -1,0 +1,14 @@
+[gd_scene load_steps=2 format=3 uid="uid://crp3wwcqb31gw"]
+
+[ext_resource type="PackedScene" uid="uid://6gotbep058qj" path="res://scenes/game_world/castle/castle_walls.tscn" id="1_njp17"]
+
+[node name="Castle" type="Node3D"]
+transform = Transform3D(0.9, 0, 0, 0, 0.9, 0, 0, 0, 0.9, 0, 0, 0)
+
+[node name="CastleWalls" parent="." instance=ExtResource("1_njp17")]
+transform = Transform3D(1, 0, 0, 0, 0.667, 0, 0, 0, 1, 0, 0, 0)
+
+[node name="TallWallEntrance" parent="CastleWalls/QuarterWall4" index="5"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 164.888, 0, 0.50321)
+
+[editable path="CastleWalls"]
