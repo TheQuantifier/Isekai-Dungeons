@@ -22,7 +22,7 @@ size = Vector3(4, 0.1, 8)
 [node name="GameWorld" type="Node3D"]
 script = ExtResource("1_mjgxe")
 
-[node name="Player" parent="." instance=ExtResource("2_mjgxe")]
+[node name="Player" parent="." groups=["player"] instance=ExtResource("2_mjgxe")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7, 0, 2)
 
 [node name="CameraRig" parent="." instance=ExtResource("4_5w0b0")]

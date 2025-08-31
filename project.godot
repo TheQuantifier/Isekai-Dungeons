@@ -34,6 +34,10 @@ project/assembly_name="ProjectDungeon101"
 
 enabled=PackedStringArray("res://addons/terrain_3d/plugin.cfg", "res://addons/waterways_net/plugin.cfg")
 
+[global_group]
+
+player=""
+
 [input]
 
 move_forward={
