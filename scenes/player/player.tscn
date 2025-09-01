@@ -1,6 +1,7 @@
-[gd_scene load_steps=3 format=3 uid="uid://cgjylwr71uayr"]
+[gd_scene load_steps=4 format=3 uid="uid://cgjylwr71uayr"]
 
 [ext_resource type="Script" uid="uid://b2ed8ehahjgmq" path="res://scenes/player/player.gd" id="1_j2pnm"]
+[ext_resource type="Resource" uid="uid://h0nctyk7p3r8" path="res://config/player_settings.tres" id="2_dovo2"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_4kb1o"]
 radius = 0.354493
@@ -8,6 +9,7 @@ height = 1.98526
 
 [node name="Player" type="CharacterBody3D"]
 script = ExtResource("1_j2pnm")
+settings = ExtResource("2_dovo2")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(0.95, 0, 0, 0, 0.95, 0, 0, 0, 0.95, 0, 0.94, 0)

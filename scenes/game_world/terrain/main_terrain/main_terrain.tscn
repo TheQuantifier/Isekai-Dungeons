@@ -113,7 +113,7 @@ shader_parameter/i_lod0_distance = 50.0
 shader_parameter/i_valid_flowmap = false
 shader_parameter/i_uv2_sides = 2
 
-[sub_resource type="ArrayMesh" id="ArrayMesh_nj8kb"]
+[sub_resource type="ArrayMesh" id="ArrayMesh_nyqno"]
 resource_local_to_scene = true
 _surfaces = [{
 "aabb": AABB(-160.482, 0, -12.467, 406.798, 1e-05, 417.841),
@@ -193,7 +193,7 @@ shader_parameter/i_lod0_distance = 50.0
 shader_parameter/i_valid_flowmap = false
 shader_parameter/i_uv2_sides = 2
 
-[sub_resource type="ArrayMesh" id="ArrayMesh_843eq"]
+[sub_resource type="ArrayMesh" id="ArrayMesh_2ijyl"]
 resource_local_to_scene = true
 _surfaces = [{
 "aabb": AABB(-608.081, 0, -52.5359, 1213.15, 1e-05, 1200.98),
@@ -234,7 +234,7 @@ Curve = SubResource("Curve3D_2ijyl")
 metadata/_custom_type_script = "uid://cghnumc56ijji"
 
 [node name="RiverManagerMesh" type="MeshInstance3D" parent="Moats/CastleMoat"]
-mesh = SubResource("ArrayMesh_nj8kb")
+mesh = SubResource("ArrayMesh_nyqno")
 skeleton = NodePath("../../..")
 metadata/BaseMeshGenerator = true
 
@@ -247,7 +247,7 @@ Curve = SubResource("Curve3D_p1bpn")
 metadata/_custom_type_script = "uid://cghnumc56ijji"
 
 [node name="CityMoatMesh" type="MeshInstance3D" parent="Moats/CityMoat"]
-mesh = SubResource("ArrayMesh_843eq")
+mesh = SubResource("ArrayMesh_2ijyl")
 skeleton = NodePath("../../..")
 metadata/BaseMeshGenerator = true
 

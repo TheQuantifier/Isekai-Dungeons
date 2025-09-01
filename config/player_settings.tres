@@ -1,0 +1,40 @@
+[gd_resource type="Resource" script_class="PlayerSettings" load_steps=2 format=3 uid="uid://h0nctyk7p3r8"]
+
+[ext_resource type="Script" uid="uid://04vt6ixod7kj" path="res://config/gdscript/player_settings.gd" id="1_nx4jk"]
+
+[resource]
+script = ExtResource("1_nx4jk")
+move_speed = 8.0
+sprint_speed = 40.0
+crouch_speed = 4.0
+airborne_speed = 4.0
+jump_velocity = 14.0
+turn_speed = 2.0
+gravity = 40.0
+water_speed = 4.0
+water_sprint_speed = 20.0
+water_turn_speed = 1.0
+water_surface_height = -5.0
+surface_offset = -0.75
+enable_surface_hold = true
+enable_bob = true
+bob_height = 0.2
+bob_speed = 0.5
+bob_follow_accel = 12.0
+bob_max_speed = 6.0
+water_sink_accel = 3.0
+max_sink_speed = 3.0
+anim_idle = 1.0
+anim_run = 1.0
+anim_run_backward = 1.0
+anim_sprint = 1.5
+anim_sprint_backward = 2.0
+anim_crouch_idle = 1.0
+anim_crouch_run = 1.0
+anim_crouch_run_backward = 1.0
+anim_jump = 2.75
+anim_swim = 1.0
+anim_swim_sprint = 1.5
+anim_treading = 1.0
+anim_smoothness = -1.0
+metadata/_custom_type_script = "uid://04vt6ixod7kj"
