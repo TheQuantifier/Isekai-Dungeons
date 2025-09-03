@@ -87,7 +87,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -60)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -72)
 
 [node name="Roads4" type="Node3D" parent="RoadsNW"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00830078, -0.00415039, -191.933)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.008, 0, -191.933)
 
 [node name="Road1" parent="RoadsNW/Roads4" instance=ExtResource("1_td4ql")]
 
@@ -113,7 +113,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -60)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -72)
 
 [node name="Roads5" type="Node3D" parent="RoadsNW"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0105743, -0.00439453, -287.923)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.011, 0, -287.923)
 
 [node name="Road1" parent="RoadsNW/Roads5" instance=ExtResource("1_td4ql")]
 
@@ -139,7 +139,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -60)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -72)
 
 [node name="Roads6" type="Node3D" parent="RoadsNW"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00671387, -0.00366211, -383.934)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.007, 0, -383.934)
 
 [node name="Road1" parent="RoadsNW/Roads6" instance=ExtResource("1_td4ql")]
 
@@ -162,6 +162,32 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -48)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -60)
 
 [node name="Road8" parent="RoadsNW/Roads6" instance=ExtResource("1_td4ql")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -72)
+
+[node name="Roads7" type="Node3D" parent="RoadsNW"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00952148, 0, -479.906)
+
+[node name="Road1" parent="RoadsNW/Roads7" instance=ExtResource("1_td4ql")]
+
+[node name="Road2" parent="RoadsNW/Roads7" instance=ExtResource("1_td4ql")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -12)
+
+[node name="Road3" parent="RoadsNW/Roads7" instance=ExtResource("1_td4ql")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -24)
+
+[node name="Road4" parent="RoadsNW/Roads7" instance=ExtResource("1_td4ql")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 12)
+
+[node name="Road5" parent="RoadsNW/Roads7" instance=ExtResource("1_td4ql")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -36)
+
+[node name="Road6" parent="RoadsNW/Roads7" instance=ExtResource("1_td4ql")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -48)
+
+[node name="Road7" parent="RoadsNW/Roads7" instance=ExtResource("1_td4ql")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -60)
+
+[node name="Road8" parent="RoadsNW/Roads7" instance=ExtResource("1_td4ql")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -72)
 
 [node name="RoadsNE" type="Node3D" parent="."]
@@ -322,6 +348,32 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -48)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -60)
 
 [node name="Road8" parent="RoadsNE/Roads6" instance=ExtResource("1_td4ql")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -72)
+
+[node name="Roads7" type="Node3D" parent="RoadsNE"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00952148, 0, -479.906)
+
+[node name="Road1" parent="RoadsNE/Roads7" instance=ExtResource("1_td4ql")]
+
+[node name="Road2" parent="RoadsNE/Roads7" instance=ExtResource("1_td4ql")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -12)
+
+[node name="Road3" parent="RoadsNE/Roads7" instance=ExtResource("1_td4ql")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -24)
+
+[node name="Road4" parent="RoadsNE/Roads7" instance=ExtResource("1_td4ql")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 12)
+
+[node name="Road5" parent="RoadsNE/Roads7" instance=ExtResource("1_td4ql")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -36)
+
+[node name="Road6" parent="RoadsNE/Roads7" instance=ExtResource("1_td4ql")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -48)
+
+[node name="Road7" parent="RoadsNE/Roads7" instance=ExtResource("1_td4ql")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -60)
+
+[node name="Road8" parent="RoadsNE/Roads7" instance=ExtResource("1_td4ql")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -72)
 
 [node name="RoadsMiddle" type="Node3D" parent="."]

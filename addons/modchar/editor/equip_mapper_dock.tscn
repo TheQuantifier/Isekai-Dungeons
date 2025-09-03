@@ -1,0 +1,96 @@
+[gd_scene load_steps=7 format=3 uid="uid://cpdbpgrn8una2"]
+
+[ext_resource type="Script" uid="uid://cwfknr4aqp4ch" path="res://addons/modchar/editor/equip_mapper_dock.gd" id="1_1kwa3"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_1kwa3"]
+
+[sub_resource type="Sky" id="Sky_ubndf"]
+sky_material = SubResource("ProceduralSkyMaterial_1kwa3")
+
+[sub_resource type="Environment" id="Environment_1kwa3"]
+background_mode = 2
+sky = SubResource("Sky_ubndf")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_1kwa3"]
+albedo_color = Color(0.42, 0.42, 0.42, 1)
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_1kwa3"]
+material = SubResource("StandardMaterial3D_1kwa3")
+size = Vector2(6, 6)
+
+[node name="EquipMapperDock" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+script = ExtResource("1_1kwa3")
+
+[node name="VBox" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 8
+
+[node name="Header" type="HBoxContainer" parent="VBox"]
+layout_mode = 2
+size_flags_vertical = 4
+theme_override_constants/separation = 8
+
+[node name="PickSkeleton" type="Button" parent="VBox/Header"]
+custom_minimum_size = Vector2(120, 28)
+layout_mode = 2
+size_flags_horizontal = 4
+text = "Pick Skeleton"
+
+[node name="AutoMapMixamo" type="Button" parent="VBox/Header"]
+custom_minimum_size = Vector2(120, 28)
+layout_mode = 2
+text = "Auto-Map Mixamo"
+
+[node name="SaveProfile" type="Button" parent="VBox/Header"]
+custom_minimum_size = Vector2(120, 28)
+layout_mode = 2
+text = "Save Profile"
+
+[node name="ModelPreview" type="SubViewportContainer" parent="VBox"]
+clip_contents = true
+custom_minimum_size = Vector2(0, 220)
+layout_mode = 2
+size_flags_vertical = 3
+stretch = true
+
+[node name="Viewport" type="SubViewport" parent="VBox/ModelPreview"]
+own_world_3d = true
+handle_input_locally = false
+size = Vector2i(1152, 300)
+render_target_update_mode = 4
+
+[node name="Camera3D" type="Camera3D" parent="VBox/ModelPreview/Viewport"]
+transform = Transform3D(1, 0, 0, 0, 0.984808, 0.173648, 0, -0.173648, 0.984808, 0, 1.6, 3.5)
+current = true
+fov = 55.0
+far = 500.0
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="VBox/ModelPreview/Viewport"]
+transform = Transform3D(0.866025, 0.353553, -0.353553, 0, 0.707107, 0.707107, 0.5, -0.612372, 0.612372, 0, 0, 0)
+light_energy = 1.25
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="VBox/ModelPreview/Viewport"]
+environment = SubResource("Environment_1kwa3")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="VBox/ModelPreview/Viewport"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.01, 0)
+mesh = SubResource("PlaneMesh_1kwa3")
+
+[node name="MappingList" type="ItemList" parent="VBox"]
+custom_minimum_size = Vector2(0, 140)
+layout_mode = 2
+size_flags_vertical = 3
+allow_reselect = true

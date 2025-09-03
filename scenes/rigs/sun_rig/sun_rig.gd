@@ -7,7 +7,7 @@ class_name SunRig
 
 # --- Tunables ---
 @export var sun_distance: float = 1000.0
-@export_range(-90, 90, 0.1) var elevation_deg: float = -25.0   # negative = pointing down (your convention)
+@export_range(-90, 90, 0.1) var elevation_deg: float = -90.0   # negative = pointing down (your convention)
 @export_range(-180, 180, 0.1) var azimuth_deg: float = -30.0
 
 @export var sun_energy: float = 0.5

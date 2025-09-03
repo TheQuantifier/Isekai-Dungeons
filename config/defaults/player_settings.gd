@@ -9,8 +9,8 @@ class_name PlayerSettings
 @export_category("Movement")
 
 @export_group("Land")
-@export var move_speed: float = 8.0
-@export var sprint_speed: float = 40.0
+@export var move_speed: float = 10.0
+@export var sprint_speed: float = 20.0
 @export var crouch_speed: float = 4.0
 @export var airborne_speed: float = 4.0
 @export var jump_velocity: float = 14.0
@@ -24,7 +24,7 @@ class_name PlayerSettings
 
 @export_group("Water Surface")
 @export var water_surface_height: float = -5.0
-@export var surface_offset: float = -0.75
+@export var surface_offset: float = -0.8
 
 @export_group("Surface Hold & Bob")
 @export var enable_surface_hold: bool = true
@@ -58,4 +58,4 @@ class_name PlayerSettings
 @export var anim_treading: float = 1.0   # playback speed while treading at surface
 
 @export_group("Smoothing")
-@export var anim_smoothness: float = -1.0
+@export var anim_smoothness: float = 0.09

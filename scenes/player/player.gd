@@ -150,7 +150,7 @@ func _physics_process(delta: float) -> void:
 				else:
 					_play("crouch_idle", settings.anim_crouch_idle)
 			elif is_moving_forward:
-				_play("run", (settings.anim_sprint if is_sprinting else settings.anim_run))
+				_play("run", (settings.anim_sprint if is_sprinting else settings.anim_run), (-1.0 if is_sprinting else settings.anim_smoothness))
 			elif is_moving_backward:
 				_play("run_backward", (settings.anim_sprint_backward if is_sprinting else settings.anim_run_backward))
 			else:
@@ -163,10 +163,10 @@ func set_in_water(value: bool) -> void:
 	in_water = value
 
 # --- Internal helper: only play if switching animations ---
-func _play(anim_name: String, rate: float) -> void:
+func _play(anim_name: String, rate: float, _smoothness: float = settings.anim_smoothness) -> void:
 	if anim_player == null:
 		return
 	if anim_player.current_animation != anim_name:
-		anim_player.play(anim_name, settings.anim_smoothness, rate)
+		anim_player.play(anim_name, _smoothness, rate)
 	else:
 		anim_player.speed_scale = rate

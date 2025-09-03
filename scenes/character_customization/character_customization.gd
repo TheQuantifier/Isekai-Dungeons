@@ -1,4 +1,5 @@
 extends Node3D
+class_name CharacterCustomization
 
 @onready var model_holder: Node3D = $ModelHolder
 @onready var camera: Camera3D = $ModelHolder/Camera3D
@@ -19,7 +20,6 @@ var current_model: Node3D
 func _ready() -> void:
 	model_holder.transform.origin = Vector3(model_horizontal_offset, model_vertical_offset, 0)
 	position_camera_and_light()
-
 	# Disable Confirm button initially
 	confirm_button.disabled = true
 
@@ -90,4 +90,4 @@ func _on_confirm_button_pressed() -> void:
 	confirm_button.disabled = true  # Gray out again after confirm
 
 func _on_main_menu_pressed() -> void:
-	game_manager.go_to("main_menu")
+	game_manager.go_to(Page.MAIN_MENU)
