@@ -1,10 +1,22 @@
-[gd_scene load_steps=9 format=3 uid="uid://b4x8xoilsxgnq"]
+[gd_scene load_steps=13 format=3 uid="uid://b4x8xoilsxgnq"]
 
-[ext_resource type="Texture2D" uid="uid://dowgnsnt54qwu" path="res://assets/inventory-backpack-icon-game-2d-game-fantasy-game-pocket-game-cartoon-design-illustration-vector.png" id="1_ku4oe"]
 [ext_resource type="Script" uid="uid://dge70mwyygipr" path="res://ui/menus_canvas_layer/menus_canvas_layer.gd" id="1_o8nmh"]
-[ext_resource type="Texture2D" uid="uid://dxb7tunty40" path="res://assets/exit-12.png" id="2_o8nmh"]
+[ext_resource type="Shader" uid="uid://dgtqqr7qdiyby" path="res://ui/menus_canvas_layer/minimap_circle_boundary.gdshader" id="2_wbvb2"]
+[ext_resource type="Texture2D" uid="uid://cr1djdsq3hkvv" path="res://assets/images/compass.png" id="3_ie874"]
 [ext_resource type="PackedScene" uid="uid://6rrjq74htlgk" path="res://ui/exit_menu/exit_menu.tscn" id="3_srg8d"]
+[ext_resource type="Texture2D" uid="uid://c70e2aeber5tp" path="res://assets/images/red_arrow.png" id="4_6dpuq"]
+[ext_resource type="Texture2D" uid="uid://c118uacvmc6la" path="res://assets/images/inventory-backpack.png" id="5_6dpuq"]
 [ext_resource type="Theme" uid="uid://yiax7h37oyks" path="res://assets/themes/main.tres" id="5_srg8d"]
+[ext_resource type="Texture2D" uid="uid://du6i6t17axite" path="res://assets/images/exit-12.png" id="6_6dpuq"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ie874"]
+shader = ExtResource("2_wbvb2")
+shader_parameter/radius = 0.5
+shader_parameter/edge_thickness = 0.02
+shader_parameter/soften = 0.005
+shader_parameter/edge_color = Color(0.141176, 0.0862745, 0.0470588, 1)
+shader_parameter/vignette_strength = 0.25
+shader_parameter/aspect = 1.0
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_41oi7"]
 bg_color = Color(0.6, 0.6, 0.6, 0)
@@ -37,10 +49,37 @@ tick_count = 13
 ticks_on_borders = true
 
 [node name="MiniMapTextureRect" type="TextureRect" parent="."]
-offset_left = 16.0
-offset_top = 16.0
-offset_right = 272.0
-offset_bottom = 272.0
+material = SubResource("ShaderMaterial_ie874")
+offset_right = 400.0
+offset_bottom = 400.0
+
+[node name="MinimapOverlay" type="Control" parent="MiniMapTextureRect"]
+anchors_preset = 0
+offset_right = 400.0
+offset_bottom = 400.0
+
+[node name="Compass" type="TextureRect" parent="MiniMapTextureRect/MinimapOverlay"]
+layout_mode = 0
+offset_right = 400.0
+offset_bottom = 400.0
+texture = ExtResource("3_ie874")
+expand_mode = 1
+
+[node name="Arrow" type="TextureRect" parent="MiniMapTextureRect/MinimapOverlay"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -8.0
+offset_top = -8.0
+offset_right = 12.0
+offset_bottom = 12.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("4_6dpuq")
+expand_mode = 1
 
 [node name="InventoryButton" type="Button" parent="."]
 offset_left = 1640.0
@@ -49,7 +88,7 @@ offset_right = 2319.0
 offset_bottom = 1504.0
 scale = Vector2(0.2, 0.2)
 theme_override_styles/normal = SubResource("StyleBoxFlat_41oi7")
-icon = ExtResource("1_ku4oe")
+icon = ExtResource("5_6dpuq")
 
 [node name="ExitButton" type="Button" parent="."]
 offset_left = 1672.0
@@ -59,7 +98,7 @@ offset_bottom = 536.0
 scale = Vector2(0.2, 0.2)
 theme_override_styles/hover = SubResource("StyleBoxFlat_2oxmu")
 theme_override_styles/normal = SubResource("StyleBoxFlat_tyytv")
-icon = ExtResource("2_o8nmh")
+icon = ExtResource("6_6dpuq")
 
 [node name="ExitMenu" parent="." instance=ExtResource("3_srg8d")]
 process_mode = 3
@@ -75,6 +114,7 @@ theme_override_font_sizes/font_size = 40
 text = "Switch View"
 
 [connection signal="value_changed" from="SunSlider" to="." method="_on_sun_slider_value_changed"]
+[connection signal="resized" from="MiniMapTextureRect" to="." method="_on_minimap_resized"]
 [connection signal="pressed" from="InventoryButton" to="." method="_on_inventory_button_pressed"]
 [connection signal="pressed" from="ExitButton" to="." method="_on_exit_button_pressed"]
 [connection signal="pressed" from="ViewSwitchButton" to="." method="_on_view_switch_button_pressed"]

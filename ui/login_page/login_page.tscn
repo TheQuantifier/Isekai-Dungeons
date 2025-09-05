@@ -2,8 +2,8 @@
 
 [ext_resource type="Script" uid="uid://dec8hadisf4cm" path="res://ui/login_page/login_page.gd" id="1_qfmr5"]
 [ext_resource type="Theme" uid="uid://yiax7h37oyks" path="res://assets/themes/main.tres" id="2_ihlnx"]
-[ext_resource type="Texture2D" uid="uid://bdkn3v4s6b3tw" path="res://assets/RPG-Actiongame-Environment-01.jpg" id="3_1lji1"]
 [ext_resource type="FontFile" uid="uid://b6caicidfsyjh" path="res://assets/fonts/MedievalSharp-Regular.ttf" id="3_ihlnx"]
+[ext_resource type="Texture2D" uid="uid://il306qw41ymj" path="res://assets/images/RPG-Actiongame-Environment-01.jpg" id="3_rpukb"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ihlnx"]
 bg_color = Color(0.14, 0.0854, 0.049, 1)
@@ -155,7 +155,7 @@ text = "Exit"
 layout_mode = 2
 offset_right = 1800.0
 offset_bottom = 1080.0
-texture = ExtResource("3_1lji1")
+texture = ExtResource("3_rpukb")
 
 [node name="CreateCharacterDialogOverlay" type="Control" parent="."]
 visible = false

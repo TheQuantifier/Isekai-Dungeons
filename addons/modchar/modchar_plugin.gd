@@ -9,12 +9,12 @@ func _enter_tree() -> void:
 	add_custom_type(
 		"EquipSystem",
 		"Node3D",
-		preload("res://addons/modchar/equip_system.gd"),
-		preload("res://addons/modchar/icon.svg")
+		preload("equip_system.gd"),
+		preload("icon.svg")
 	)
 
 	# Add the editor dock panel
-	dock = preload("res://addons/modchar/editor/equip_mapper_dock.tscn").instantiate()
+	dock = preload("editor/equip_mapper_dock.tscn").instantiate()
 	dock.set_editor(get_editor_interface())
 	add_control_to_bottom_panel(dock, "ModChar Mapper")
 

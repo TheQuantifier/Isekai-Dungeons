@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=3 uid="uid://bkd5chj1tyrsd"]
 
-[ext_resource type="Texture2D" uid="uid://dghbv83jx53ul" path="res://assets/textures/seamless-grass-texture-free-thumb27.jpg.png" id="1_scirk"]
+[ext_resource type="Texture2D" uid="uid://dghbv83jx53ul" path="res://assets/textures/grass_texture.png" id="1_scirk"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_oy2tu"]
 size = Vector3(1000, 0.1, 1000)

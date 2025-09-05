@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=3 uid="uid://lt15tsobxh7w"]
 
 [ext_resource type="Script" uid="uid://bdfofyfar61b0" path="res://ui/main_menu/main_menu.gd" id="1_sla82"]
-[ext_resource type="Texture2D" uid="uid://bdkn3v4s6b3tw" path="res://assets/RPG-Actiongame-Environment-01.jpg" id="2_mu8pm"]
+[ext_resource type="Texture2D" uid="uid://il306qw41ymj" path="res://assets/images/RPG-Actiongame-Environment-01.jpg" id="2_mu8pm"]
 [ext_resource type="FontFile" uid="uid://b6caicidfsyjh" path="res://assets/fonts/MedievalSharp-Regular.ttf" id="2_omy8q"]
 [ext_resource type="Theme" uid="uid://yiax7h37oyks" path="res://assets/themes/main.tres" id="3_i5wg5"]
 

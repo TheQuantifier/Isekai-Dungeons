@@ -61,7 +61,6 @@ text = "Save Profile"
 
 [node name="ModelPreview" type="SubViewportContainer" parent="VBox"]
 clip_contents = true
-custom_minimum_size = Vector2(0, 220)
 layout_mode = 2
 size_flags_vertical = 3
 stretch = true
@@ -94,3 +93,7 @@ custom_minimum_size = Vector2(0, 140)
 layout_mode = 2
 size_flags_vertical = 3
 allow_reselect = true
+
+[connection signal="pressed" from="VBox/Header/PickSkeleton" to="." method="_on_pick_skeleton_pressed"]
+[connection signal="pressed" from="VBox/Header/AutoMapMixamo" to="." method="_on_automap_pressed"]
+[connection signal="pressed" from="VBox/Header/SaveProfile" to="." method="_on_save_pressed"]

@@ -3,13 +3,14 @@
 extends Control
 class_name EquipMapperDock
 
-# Explicitly preload types to avoid any editor/class_name resolution hiccups
+# Relative preloads (this file is in addons/modchar/editor/)
+# Go up one level to reach addons/modchar/*
 @warning_ignore("shadowed_global_identifier")
-const EquipSystem  = preload("res://addons/modchar/equip_system.gd")
+const EquipSystem  = preload("../equip_system.gd")
 @warning_ignore("shadowed_global_identifier")
-const EquipProfile = preload("res://addons/modchar/equip_profile.gd")
+const EquipProfile = preload("../equip_profile.gd")
 @warning_ignore("shadowed_global_identifier")
-const BodyPart     = preload("res://addons/modchar/body_part.gd")
+const BodyPart     = preload("../body_part.gd")
 
 # UI refs
 @onready var _pick_btn: Button        = $VBox/Header/PickSkeleton
@@ -25,9 +26,6 @@ var _skeleton: Skeleton3D
 var _profile: EquipProfile
 
 func _ready() -> void:
-	_pick_btn.pressed.connect(_on_pick_skeleton)
-	_automap_btn.pressed.connect(_on_automap)
-	_save_btn.pressed.connect(_on_save)
 	_refresh_mapping_list()
 
 # Called by modchar_plugin.gd after instantiating the dock
@@ -78,14 +76,15 @@ func _refresh_mapping_list() -> void:
 		if bone.is_empty():
 			bone = "<unassigned>"
 		_mapping_list.add_item("%s → %s" % [part_name, bone])
-# ----- Button handlers ------------------------------------------------------
 
-func _on_pick_skeleton() -> void:
+# ----- Button handlers (wired via editor signals) ---------------------------
+func _on_pick_skeleton_pressed() -> void:
 	if _editor == null:
 		push_warning("EquipMapperDock: EditorInterface not set.")
 		return
 
-	var sel: Array = EditorInterface.get_selection().get_selected_nodes()
+	# Use the stored editor instance (not EditorInterface static)
+	var sel: Array = _editor.get_selection().get_selected_nodes()
 	if sel.is_empty():
 		push_warning("Select a node with an EquipSystem in the scene tree.")
 		return
@@ -100,17 +99,23 @@ func _on_pick_skeleton() -> void:
 		return
 
 	set_target(sys)
-
-func _on_automap() -> void:
+	
+func _on_automap_pressed() -> void:
 	if _target_system == null:
 		push_warning("No EquipSystem selected.")
 		return
+	# Optional guard: ensure the script is tool-enabled
+	var scr := _target_system.get_script()
+	if scr == null or not scr.is_tool():
+		push_warning("EquipSystem script isn’t in @tool mode or failed to load.")
+		return
+
 	_target_system.auto_map_mixamo()
 	_profile = _target_system.profile
 	_refresh_mapping_list()
 	_show_toast("Auto-mapped Mixamo bones.")
 
-func _on_save() -> void:
+func _on_save_pressed() -> void:
 	if _profile == null:
 		push_error("No EquipProfile to save.")
 		return
