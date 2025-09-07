@@ -3,8 +3,8 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://mpprwm3dtt3c"
-path.s3tc="res://.godot/imported/T_Plaster_Normal.png-745bba7a70deb3462204834fea8ff5a6.s3tc.ctex"
-path.etc2="res://.godot/imported/T_Plaster_Normal.png-745bba7a70deb3462204834fea8ff5a6.etc2.ctex"
+path.s3tc="res://.godot/imported/T_Plaster_Normal.png-117f57a77ef0dc9f0f403e41a2ccfacb.s3tc.ctex"
+path.etc2="res://.godot/imported/T_Plaster_Normal.png-117f57a77ef0dc9f0f403e41a2ccfacb.etc2.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc", "etc2_astc"],
 "vram_texture": true
@@ -12,8 +12,8 @@ metadata={
 
 [deps]
 
-source_file="res://assets/models/Medieval Village MegaKit/textures/T_Plaster_Normal.png"
-dest_files=["res://.godot/imported/T_Plaster_Normal.png-745bba7a70deb3462204834fea8ff5a6.s3tc.ctex", "res://.godot/imported/T_Plaster_Normal.png-745bba7a70deb3462204834fea8ff5a6.etc2.ctex"]
+source_file="res://assets/models/Medieval Village MegaKit/Textures/T_Plaster_Normal.png"
+dest_files=["res://.godot/imported/T_Plaster_Normal.png-117f57a77ef0dc9f0f403e41a2ccfacb.s3tc.ctex", "res://.godot/imported/T_Plaster_Normal.png-117f57a77ef0dc9f0f403e41a2ccfacb.etc2.ctex"]
 
 [params]
 

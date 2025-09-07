@@ -1,33 +1,49 @@
+# res://scenes/game_world/game_world.gd
 extends Node3D
 class_name GameWorld
 
+# -------------------------------------------------------------------
+# Signals
+# -------------------------------------------------------------------
 signal camera_view_changed(is_first_person: bool)
 
+# -------------------------------------------------------------------
+# Node references (assigned in scene tree)
+# -------------------------------------------------------------------
 @onready var player: CharacterBody3D = $Player
 @onready var camera_rig: CameraRig = $CameraRig
 @onready var sun_rig: SunRig = $SunRig
 @onready var env_ctrl: EnvironmentController = $EnvironmentController
-@onready var menus: MenusCanvasLayer = $MenusCanvasLayer  # NEW (adjust path if different)
+@onready var menus: MenusCanvasLayer = $MenusCanvasLayer
 
 @onready var minimap_viewport: SubViewport = $MiniMapViewport
 @onready var minimap_camera: Camera3D = $MiniMapViewport/MiniMapCamera
 
-@export var minimap_height: float = 100.0
-@export var minimap_size: int = 256
-@export var minimap_ortho_size: float = 200.0
+# -------------------------------------------------------------------
+# Minimap configuration
+# -------------------------------------------------------------------
+@export var minimap_height: float = 100.0         # Height above player
+@export var minimap_size: int = 256               # Render texture size
+@export var minimap_ortho_size: float = 200.0     # Zoom level (orthographic size)
 
+# -------------------------------------------------------------------
+# State
+# -------------------------------------------------------------------
 var is_first_person := false
-
 const AUTOSAVE_INTERVAL := 10.0
 var _autosave_timer: Timer
 var _last_player_pos: Vector3 = Vector3.ZERO
 
+# -------------------------------------------------------------------
+# Lifecycle
+# -------------------------------------------------------------------
 func _ready() -> void:
+	# Configure subsystems
 	if camera_rig: camera_rig.configure()
 	if sun_rig:    sun_rig.configure()
 	if env_ctrl:   env_ctrl.configure()
 
-	# Minimap
+	# --- Minimap setup ---
 	if minimap_viewport:
 		minimap_viewport.size = Vector2i(minimap_size, minimap_size)
 		minimap_viewport.disable_3d = false
@@ -40,15 +56,17 @@ func _ready() -> void:
 		minimap_camera.size = minimap_ortho_size
 		minimap_camera.current = true
 
-	# Restore position
-	if is_instance_valid(player) and game_manager.current_character and game_manager.current_character.last_position:
+	# --- Restore player position from save ---
+	if is_instance_valid(player) \
+	and game_manager.current_character \
+	and game_manager.current_character.last_position:
 		player.global_position = game_manager.current_character.last_position + Vector3.UP
 
-	# Initialize cache
+	# --- Initialize position cache ---
 	if is_instance_valid(player) and player.is_inside_tree():
 		_last_player_pos = player.global_position
 
-	# Start autosave
+	# --- Start autosave timer ---
 	_autosave_timer = Timer.new()
 	_autosave_timer.wait_time = AUTOSAVE_INTERVAL
 	_autosave_timer.one_shot = false
@@ -56,41 +74,54 @@ func _ready() -> void:
 	add_child(_autosave_timer)
 	_autosave_timer.timeout.connect(_on_autosave_timeout)
 
-	# NEW: listen for Exit Menu visibility
-	if is_instance_valid(menus) and not menus.exit_menu_visibility_changed.is_connected(_on_exit_menu_visibility_changed):
+	# --- Listen for Exit Menu visibility (autosave trigger) ---
+	if is_instance_valid(menus) \
+	and not menus.exit_menu_visibility_changed.is_connected(_on_exit_menu_visibility_changed):
 		menus.exit_menu_visibility_changed.connect(_on_exit_menu_visibility_changed)
 
 func _process(_dt: float) -> void:
-	if not is_instance_valid(player):
-		return
-	if player.is_inside_tree():
+	# Update cached player position (used for minimap and fallbacks)
+	if is_instance_valid(player) and player.is_inside_tree():
 		_last_player_pos = player.global_position
+
+	# Update camera rig follow logic
 	if camera_rig:
 		camera_rig.update_follow(player, is_first_person)
+
+	# Update minimap camera
 	_update_minimap()
 
 func _exit_tree() -> void:
-	game_manager.save_position(_last_player_pos)
+	# Route saves through GameManager's safety-checked path
+	if is_instance_valid(player):
+		game_manager.save_position_from(player)
 
+# -------------------------------------------------------------------
+# Autosave
+# -------------------------------------------------------------------
 func _on_autosave_timeout() -> void:
-	game_manager.save_position(_last_player_pos)
+	# Safety-checked save (won't overwrite while swimming or mid-air)
+	if is_instance_valid(player):
+		game_manager.save_position_from(player)
 
-# NEW: from MenusCanvasLayer
 func _on_exit_menu_visibility_changed(menu_visible: bool) -> void:
-	if menu_visible:
-		game_manager.save_position(_last_player_pos)
+	# Safety-checked save when exit menu opens
+	if menu_visible and is_instance_valid(player):
+		game_manager.save_position_from(player)
 
-# Input
+# -------------------------------------------------------------------
+# Input handling
+# -------------------------------------------------------------------
 func _unhandled_input(event: InputEvent) -> void:
 	if event.is_action_pressed("switch_view"):
 		toggle_camera_view()
 		get_viewport().set_input_as_handled()
-	elif event.is_action_pressed("ui_cancel"):  # Esc
-		if is_instance_valid(menus):
-			menus.toggle_exit_menu()
-			get_viewport().set_input_as_handled()
+	elif event.is_action_pressed("inventory"):
+		game_manager.go_to(Page.INVENTORY)
 
-# UI bridge
+# -------------------------------------------------------------------
+# Camera view management
+# -------------------------------------------------------------------
 func toggle_camera_view() -> void:
 	set_first_person(not is_first_person)
 
@@ -100,19 +131,45 @@ func set_first_person(enable: bool) -> void:
 	is_first_person = enable
 	emit_signal("camera_view_changed", is_first_person)
 
+# -------------------------------------------------------------------
+# Environment controls
+# -------------------------------------------------------------------
 func set_sun_elevation_ui(v: float) -> void:
 	if sun_rig:
 		sun_rig.set_ui_elevation_deg(v)
 
+# -------------------------------------------------------------------
+# Minimap helpers
+# -------------------------------------------------------------------
 func get_minimap_texture() -> Texture2D:
 	return minimap_viewport.get_texture() if minimap_viewport else null
 
-# Internals
+func get_player_heading_deg() -> float:
+	# Useful for compass overlays
+	if not is_instance_valid(player):
+		return 0.0
+	var y_rad: float = player.global_transform.basis.get_euler().y
+	return rad_to_deg(y_rad)
+
 func _update_minimap() -> void:
+	# Update minimap camera to follow player top-down
 	if not (is_instance_valid(player) and minimap_camera):
 		return
-	var mini_basis := Basis().rotated(Vector3.RIGHT, -PI * 0.5).rotated(Vector3.UP, player.rotation.y + PI)
+	var mini_basis := Basis() \
+		.rotated(Vector3.RIGHT, -PI * 0.5) \
+		.rotated(Vector3.UP, player.rotation.y + PI)
+
 	minimap_camera.global_transform = Transform3D(
 		mini_basis,
-		Vector3(_last_player_pos.x, minimap_height, _last_player_pos.z)
+		Vector3(
+			_last_player_pos.x,
+			_last_player_pos.y + minimap_height,
+			_last_player_pos.z
+		)
 	)
+
+# -------------------------------------------------------------------
+# Utility
+# -------------------------------------------------------------------
+func get_player_position() -> Vector3:
+	return player.global_position if is_instance_valid(player) else Vector3.ZERO

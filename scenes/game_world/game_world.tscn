@@ -1,13 +1,12 @@
-[gd_scene load_steps=14 format=3 uid="uid://tvefuc2jd8cc"]
+[gd_scene load_steps=13 format=3 uid="uid://tvefuc2jd8cc"]
 
 [ext_resource type="Script" uid="uid://dj6ds81qxtn0j" path="res://scenes/game_world/game_world.gd" id="1_mjgxe"]
 [ext_resource type="PackedScene" uid="uid://cgjylwr71uayr" path="res://scenes/player/player.tscn" id="2_mjgxe"]
 [ext_resource type="PackedScene" uid="uid://bgvjgrw6886vi" path="res://scenes/rigs/camera_rig/camera_pivot.tscn" id="4_5w0b0"]
-[ext_resource type="PackedScene" uid="uid://b3bc1gagnvd17" path="res://scenes/game_world/objects.tscn" id="4_pon8i"]
 [ext_resource type="PackedScene" uid="uid://btpruu3ef4op0" path="res://scenes/rigs/sun_rig/sun_rig.tscn" id="5_4vb8v"]
 [ext_resource type="PackedScene" uid="uid://b4x8xoilsxgnq" path="res://ui/menus_canvas_layer/menus_canvas_layer.tscn" id="5_nxv6a"]
-[ext_resource type="PackedScene" uid="uid://cqn3bmrakwgxf" path="res://scenes/game_world/village_setup.tscn" id="9_5w0b0"]
-[ext_resource type="PackedScene" uid="uid://4oi3doh81th4" path="res://scenes/game_world/city_walls.tscn" id="10_4vb8v"]
+[ext_resource type="PackedScene" uid="uid://cqn3bmrakwgxf" path="res://scenes/game_world/city/village_setup.tscn" id="9_5w0b0"]
+[ext_resource type="PackedScene" uid="uid://4oi3doh81th4" path="res://scenes/game_world/city/city_walls.tscn" id="10_4vb8v"]
 [ext_resource type="PackedScene" uid="uid://bodi3vk2ktu5p" path="res://scenes/game_world/terrain/main_terrain/main_terrain.tscn" id="10_5w0b0"]
 [ext_resource type="PackedScene" uid="uid://dnc7wc80v7ryx" path="res://scenes/rigs/environment_controller/environment_controller.tscn" id="10_dlc66"]
 [ext_resource type="PackedScene" uid="uid://crp3wwcqb31gw" path="res://scenes/game_world/castle/castle.tscn" id="11_4vb8v"]
@@ -29,10 +28,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7, 0, 2)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7, 1, 2)
 
 [node name="SunRig" parent="." instance=ExtResource("5_4vb8v")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -159, 0, 0)
-
-[node name="Objects" parent="." instance=ExtResource("4_pon8i")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 179.743, 0, 49.237)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.20885, 64.7928, 12.4262)
 
 [node name="MenusCanvasLayer" parent="." instance=ExtResource("5_nxv6a")]
 
@@ -67,5 +63,3 @@ shape = SubResource("BoxShape3D_yb5st")
 [node name="MeshInstance3D" type="MeshInstance3D" parent="RampToCastleTemp"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.2, 0.3, 0)
 mesh = SubResource("BoxMesh_yb5st")
-
-[editable path="Objects"]

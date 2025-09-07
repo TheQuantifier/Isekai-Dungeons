@@ -7,6 +7,7 @@ signal exit_menu_visibility_changed(visible: bool)
 @onready var view_switch_button: Button = $ViewSwitchButton
 @onready var minimap_display: TextureRect = $MiniMapTextureRect
 @onready var exit_menu: Control = $ExitMenu
+@onready var pos_label: Label = $PositionLabel
 
 # Compass overlay nodes (children of MiniMapTextureRect)
 @onready var minimap_overlay: Control = $MiniMapTextureRect/MinimapOverlay
@@ -28,9 +29,16 @@ func _resolve_game_world() -> GameWorld:
 	return get_parent() as GameWorld
 
 func _ready() -> void:
+	set_process_input(true)
 	if game_world == null:
 		push_warning("MenusCanvasLayer: Could not resolve GameWorld. Set 'game_world_path' or make it a child of GameWorld.")
 		return
+
+	# Ensure this layer (and the menu) still receive input while paused (Godot 4.x)
+	process_mode = Node.PROCESS_MODE_ALWAYS
+	if exit_menu:
+		exit_menu.visible = false
+		exit_menu.process_mode = Node.PROCESS_MODE_ALWAYS
 
 	# SunRig
 	sun_rig = game_world.get_node_or_null("SunRig") as SunRig
@@ -58,6 +66,12 @@ func _ready() -> void:
 
 func _process(_dt: float) -> void:
 	_update_compass()
+	_update_player_pos_label()
+
+func _input(event: InputEvent) -> void:
+	if event.is_action_pressed("ui_cancel"):
+		toggle_exit_menu()
+		get_viewport().set_input_as_handled()  # stop further propagation
 
 # ---------------- Minimap helpers ----------------
 
@@ -130,6 +144,10 @@ func _update_compass() -> void:
 	else:
 		compass.rotation_degrees = heading_deg + COMPASS_ROT_OFFSET_DEG
 
+func _update_player_pos_label() -> void:
+	if game_world and "player" in game_world and is_instance_valid(game_world.player):
+		var p := game_world.player.global_position
+		pos_label.text = "(%d, %d, %d)" % [int(p.x), int(p.y), int(p.z)]
 # ---------------- Buttons / Handlers ----------------
 
 func _on_view_switch_button_pressed() -> void:
@@ -153,7 +171,10 @@ func _on_exit_button_pressed() -> void:
 func toggle_exit_menu() -> void:
 	if exit_menu == null:
 		return
-	exit_menu.visible = not exit_menu.visible  # visibility_changed should be wired in editor if needed
+	var exit_show := not exit_menu.visible
+	exit_menu.visible = exit_show
+	get_tree().paused = exit_show
+	exit_menu_visibility_changed.emit(exit_show)
 
 func _on_exit_menu_visibility_changed() -> void:
 	exit_menu_visibility_changed.emit(exit_menu.visible)

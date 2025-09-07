@@ -3,8 +3,8 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://byru2jlnj21rc"
-path.s3tc="res://.godot/imported/T_UnevenBrick_Normal.png-5400a0304b1eb528b24511473dca4c1f.s3tc.ctex"
-path.etc2="res://.godot/imported/T_UnevenBrick_Normal.png-5400a0304b1eb528b24511473dca4c1f.etc2.ctex"
+path.s3tc="res://.godot/imported/T_UnevenBrick_Normal.png-fb0a3305267c9728c14f2631189edd38.s3tc.ctex"
+path.etc2="res://.godot/imported/T_UnevenBrick_Normal.png-fb0a3305267c9728c14f2631189edd38.etc2.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc", "etc2_astc"],
 "vram_texture": true
@@ -12,8 +12,8 @@ metadata={
 
 [deps]
 
-source_file="res://assets/models/Medieval Village MegaKit/textures/T_UnevenBrick_Normal.png"
-dest_files=["res://.godot/imported/T_UnevenBrick_Normal.png-5400a0304b1eb528b24511473dca4c1f.s3tc.ctex", "res://.godot/imported/T_UnevenBrick_Normal.png-5400a0304b1eb528b24511473dca4c1f.etc2.ctex"]
+source_file="res://assets/models/Medieval Village MegaKit/Textures/T_UnevenBrick_Normal.png"
+dest_files=["res://.godot/imported/T_UnevenBrick_Normal.png-fb0a3305267c9728c14f2631189edd38.s3tc.ctex", "res://.godot/imported/T_UnevenBrick_Normal.png-fb0a3305267c9728c14f2631189edd38.etc2.ctex"]
 
 [params]
 
