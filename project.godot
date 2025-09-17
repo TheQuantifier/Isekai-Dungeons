@@ -13,7 +13,7 @@ config_version=5
 config/name="ProjectDungeon101"
 config/description="My main game project currently titled Dungeon101."
 run/main_scene="uid://dm08ug13g54tn"
-config/features=PackedStringArray("4.4", "C#", "Forward Plus")
+config/features=PackedStringArray("4.5", "C#", "Forward Plus")
 config/icon="uid://c34y1pyvmol3i"
 
 [autoload]

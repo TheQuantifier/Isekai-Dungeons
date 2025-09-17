@@ -22,6 +22,7 @@ var _was_in_water_last_frame: bool = false
 # -------------------------------------------------------------------
 var _bob_t: float = 0.0
 const WATER_STILL_EPS: float = 0.2   # Speed threshold to count as still in water
+const LAND_STILL_EPS: float = 0.05   # NEW: threshold to count as standing still on land
 
 # -------------------------------------------------------------------
 # Ground stick helpers (downhill fix)
@@ -184,7 +185,12 @@ func _handle_land_vertical(delta: float, was_on_floor: bool, jump_pressed: bool)
 	if jump_pressed and was_on_floor:
 		velocity.y = settings.jump_velocity
 		is_jumping = true
-		_play("jump", settings.anim_jump)
+		# NEW: choose jump animation based on whether we're standing still on land
+		var planar_speed := Vector2(velocity.x, velocity.z).length()
+		if planar_speed <= LAND_STILL_EPS:
+			_play("jump_stat", settings.anim_jump_stat)
+		else:
+			_play("jump", settings.anim_jump)
 
 # -------------------------------------------------------------------
 # Animations

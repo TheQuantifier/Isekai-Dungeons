@@ -50,7 +50,8 @@ class_name PlayerSettings
 @export var anim_crouch_idle: float = 1.0
 @export var anim_crouch_run: float = 1.0
 @export var anim_crouch_run_backward: float = 1.0
-@export var anim_jump: float = 2.75
+@export var anim_jump: float = 1.5
+@export var anim_jump_stat: float = 2.75
 
 @export_group("Water Speed Scaling")
 @export var anim_swim: float = 1.0

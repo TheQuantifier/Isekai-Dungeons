@@ -8,20 +8,9 @@
 script = ExtResource("3_1vnc0")
 char_id = "MaxAZillion"
 username = "john"
-char_age = 0.0
-gender = 0
 model_path = "res://assets/character_models/scenes/male/y_bot.tscn"
-last_position = Vector3(-122.54, 0.00338075, 210.597)
-current_health = 10
-max_health = 10
-current_mana = 10
-max_mana = 10
-gold = 0
+last_position = Vector3(-50.113403, 18.25943, -1048.3531)
 password = "john"
-class_type = 0
-known_skills = Array[ExtResource("2_1xsd4")]([])
-skill_cooldowns = {}
-equipped_items = Array[ExtResource("1_5vobn")]([])
 strength_stats = {
 0: 1,
 1: 1,
