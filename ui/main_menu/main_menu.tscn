@@ -42,7 +42,7 @@ layout_mode = 2
 theme_override_colors/font_color = Color(0.909804, 0.85098, 0.709804, 1)
 theme_override_fonts/font = ExtResource("2_omy8q")
 theme_override_font_sizes/font_size = 100
-text = "Dungeon 101"
+text = "Isekai Dungeons"
 horizontal_alignment = 1
 
 [node name="PlayButton" type="Button" parent="CanvasLayer/UI/CenterContainer/VBoxContainer"]

@@ -12,8 +12,8 @@ corner_radius_top_right = 50
 corner_radius_bottom_right = 50
 corner_radius_bottom_left = 50
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4h0er"]
-bg_color = Color(0.227451, 0.141176, 0.0784314, 0.705882)
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_fxx81"]
+bg_color = Color(0.294118, 0.180392, 0.101961, 1)
 corner_radius_top_left = 50
 corner_radius_top_right = 50
 corner_radius_bottom_right = 50
@@ -26,15 +26,15 @@ corner_radius_top_right = 50
 corner_radius_bottom_right = 50
 corner_radius_bottom_left = 50
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_fxx81"]
-bg_color = Color(0.294118, 0.180392, 0.101961, 1)
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4h0er"]
+bg_color = Color(0.227451, 0.141176, 0.0784314, 0.705882)
 corner_radius_top_left = 50
 corner_radius_top_right = 50
 corner_radius_bottom_right = 50
 corner_radius_bottom_left = 50
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_cj8yt"]
-bg_color = Color(0.227451, 0.141176, 0.0784314, 0.705882)
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_fht0i"]
+bg_color = Color(0.294118, 0.180392, 0.101961, 1)
 corner_radius_top_left = 50
 corner_radius_top_right = 50
 corner_radius_bottom_right = 50
@@ -47,7 +47,14 @@ corner_radius_top_right = 50
 corner_radius_bottom_right = 50
 corner_radius_bottom_left = 50
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_fht0i"]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_cj8yt"]
+bg_color = Color(0.227451, 0.141176, 0.0784314, 0.705882)
+corner_radius_top_left = 50
+corner_radius_top_right = 50
+corner_radius_bottom_right = 50
+corner_radius_bottom_left = 50
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_qn0p0"]
 bg_color = Color(0.294118, 0.180392, 0.101961, 1)
 corner_radius_top_left = 50
 corner_radius_top_right = 50
@@ -61,25 +68,8 @@ corner_radius_top_right = 50
 corner_radius_bottom_right = 50
 corner_radius_bottom_left = 50
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_qn0p0"]
-bg_color = Color(0.294118, 0.180392, 0.101961, 1)
-corner_radius_top_left = 50
-corner_radius_top_right = 50
-corner_radius_bottom_right = 50
-corner_radius_bottom_left = 50
-
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1lji1"]
 bg_color = Color(0.141176, 0.0862745, 0.0470588, 1)
-corner_radius_top_left = 50
-corner_radius_top_right = 50
-corner_radius_bottom_right = 50
-corner_radius_bottom_left = 50
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_xvaqr"]
-bg_color = Color(0.227451, 0.141176, 0.0784314, 0.705882)
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_rxops"]
-bg_color = Color(0.478431, 0.290196, 0.176471, 1)
 corner_radius_top_left = 50
 corner_radius_top_right = 50
 corner_radius_bottom_right = 50
@@ -91,6 +81,16 @@ corner_radius_top_left = 50
 corner_radius_top_right = 50
 corner_radius_bottom_right = 50
 corner_radius_bottom_left = 50
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_rxops"]
+bg_color = Color(0.478431, 0.290196, 0.176471, 1)
+corner_radius_top_left = 50
+corner_radius_top_right = 50
+corner_radius_bottom_right = 50
+corner_radius_bottom_left = 50
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_xvaqr"]
+bg_color = Color(0.227451, 0.141176, 0.0784314, 0.705882)
 
 [node name="LoginPage" type="Control"]
 layout_mode = 3
@@ -152,7 +152,7 @@ theme = ExtResource("2_ihlnx")
 text = "Exit"
 
 [node name="Background image" type="TextureRect" parent="."]
-layout_mode = 2
+layout_mode = 0
 offset_right = 1800.0
 offset_bottom = 1080.0
 texture = ExtResource("3_rpukb")
@@ -193,12 +193,12 @@ offset_left = 136.0
 offset_top = 336.0
 offset_right = 416.0
 offset_bottom = 415.0
-theme_override_colors/font_disabled_color = Color(0.909804, 0.85098, 0.709804, 0.392157)
 theme_override_colors/font_color = Color(0.909804, 0.85098, 0.709804, 1)
+theme_override_colors/font_disabled_color = Color(0.909804, 0.85098, 0.709804, 0.392157)
 theme_override_font_sizes/font_size = 40
-theme_override_styles/disabled = SubResource("StyleBoxFlat_4h0er")
-theme_override_styles/hover = SubResource("StyleBoxFlat_i7tq6")
 theme_override_styles/normal = SubResource("StyleBoxFlat_fxx81")
+theme_override_styles/hover = SubResource("StyleBoxFlat_i7tq6")
+theme_override_styles/disabled = SubResource("StyleBoxFlat_4h0er")
 text = "Yes"
 
 [node name="NoButton" type="Button" parent="CreateCharacterDialogOverlay/CreateCharacterDialog"]
@@ -207,12 +207,12 @@ offset_left = 560.0
 offset_top = 336.0
 offset_right = 840.0
 offset_bottom = 415.0
-theme_override_colors/font_disabled_color = Color(0.909804, 0.85098, 0.709804, 0.392157)
 theme_override_colors/font_color = Color(0.909804, 0.85098, 0.709804, 1)
+theme_override_colors/font_disabled_color = Color(0.909804, 0.85098, 0.709804, 0.392157)
 theme_override_font_sizes/font_size = 40
-theme_override_styles/disabled = SubResource("StyleBoxFlat_cj8yt")
-theme_override_styles/hover = SubResource("StyleBoxFlat_5ylv0")
 theme_override_styles/normal = SubResource("StyleBoxFlat_fht0i")
+theme_override_styles/hover = SubResource("StyleBoxFlat_5ylv0")
+theme_override_styles/disabled = SubResource("StyleBoxFlat_cj8yt")
 text = "No"
 
 [node name="CharacterIDField" type="LineEdit" parent="CreateCharacterDialogOverlay/CreateCharacterDialog"]
@@ -223,8 +223,8 @@ offset_top = 240.0
 offset_right = 752.0
 offset_bottom = 296.0
 theme_override_font_sizes/font_size = 40
-theme_override_styles/focus = SubResource("StyleBoxFlat_qfmr5")
 theme_override_styles/normal = SubResource("StyleBoxFlat_qn0p0")
+theme_override_styles/focus = SubResource("StyleBoxFlat_qfmr5")
 placeholder_text = "Player Name"
 alignment = 1
 
@@ -247,7 +247,7 @@ offset_bottom = 840.0
 theme_override_styles/panel = SubResource("StyleBoxFlat_1lji1")
 
 [node name="MessageLabel" type="Label" parent="WrongPasswordPopupOverlay/WrongPasswordPopup"]
-layout_mode = 2
+layout_mode = 0
 offset_left = 8.0
 offset_top = 96.0
 offset_right = 960.0
@@ -259,29 +259,36 @@ horizontal_alignment = 1
 autowrap_mode = 3
 
 [node name="OkButton" type="Button" parent="WrongPasswordPopupOverlay/WrongPasswordPopup"]
-layout_mode = 2
+layout_mode = 0
 offset_left = 360.0
 offset_top = 336.0
 offset_right = 640.0
 offset_bottom = 415.0
-theme_override_colors/font_disabled_color = Color(0.909804, 0.85098, 0.709804, 0.392157)
 theme_override_colors/font_color = Color(0.909804, 0.85098, 0.709804, 1)
+theme_override_colors/font_disabled_color = Color(0.909804, 0.85098, 0.709804, 0.392157)
 theme_override_font_sizes/font_size = 40
-theme_override_styles/disabled = SubResource("StyleBoxFlat_xvaqr")
-theme_override_styles/hover = SubResource("StyleBoxFlat_rxops")
 theme_override_styles/normal = SubResource("StyleBoxFlat_nsduw")
+theme_override_styles/hover = SubResource("StyleBoxFlat_rxops")
+theme_override_styles/disabled = SubResource("StyleBoxFlat_xvaqr")
 text = "OK"
 
 [node name="GameNameLabel" type="Label" parent="."]
-layout_mode = 2
-offset_left = 288.0
-offset_top = 184.0
-offset_right = 1507.0
-offset_bottom = 457.0
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -738.0
+offset_top = -346.0
+offset_right = 738.0
+offset_bottom = -73.0
+grow_horizontal = 2
+grow_vertical = 2
 theme_override_colors/font_color = Color(0.909804, 0.85098, 0.709804, 1)
 theme_override_fonts/font = ExtResource("3_ihlnx")
 theme_override_font_sizes/font_size = 200
-text = "Dungeon101"
+text = "Isekai Dungeons"
 horizontal_alignment = 1
 
 [connection signal="text_changed" from="CenterContainer/VBoxContainer/UsernameField" to="." method="_on_username_field_text_changed"]
