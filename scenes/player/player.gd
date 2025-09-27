@@ -5,9 +5,8 @@ extends CharacterBody3D
 @onready var character_node: Node3D = $Character
 @onready var camera_rig: CameraRig = $CameraRig
 
-# Put the imported character model on this Visibility Layer (0-based index).
-# CameraRig can then hide/show this layer in 1P/3P via its cull_mask toggle.
-@export var character_visibility_layer_index: int = 1   # Layer 2 by default
+# Imported character model -> visibility layer (so CameraRig can hide in 1P)
+@export var character_visibility_layer_index: int = 1
 
 # -------------------------------------------------------------------
 # Animation state
@@ -41,6 +40,24 @@ const LAND_STILL_EPS: float = 0.05
 var _grounded_cached: bool = false
 
 # -------------------------------------------------------------------
+# State Machine
+# -------------------------------------------------------------------
+var state        # PlayerState
+var st_grounded  # PlayerState
+var st_airborne  # PlayerState
+var st_swimming  # PlayerState
+
+func change_state(next_state) -> void:
+	if state == next_state or next_state == null:
+		return
+	var prev : PlayerState = state
+	if prev and prev.has_method("exit"):
+		prev.exit(next_state)
+	state = next_state
+	if state and state.has_method("enter"):
+		state.enter(prev)
+
+# -------------------------------------------------------------------
 # Lifecycle
 # -------------------------------------------------------------------
 func _ready() -> void:
@@ -49,16 +66,33 @@ func _ready() -> void:
 		settings = PlayerSettings.new()
 	load_model_from_character_data()
 
+	# CharacterBody3D setup
 	floor_snap_length = floor_snap_len
 	floor_max_angle = deg_to_rad(floor_max_angle_deg)
 	motion_mode = CharacterBody3D.MOTION_MODE_GROUNDED
 
-	# CameraRig initialization (child of Player)
+	# CameraRig
 	if is_instance_valid(camera_rig):
 		camera_rig.world_attached = false
 		camera_rig.configure(self)
 	else:
 		push_warning("Player: CameraRig child not found.")
+
+	# --- States ---
+	st_grounded = load("res://scenes/player/states/grounded.gd").new()
+	st_airborne = load("res://scenes/player/states/airborne.gd").new()
+	st_swimming = load("res://scenes/player/states/swimming.gd").new()
+
+	for s in [st_grounded, st_airborne, st_swimming]:
+		s.owner = self
+
+	# Pick initial state
+	if in_water:
+		change_state(st_swimming)
+	elif is_on_floor():
+		change_state(st_grounded)
+	else:
+		change_state(st_airborne)
 
 # -------------------------------------------------------------------
 # Model loading
@@ -77,10 +111,9 @@ func load_model_from_character_data() -> void:
 		var model_instance: Node3D = model_scene.instantiate()
 		character_node.add_child(model_instance)
 
-		# --- Put the model on a dedicated Visibility Layer so the camera can hide it in 1P ---
+		# Put the model on a dedicated Visibility Layer so the camera can hide it in 1P
 		var layer_idx := character_visibility_layer_index
 		if is_instance_valid(camera_rig) and camera_rig.head_visibility_layer >= 0:
-			# Keep in sync with the CameraRig’s configured hide layer if present
 			layer_idx = camera_rig.head_visibility_layer
 		_set_visibility_layer_recursive(model_instance, layer_idx)
 
@@ -90,12 +123,10 @@ func load_model_from_character_data() -> void:
 	else:
 		push_error("Failed to load model at path: " + model_path)
 
-# Recursively set the Visibility Layers of any renderers (MeshInstance3D/SkinnedMeshInstance3D/etc.)
 func _set_visibility_layer_recursive(node: Node, layer_index: int) -> void:
 	var bit := 1 << layer_index
 	if node is GeometryInstance3D:
 		var gi := node as GeometryInstance3D
-		# Replace with exactly this layer; switch to (gi.layers |= bit) if you prefer additive.
 		gi.layers = bit
 	for c in node.get_children():
 		_set_visibility_layer_recursive(c, layer_index)
@@ -104,50 +135,20 @@ func _set_visibility_layer_recursive(node: Node, layer_index: int) -> void:
 # Physics
 # -------------------------------------------------------------------
 func _physics_process(delta: float) -> void:
-	# --- Input states ---
-	var direction: Vector3 = Vector3.ZERO
-	var is_moving_forward := Input.is_action_pressed("move_forward")
-	var is_moving_backward := Input.is_action_pressed("move_back")
-	var is_turning_left := Input.is_action_pressed("move_left")     # rotate body
-	var is_turning_right := Input.is_action_pressed("move_right")   # rotate body
-	var is_crouching := Input.is_action_pressed("crouch")
-	var is_sprinting := Input.is_action_pressed("sprint")
-	var jump_pressed := Input.is_action_just_pressed("jump")
-	var jump_held := Input.is_action_pressed("jump")
+	if state:
+		state.physics_update(delta)
 
-	# IMPORTANT: query floor state BEFORE physics step
-	var was_on_floor := is_on_floor()
+# These helpers remain for states to reuse
+func compute_local_axes() -> Dictionary:
+	var fwd := transform.basis.z;  fwd.y = 0.0;  fwd = fwd.normalized()
+	var right := transform.basis.x; right.y = 0.0; right = right.normalized()
+	return {"fwd": fwd, "right": right}
 
-	# --- Turn CHARACTER (camera will auto-center in rig when no look input) ---
-	var turn_rate := (settings.water_turn_speed if in_water else settings.turn_speed) # radians/sec
-	var turn_step := 0.0
-	if is_turning_left:
-		turn_step += turn_rate * delta
-	if is_turning_right:
-		turn_step -= turn_rate * delta
-	if turn_step != 0.0:
-		rotation.y = wrapf(rotation.y + turn_step, -PI, PI)
-
-	# --- Build forward vector from CURRENT PLAYER facing (XZ only) ---
-	var fwd := transform.basis.z
-	fwd.y = 0.0
-	fwd = fwd.normalized()
-
-	# --- Movement (no strafing; forward/back relative to body) ---
-	if is_moving_forward:
-		direction += fwd
-	if is_moving_backward:
-		direction -= fwd
-
-	# Normalize planar move vector
-	if direction != Vector3.ZERO:
-		direction = direction.normalized()
-
-	# --- Speed selection ---
+func common_speed_select(direction: Vector3, is_moving_forward: bool, is_crouching: bool, is_sprinting: bool, was_on_floor: bool) -> float:
 	var speed: float = settings.move_speed
-	if is_sprinting and is_moving_forward and not is_crouching:
+	if is_sprinting and is_moving_forward and not is_crouching and not in_water:
 		speed = settings.sprint_speed
-	if is_crouching and (is_moving_forward or is_moving_backward):
+	if is_crouching and direction != Vector3.ZERO and not in_water:
 		speed = settings.crouch_speed
 	if not was_on_floor and not in_water:
 		speed = settings.airborne_speed
@@ -156,8 +157,9 @@ func _physics_process(delta: float) -> void:
 			speed = settings.water_sprint_speed
 		else:
 			speed = settings.water_speed
+	return speed
 
-	# --- Horizontal velocity ---
+func apply_horizontal_velocity(direction: Vector3, speed: float, was_on_floor: bool) -> void:
 	if was_on_floor and not in_water:
 		var flat_vel := (direction * speed).slide(get_floor_normal())
 		velocity.x = flat_vel.x
@@ -166,30 +168,12 @@ func _physics_process(delta: float) -> void:
 		velocity.x = direction.x * speed
 		velocity.z = direction.z * speed
 
-	# --- Vertical velocity ---
-	if in_water:
-		_handle_water_vertical(delta, jump_held)
+func land_gravity_and_stick(delta: float, was_on_floor: bool) -> void:
+	if not was_on_floor:
+		velocity.y -= settings.gravity * delta
 	else:
-		_handle_land_vertical(delta, was_on_floor, jump_pressed)
+		velocity.y = -stick_force
 
-	# --- Apply movement ---
-	move_and_slide()
-
-	# Floor snap
-	if velocity.y <= 0.0 and not in_water:
-		apply_floor_snap()
-
-	# Cache grounded
-	_grounded_cached = is_on_floor()
-
-	# Animations
-	var now_on_floor := _grounded_cached
-	_was_in_water_last_frame = in_water
-	_handle_animations(is_moving_forward, Input.is_action_pressed("move_back"), is_crouching, is_sprinting, now_on_floor)
-
-# -------------------------------------------------------------------
-# Vertical helpers
-# -------------------------------------------------------------------
 func _handle_water_vertical(delta: float, jump_held: bool) -> void:
 	if not _was_in_water_last_frame:
 		velocity.y = clamp(velocity.y, -settings.bob_max_speed, settings.bob_max_speed)
@@ -209,23 +193,8 @@ func _handle_water_vertical(delta: float, jump_held: bool) -> void:
 	else:
 		velocity.y = max(velocity.y - settings.water_sink_accel * delta, -settings.max_sink_speed)
 
-func _handle_land_vertical(delta: float, was_on_floor: bool, jump_pressed: bool) -> void:
-	if not was_on_floor:
-		velocity.y -= settings.gravity * delta
-	else:
-		velocity.y = -stick_force
-
-	if jump_pressed and was_on_floor:
-		velocity.y = settings.jump_velocity
-		is_jumping = true
-		var planar_speed := Vector2(velocity.x, velocity.z).length()
-		if planar_speed <= LAND_STILL_EPS:
-			_play("jump_stat", settings.anim_jump_stat)
-		else:
-			_play("jump", settings.anim_jump)
-
 # -------------------------------------------------------------------
-# Animations
+# Animations (reused by states)
 # -------------------------------------------------------------------
 func _handle_animations(is_moving_forward: bool, is_moving_backward: bool, is_crouching: bool, is_sprinting: bool, now_on_floor: bool) -> void:
 	if anim_player == null:
@@ -263,30 +232,32 @@ func _handle_animations(is_moving_forward: bool, is_moving_backward: bool, is_cr
 			_play("idle", settings.anim_idle)
 
 # -------------------------------------------------------------------
-# Hooks from UnderwaterZone
+# Hooks + API used by states
 # -------------------------------------------------------------------
 func set_in_water(value: bool) -> void:
 	if value and not in_water:
 		_bob_t = 0.0
 	in_water = value
 
-# -------------------------------------------------------------------
-# Camera/View API
-# -------------------------------------------------------------------
+	# Transition immediately when water state toggles
+	if in_water:
+		change_state(st_swimming)
+	else:
+		if is_on_floor():
+			change_state(st_grounded)
+		else:
+			change_state(st_airborne)
+
 func set_first_person(enable: bool) -> void:
 	if is_instance_valid(camera_rig) and camera_rig.has_method("set_first_person"):
 		camera_rig.set_first_person(enable)
 
-# Helpers that define "forward" for others (like the CameraRig)
 func get_forward_yaw() -> float:
 	return rotation.y
 
 func get_forward_basis() -> Basis:
 	return global_transform.basis
 
-# -------------------------------------------------------------------
-# Animation helper
-# -------------------------------------------------------------------
 func _play(anim_name: String, rate: float, _smoothness: float = settings.anim_smoothness) -> void:
 	if anim_player == null:
 		return
@@ -295,8 +266,5 @@ func _play(anim_name: String, rate: float, _smoothness: float = settings.anim_sm
 	else:
 		anim_player.speed_scale = rate
 
-# -------------------------------------------------------------------
-# Save Helper
-# -------------------------------------------------------------------
 func can_be_safely_saved() -> bool:
 	return _grounded_cached and not in_water
