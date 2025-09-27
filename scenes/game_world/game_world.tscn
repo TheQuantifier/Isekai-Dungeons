@@ -1,8 +1,7 @@
-[gd_scene load_steps=13 format=3 uid="uid://tvefuc2jd8cc"]
+[gd_scene load_steps=12 format=3 uid="uid://tvefuc2jd8cc"]
 
 [ext_resource type="Script" uid="uid://dj6ds81qxtn0j" path="res://scenes/game_world/game_world.gd" id="1_mjgxe"]
 [ext_resource type="PackedScene" uid="uid://cgjylwr71uayr" path="res://scenes/player/player.tscn" id="2_mjgxe"]
-[ext_resource type="PackedScene" uid="uid://bgvjgrw6886vi" path="res://scenes/rigs/camera_rig/camera_pivot.tscn" id="4_5w0b0"]
 [ext_resource type="PackedScene" uid="uid://btpruu3ef4op0" path="res://scenes/rigs/sun_rig/sun_rig.tscn" id="5_4vb8v"]
 [ext_resource type="PackedScene" uid="uid://b4x8xoilsxgnq" path="res://ui/menus_canvas_layer/menus_canvas_layer.tscn" id="5_nxv6a"]
 [ext_resource type="PackedScene" uid="uid://cqn3bmrakwgxf" path="res://scenes/game_world/city/village_setup.tscn" id="9_5w0b0"]
@@ -21,11 +20,7 @@ size = Vector3(4, 0.1, 8)
 [node name="GameWorld" type="Node3D"]
 script = ExtResource("1_mjgxe")
 
-[node name="Player" parent="." groups=["player"] instance=ExtResource("2_mjgxe")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7, 0, 2)
-
-[node name="CameraRig" parent="." instance=ExtResource("4_5w0b0")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7, 1, 2)
+[node name="Player" parent="." instance=ExtResource("2_mjgxe")]
 
 [node name="SunRig" parent="." instance=ExtResource("5_4vb8v")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.20885, 64.7928, 12.4262)

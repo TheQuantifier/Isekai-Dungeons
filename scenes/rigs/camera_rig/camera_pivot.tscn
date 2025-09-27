@@ -6,10 +6,20 @@
 script = ExtResource("1_sm0li")
 
 [node name="Pivot" type="Node3D" parent="."]
+visible = false
 
 [node name="First" type="Camera3D" parent="Pivot"]
 cull_mask = 1048573
 
 [node name="Third" type="Camera3D" parent="Pivot"]
 transform = Transform3D(-0.443509, 0, 0.89627, 0, 1, 0, -0.89627, 0, -0.443509, 0, 0, 0)
+current = true
+
+[node name="PivotYaw" type="Node3D" parent="."]
+
+[node name="PivotPitch" type="Node3D" parent="PivotYaw"]
+
+[node name="SpringArm3D" type="SpringArm3D" parent="PivotYaw/PivotPitch"]
+
+[node name="Camera3D" type="Camera3D" parent="PivotYaw/PivotPitch/SpringArm3D"]
 current = true

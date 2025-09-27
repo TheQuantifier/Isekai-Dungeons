@@ -1,9 +1,13 @@
-# res://scenes/player/player.gd
 extends CharacterBody3D
 
 @export var settings: PlayerSettings   # link your .tres in the inspector
 
 @onready var character_node: Node3D = $Character
+@onready var camera_rig: CameraRig = $CameraRig
+
+# Put the imported character model on this Visibility Layer (0-based index).
+# CameraRig can then hide/show this layer in 1P/3P via its cull_mask toggle.
+@export var character_visibility_layer_index: int = 1   # Layer 2 by default
 
 # -------------------------------------------------------------------
 # Animation state
@@ -21,18 +25,18 @@ var _was_in_water_last_frame: bool = false
 # Bobbing control
 # -------------------------------------------------------------------
 var _bob_t: float = 0.0
-const WATER_STILL_EPS: float = 0.2   # Speed threshold to count as still in water
-const LAND_STILL_EPS: float = 0.05   # NEW: threshold to count as standing still on land
+const WATER_STILL_EPS: float = 0.2
+const LAND_STILL_EPS: float = 0.05
 
 # -------------------------------------------------------------------
-# Ground stick helpers (downhill fix)
+# Ground stick helpers
 # -------------------------------------------------------------------
-@export var stick_force: float = 2.0              # Small downward bias when grounded
-@export var floor_snap_len: float = 1.5           # Reach distance for floor snapping
+@export var stick_force: float = 2.0
+@export var floor_snap_len: float = 1.5
 @export_range(0.0, 89.0) var floor_max_angle_deg: float = 50.0
 
 # -------------------------------------------------------------------
-# Grounded cache (reliable outside physics callbacks)
+# Grounded cache
 # -------------------------------------------------------------------
 var _grounded_cached: bool = false
 
@@ -45,10 +49,16 @@ func _ready() -> void:
 		settings = PlayerSettings.new()
 	load_model_from_character_data()
 
-	# Configure CharacterBody3D slope behavior
 	floor_snap_length = floor_snap_len
 	floor_max_angle = deg_to_rad(floor_max_angle_deg)
 	motion_mode = CharacterBody3D.MOTION_MODE_GROUNDED
+
+	# CameraRig initialization (child of Player)
+	if is_instance_valid(camera_rig):
+		camera_rig.world_attached = false
+		camera_rig.configure(self)
+	else:
+		push_warning("Player: CameraRig child not found.")
 
 # -------------------------------------------------------------------
 # Model loading
@@ -67,11 +77,28 @@ func load_model_from_character_data() -> void:
 		var model_instance: Node3D = model_scene.instantiate()
 		character_node.add_child(model_instance)
 
+		# --- Put the model on a dedicated Visibility Layer so the camera can hide it in 1P ---
+		var layer_idx := character_visibility_layer_index
+		if is_instance_valid(camera_rig) and camera_rig.head_visibility_layer >= 0:
+			# Keep in sync with the CameraRig’s configured hide layer if present
+			layer_idx = camera_rig.head_visibility_layer
+		_set_visibility_layer_recursive(model_instance, layer_idx)
+
 		anim_player = model_instance.get_node_or_null("AnimationPlayer")
 		if anim_player == null:
 			push_warning("No AnimationPlayer found in loaded model.")
 	else:
 		push_error("Failed to load model at path: " + model_path)
+
+# Recursively set the Visibility Layers of any renderers (MeshInstance3D/SkinnedMeshInstance3D/etc.)
+func _set_visibility_layer_recursive(node: Node, layer_index: int) -> void:
+	var bit := 1 << layer_index
+	if node is GeometryInstance3D:
+		var gi := node as GeometryInstance3D
+		# Replace with exactly this layer; switch to (gi.layers |= bit) if you prefer additive.
+		gi.layers = bit
+	for c in node.get_children():
+		_set_visibility_layer_recursive(c, layer_index)
 
 # -------------------------------------------------------------------
 # Physics
@@ -81,6 +108,8 @@ func _physics_process(delta: float) -> void:
 	var direction: Vector3 = Vector3.ZERO
 	var is_moving_forward := Input.is_action_pressed("move_forward")
 	var is_moving_backward := Input.is_action_pressed("move_back")
+	var is_turning_left := Input.is_action_pressed("move_left")     # rotate body
+	var is_turning_right := Input.is_action_pressed("move_right")   # rotate body
 	var is_crouching := Input.is_action_pressed("crouch")
 	var is_sprinting := Input.is_action_pressed("sprint")
 	var jump_pressed := Input.is_action_just_pressed("jump")
@@ -89,20 +118,30 @@ func _physics_process(delta: float) -> void:
 	# IMPORTANT: query floor state BEFORE physics step
 	var was_on_floor := is_on_floor()
 
-	# --- Turning ---
-	var current_turn_speed: float = settings.water_turn_speed if in_water else settings.turn_speed
-	if Input.is_action_pressed("move_left"):
-		rotate_y(current_turn_speed * delta)
-	if Input.is_action_pressed("move_right"):
-		rotate_y(-current_turn_speed * delta)
+	# --- Turn CHARACTER (camera will auto-center in rig when no look input) ---
+	var turn_rate := (settings.water_turn_speed if in_water else settings.turn_speed) # radians/sec
+	var turn_step := 0.0
+	if is_turning_left:
+		turn_step += turn_rate * delta
+	if is_turning_right:
+		turn_step -= turn_rate * delta
+	if turn_step != 0.0:
+		rotation.y = wrapf(rotation.y + turn_step, -PI, PI)
 
-	# --- Move direction (XZ plane) ---
+	# --- Build forward vector from CURRENT PLAYER facing (XZ only) ---
+	var fwd := transform.basis.z
+	fwd.y = 0.0
+	fwd = fwd.normalized()
+
+	# --- Movement (no strafing; forward/back relative to body) ---
 	if is_moving_forward:
-		direction += transform.basis.z
+		direction += fwd
 	if is_moving_backward:
-		direction -= transform.basis.z
-	direction.y = 0.0
-	direction = direction.normalized()
+		direction -= fwd
+
+	# Normalize planar move vector
+	if direction != Vector3.ZERO:
+		direction = direction.normalized()
 
 	# --- Speed selection ---
 	var speed: float = settings.move_speed
@@ -120,14 +159,13 @@ func _physics_process(delta: float) -> void:
 
 	# --- Horizontal velocity ---
 	if was_on_floor and not in_water:
-		# Project along slope for smooth downhill sprinting
 		var flat_vel := (direction * speed).slide(get_floor_normal())
 		velocity.x = flat_vel.x
 		velocity.z = flat_vel.z
 	else:
 		velocity.x = direction.x * speed
 		velocity.z = direction.z * speed
-	
+
 	# --- Vertical velocity ---
 	if in_water:
 		_handle_water_vertical(delta, jump_held)
@@ -137,19 +175,17 @@ func _physics_process(delta: float) -> void:
 	# --- Apply movement ---
 	move_and_slide()
 
-	# Snap back to floor when descending
+	# Floor snap
 	if velocity.y <= 0.0 and not in_water:
 		apply_floor_snap()
 
-	# Cache grounded state AFTER movement so it is reliable outside physics
+	# Cache grounded
 	_grounded_cached = is_on_floor()
 
-	# For animation decisions, query AFTER movement
+	# Animations
 	var now_on_floor := _grounded_cached
 	_was_in_water_last_frame = in_water
-
-	# --- Animations ---
-	_handle_animations(is_moving_forward, is_moving_backward, is_crouching, is_sprinting, now_on_floor)
+	_handle_animations(is_moving_forward, Input.is_action_pressed("move_back"), is_crouching, is_sprinting, now_on_floor)
 
 # -------------------------------------------------------------------
 # Vertical helpers
@@ -161,7 +197,6 @@ func _handle_water_vertical(delta: float, jump_held: bool) -> void:
 	var surface: float = settings.water_surface_height + settings.surface_offset
 
 	if settings.enable_surface_hold and jump_held:
-		# Apply bobbing offset
 		var offset: float = 0.0
 		if settings.enable_bob and settings.bob_height > 0.0 and settings.bob_speed > 0.0:
 			_bob_t += delta
@@ -169,7 +204,6 @@ func _handle_water_vertical(delta: float, jump_held: bool) -> void:
 
 		var target_y: float = surface + offset
 		var error: float = target_y - global_position.y
-
 		var desired_vy: float = clamp(error * settings.bob_follow_accel, -settings.bob_max_speed, settings.bob_max_speed)
 		velocity.y = move_toward(velocity.y, desired_vy, settings.bob_follow_accel * delta)
 	else:
@@ -179,13 +213,11 @@ func _handle_land_vertical(delta: float, was_on_floor: bool, jump_pressed: bool)
 	if not was_on_floor:
 		velocity.y -= settings.gravity * delta
 	else:
-		# Stick player to slopes when grounded
 		velocity.y = -stick_force
 
 	if jump_pressed and was_on_floor:
 		velocity.y = settings.jump_velocity
 		is_jumping = true
-		# NEW: choose jump animation based on whether we're standing still on land
 		var planar_speed := Vector2(velocity.x, velocity.z).length()
 		if planar_speed <= LAND_STILL_EPS:
 			_play("jump_stat", settings.anim_jump_stat)
@@ -211,7 +243,7 @@ func _handle_animations(is_moving_forward: bool, is_moving_backward: bool, is_cr
 		else:
 			_play("swimming", settings.anim_swim)
 	elif is_jumping and not now_on_floor:
-		pass # in midair
+		pass
 	elif now_on_floor:
 		if is_jumping:
 			is_jumping = false
@@ -239,6 +271,20 @@ func set_in_water(value: bool) -> void:
 	in_water = value
 
 # -------------------------------------------------------------------
+# Camera/View API
+# -------------------------------------------------------------------
+func set_first_person(enable: bool) -> void:
+	if is_instance_valid(camera_rig) and camera_rig.has_method("set_first_person"):
+		camera_rig.set_first_person(enable)
+
+# Helpers that define "forward" for others (like the CameraRig)
+func get_forward_yaw() -> float:
+	return rotation.y
+
+func get_forward_basis() -> Basis:
+	return global_transform.basis
+
+# -------------------------------------------------------------------
 # Animation helper
 # -------------------------------------------------------------------
 func _play(anim_name: String, rate: float, _smoothness: float = settings.anim_smoothness) -> void:
@@ -253,6 +299,4 @@ func _play(anim_name: String, rate: float, _smoothness: float = settings.anim_sm
 # Save Helper
 # -------------------------------------------------------------------
 func can_be_safely_saved() -> bool:
-	# Only save when standing on solid ground and NOT in water.
-	# Use cached grounded state so this is reliable in timers/menus.
 	return _grounded_cached and not in_water

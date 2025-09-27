@@ -1,4 +1,3 @@
-# res://scenes/game_world/game_world.gd
 extends Node3D
 class_name GameWorld
 
@@ -11,7 +10,6 @@ signal camera_view_changed(is_first_person: bool)
 # Node references (assigned in scene tree)
 # -------------------------------------------------------------------
 @onready var player: CharacterBody3D = $Player
-@onready var camera_rig: CameraRig = $CameraRig
 @onready var sun_rig: SunRig = $SunRig
 @onready var env_ctrl: EnvironmentController = $EnvironmentController
 @onready var menus: MenusCanvasLayer = $MenusCanvasLayer
@@ -39,7 +37,6 @@ var _last_player_pos: Vector3 = Vector3.ZERO
 # -------------------------------------------------------------------
 func _ready() -> void:
 	# Configure subsystems
-	if camera_rig: camera_rig.configure()
 	if sun_rig:    sun_rig.configure()
 	if env_ctrl:   env_ctrl.configure()
 
@@ -84,11 +81,7 @@ func _process(_dt: float) -> void:
 	if is_instance_valid(player) and player.is_inside_tree():
 		_last_player_pos = player.global_position
 
-	# Update camera rig follow logic
-	if camera_rig:
-		camera_rig.update_follow(player, is_first_person)
-
-	# Update minimap camera
+	# Minimap follow
 	_update_minimap()
 
 func _exit_tree() -> void:
@@ -120,7 +113,7 @@ func _unhandled_input(event: InputEvent) -> void:
 		game_manager.go_to(Page.INVENTORY)
 
 # -------------------------------------------------------------------
-# Camera view management
+# Camera view management (delegates to Player)
 # -------------------------------------------------------------------
 func toggle_camera_view() -> void:
 	set_first_person(not is_first_person)
@@ -129,6 +122,9 @@ func set_first_person(enable: bool) -> void:
 	if is_first_person == enable:
 		return
 	is_first_person = enable
+	# Forward to Player's camera rig
+	if is_instance_valid(player) and player.has_method("set_first_person"):
+		player.set_first_person(is_first_person)
 	emit_signal("camera_view_changed", is_first_person)
 
 # -------------------------------------------------------------------
