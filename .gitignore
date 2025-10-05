@@ -1,18 +1,18 @@
-# Godot 4+ specific ignores
+# Godot caches
+.import/
 .godot/
-.nomedia
+mono_temp/
+*.import
 
-# Godot-specific ignores
-.import/           # Folder
-*.import           # Individual import files
-*.uid           # Unique Godot metadata files
-export.cfg
-export_credentials.cfg
+# C# build junk
+.vs/
+**/bin/
+**/obj/
+*.csproj.user
 
-# Imported translations (automatically generated from CSV files)
-*.translation
-
-# Mono-specific ignores
-.mono/
-data_*/
-mono_crash.*.json
+# Native/plugin binaries
+addons/terrain_3d/bin/
+*.dll
+*.exe
+*.so
+*.dylib
